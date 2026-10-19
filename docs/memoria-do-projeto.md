@@ -41,3 +41,16 @@ Pendências (em aberto):
 ```
 
 Mantenha **uma linha por memória** no índice (`MEMORY.md`), com um gancho que diga quando ela é relevante, e atualize ou apague memórias que ficaram erradas.
+
+---
+
+## Estado do projeto
+
+**2026-10-19, Fases 0 e 1 (descoberta e referências), em andamento**
+
+- **O que é:** identidade de marca + site da própria empresa (prestação de serviços B2B que entrega sites). O site é a vitrine/portfólio e precisa *demonstrar* a capacidade de entregar um site excelente.
+- **Nichos dos clientes:** imobiliário, odontológico e escritórios de advocacia.
+- **Ordem:** primeiro a identidade (nome/posicionamento se faltar, paleta, tipografia, tom), depois o site sobre ela.
+- **Referências** (escolhidas pelas animações, inovação, tipografia e paletas): RayRay Lab, The Shift e path digital como base; Ovia só em partes. Estudo completo em [referencias/estudo-das-referencias.md](referencias/estudo-das-referencias.md).
+- **Cenário do método:** `site-estatico` (método 2.3.2). Repositório público `ivygabriell/projetoPrestacaoDeServico`, com a `main` protegida (check "Testes, tipos e build").
+- **Pendências:** nome da marca (ainda não informado), alternativas gratuitas ou licença das fontes, duração da abertura, quanto de WebGL entra.
