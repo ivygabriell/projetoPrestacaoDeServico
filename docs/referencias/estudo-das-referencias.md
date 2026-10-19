@@ -2,7 +2,9 @@
 
 **Fase 1 do método (referências e contexto).** Data do estudo: 2026-10-19.
 
-**O que a pessoa pediu:** as três primeiras referências são a base do site, escolhidas pelas **animações, pela inovação, pela tipografia e pelas paletas**. A quarta (Ovia) serve só para aproveitar partes. O site é a vitrine da própria empresa, e por isso precisa *provar* a capacidade de entregar um site excelente.
+**O que a pessoa pediu:** as referências foram escolhidas pelas **animações, pela inovação, pela tipografia e pelas paletas**.
+
+> **Decisão da pessoa (2026-10-19):** as **únicas referências do site são o RayRay Lab e a path digital**. The Shift e Ovia saíram do escopo. O estudo delas continua no apêndice só como registro e **não deve ser usado** como base. O site é a vitrine da própria empresa, e por isso precisa *provar* a capacidade de entregar um site excelente.
 
 **Como foi medido:** o HTML, o CSS e o JavaScript foram baixados com `curl`. Depois, cada página foi aberta no Chrome automatizado (Playwright) em 1440×900, rolada com a roda do mouse para disparar a rolagem suave e as animações ligadas à rolagem, e capturada tela a tela. Na mesma passada foram lidos os estilos calculados (fontes, tamanhos, cores), as animações ativas (`document.getAnimations()`), as bibliotecas expostas no `window` e os recursos baixados. A passada no celular foi feita em 390×844, com toque.
 
@@ -67,63 +69,7 @@ Estúdio de uma pessoa só, em Seul. Ganhou o "Site of the Day" do Awwwards e li
 
 ---
 
-## 2. The Shift (theshift.tokyo)
-
-Coletivo criativo de Tóquio. É a referência mais **editorial** do grupo.
-
-### Pilha técnica
-
-| Item | Valor | Fonte |
-|---|---|---|
-| CMS | WordPress (tema próprio) | `/wp-content/themes/the-shift/` |
-| Animação | **GSAP 3.2.4** | `window.gsap.version` |
-| Transição entre páginas | **Barba.js** | `window.barba` |
-| Reatividade | Alpine.js | `cdn.min.js` |
-| WebGL | Um `<canvas>` fixo de tela cheia (1440×900) | Inventário de canvas |
-| Vídeo | Cinco vídeos de projetos em loop | Inventário de `<video>` |
-| Rolagem | **Virtual**: o `scrollY` fica em 0 e o conteúdo se move por `transform` | `scrollY` constante durante a rolagem |
-
-### Tipografia
-
-| Papel | Família | Uso medido |
-|---|---|---|
-| Display serifado | **Gallery** (serifa de alto contraste, fina, com ligaduras incomuns) | "EXPLORING", "OF TODAY", nomes dos projetos, a faixa de áreas |
-| Display e texto sem serifa | **Everett** (pesos 100 e 400) | "THE SHIFT" no hero, textos e menus em 15px maiúsculas, tracking −0,15px |
-| Apoio | Lausanne (150) | Detalhes |
-| Japonês | YakuHanJP + Noto Sans JP | Versão em japonês |
-
-**A assinatura tipográfica** é misturar, no mesmo título, uma linha em **serifa fina** com uma linha em **sem serifa forte**, com recuos diferentes ("EXPLORING / THE SHIFT / OF TODAY"). As letras do título têm entrelinha negativa (11,5px numa fonte de 15px de base, escalada).
-
-### Paleta
-
-| Token | Valor | Onde |
-|---|---|---|
-| Claro | `rgb(240,240,240)` (`#f0f0f0`) | Fundo das seções claras |
-| Escuro | `rgb(20,20,20)` (`#141414`) | Fundo das seções escuras e texto |
-| Cinzas | `#323232`, `#e6e6e6`, `#f5f5f5` | Linhas e apoio |
-| **Acento único** | **`#fe4249`** (vermelho coral) | Só no cursor |
-| Modo escuro | Variáveis trocam claro por escuro (`--col-black` / `--col-white` invertidas) | Botão "DARK MODE" no rodapé |
-
-### Sequência da página e animações
-
-| # | Seção | O que acontece | Como |
-|---|---|---|---|
-| 1 | Hero | Título em três linhas mistas, um texto curto à direita e o relógio de Tóquio ao vivo no canto | — |
-| 2 | **Janela em arco** | Card com o **topo arredondado em arco**, no canto direito, mostrando vídeos de projetos em carrossel ("01/05"), com botão de seta | Vídeos em loop; troca com GSAP |
-| 3 | **Cursor próprio** | Um **ponto vermelho `#fe4249`** substitui o cursor e segue o mouse com atraso suave. Ele aparece em todas as capturas | Elementos `.ui-cursor`, `.ui-cursor-body`, `.ui-cursor-text` |
-| 4 | **Desfoque na rolagem** | Durante a rolagem, a página inteira **desfoca** e volta a ficar nítida quando para (visível nas capturas) | Filtro ligado à velocidade da rolagem virtual |
-| 5 | Claro → escuro | "WHAT WE DO" num bloco escuro, frase em Everett leve e um **botão circular branco** "ABOUT US" | — |
-| 6 | **Lista de projetos com imagem no hover** | Lista grande de nomes em Gallery ("FOCUS ON STRETCH PLEATS", "LEVEL OF DISTANCE"…), numerada (01)–(05), com recuos alternados. Ao passar o mouse, **a imagem ou o vídeo do projeto aparece sobre o texto** e acompanha o cursor | Canvas WebGL fixo; transições de 2s com `cubic-bezier(.22,1,.36,1)` |
-| 7 | **Faixa de áreas** | Duas linhas gigantes em Gallery ("PRODUCE · DIRECTION · DESIGN" / "SPACE · EDUCATION · FOOD · MUSIC") correndo em **sentidos opostos** | CSS `marquee` e `marquee_backward`, **80s**, linear |
-| 8 | Contato | "GET IN TOUCH" gigante em Everett, botão "BACK TO TOP" circular, Instagram e o botão de modo escuro | — |
-
-**Curvas de animação usadas** (o CSS conta quantas vezes cada uma aparece): `cubic-bezier(.66,0,.34,1)` (40×, entra e sai suave), `cubic-bezier(.32,.94,.6,1)` (33×, saída rápida), `cubic-bezier(.22,1,.36,1)` (saída exponencial). As durações mais comuns são 1s, 0,3s, 0,6s e 0,8s, e as transições de imagem chegam a 2s.
-
-**O que inspirar:** a mistura serifa fina + sem serifa forte num mesmo título, o acento único usado só no cursor, a lista com imagem no hover, as faixas em sentidos opostos, o arco como forma recorrente e o modo escuro.
-
----
-
-## 3. path digital (pathdigital.de)
+## 2. path digital (pathdigital.de)
 
 Agência alemã que faz sites B2B. É a referência mais próxima do **modelo de negócio** e a que mais organiza a página para **converter**.
 
@@ -189,7 +135,111 @@ Agência alemã que faz sites B2B. É a referência mais próxima do **modelo de
 
 ---
 
-## 4. Ovia (ovia.agency), só partes
+## 3. Síntese: o que cada uma traz e como se completam
+
+As duas referências se completam: o **RayRay Lab dá a linguagem visual e os efeitos** e a **path digital dá a estrutura que vende**.
+
+| Aspecto | RayRay Lab | path digital |
+|---|---|---|
+| Papel no nosso site | Prova de capacidade técnica e criativa (o "uau") | Organização da página para gerar contato (a conversão) |
+| Tipografia | Mono nos rótulos, sem serifa grotesca e justificada no manifesto, serifa editorial no rodapé | Sans clássica nos títulos com tracking −3%, títulos em duas cores (preto + cinza) |
+| Paleta | Monocromática: `#f9f9f9` / `#121813`, sem acento | Escala de cinzas numerada 100–1000 (`#f5f5f5` → `#0d0d0d`) com azul elétrico só em gradientes |
+| Ritmo | Alternância claro → escuro → claro, movimento contínuo e lento | Alternância escuro → claro → escuro com "ondas" de cor como passagem |
+| Movimento | WebGL de propósito: vidro, glitch, ASCII/pontilhado, tecido, física | Discreto e funcional: texto revelado pela rolagem, menu em pílula, casos empilhados, processo com lista fixa |
+| Base técnica | Next.js, Three.js, Lenis | Astro, Lenis, CSS |
+| Abertura | Preloader de ~4 s | Nenhuma |
+
+**Em comum:** rolagem suave com Lenis, base monocromática, tipografia grande como imagem principal, alternância de fundo claro e escuro entre seções e detalhes de "estúdio vivo" (relógio ou hora local, cidade).
+
+## 4. Riscos e cuidados para o nosso projeto
+
+- **Fontes pagas:** Editorial New, Season, Diatype e Helvetica Neue exigem licença (Azeret Mono é gratuita). As alternativas gratuitas ficam para a fase de identidade.
+- **Peso e desempenho:** o RayRay baixa 37 vídeos e ~1,8 MB de JavaScript. O cenário `site-estatico` exige metas de Lighthouse, então cada efeito pesado precisa justificar o custo e ter versão leve ou estática.
+- **Acessibilidade:** respeitar `prefers-reduced-motion` (desligar a rolagem suave, o desfoque e os shaders), não depender só do hover (o toque não tem hover) e manter o contraste mínimo nos títulos em cinza.
+- **Celular:** hover e parte dos shaders não existem no toque. Veja a seção 6.
+- **Direitos:** reproduzir comportamento e estrutura, nunca os arquivos. Os logos de clientes, os depoimentos e os prêmios das referências são de terceiros, e no nosso site esses espaços vão ser preenchidos com conteúdo próprio.
+
+## 5. Abertura da página, medida no tempo
+
+Capturas a cada 300–500 ms a partir do carregamento, em 1440×900.
+
+| Site | O que acontece | Tempo até o hero completo |
+|---|---|---|
+| RayRay | **Preloader** com um vídeo pequeno e uma frase que se **digita sozinha** ("Creative dev, logical design, web experience lab"). Depois a tela fica em branco, as formas de vidro aparecem desfocadas e entram em foco, e por fim surge o logotipo com glitch | **~4 s** (preloader ~2 s, vazio ~1,5 s, entrada ~0,5 s) |
+| path digital | **Sem abertura.** O conteúdo já está lá no primeiro quadro e só o carrossel de logos começa a andar | **imediato** |
+
+**Leitura:** o estúdio autoral (RayRay) usa a abertura como espetáculo. A agência que vende (path digital) mostra o conteúdo na hora. Uma abertura curta, de até ~1,5 s e que não bloqueie, é o meio-termo a decidir no desenho.
+
+## 6. No celular (390×844, toque)
+
+| Site | O que muda |
+|---|---|
+| RayRay | O hero com glitch e vidro **continua** (logotipo menor). A galeria horizontal de trabalhos vira uma **pilha vertical**. O manifesto continua justificado. O cubo com física do rodapé **continua** |
+| path digital | Menu vira **hambúrguer + pílula "Book a call" sempre visível**. A parede de projetos em perspectiva e o texto revelado pela rolagem continuam. Os casos deixam de se empilhar e viram cartões em sequência, com métricas ("2x Demo requests") |
+
+**Leitura:** o que depende de hover vira versão estática ou de toque. O WebGL leve continua no celular. A galeria horizontal vira vertical. O CTA principal fica fixo.
+
+---
+
+## Apêndice: referências fora do escopo (só registro)
+
+Retiradas pela pessoa em 2026-10-19. Não usar como base.
+
+### A. The Shift (theshift.tokyo)
+
+Coletivo criativo de Tóquio. É a referência mais **editorial** do grupo.
+
+#### Pilha técnica
+
+| Item | Valor | Fonte |
+|---|---|---|
+| CMS | WordPress (tema próprio) | `/wp-content/themes/the-shift/` |
+| Animação | **GSAP 3.2.4** | `window.gsap.version` |
+| Transição entre páginas | **Barba.js** | `window.barba` |
+| Reatividade | Alpine.js | `cdn.min.js` |
+| WebGL | Um `<canvas>` fixo de tela cheia (1440×900) | Inventário de canvas |
+| Vídeo | Cinco vídeos de projetos em loop | Inventário de `<video>` |
+| Rolagem | **Virtual**: o `scrollY` fica em 0 e o conteúdo se move por `transform` | `scrollY` constante durante a rolagem |
+
+#### Tipografia
+
+| Papel | Família | Uso medido |
+|---|---|---|
+| Display serifado | **Gallery** (serifa de alto contraste, fina, com ligaduras incomuns) | "EXPLORING", "OF TODAY", nomes dos projetos, a faixa de áreas |
+| Display e texto sem serifa | **Everett** (pesos 100 e 400) | "THE SHIFT" no hero, textos e menus em 15px maiúsculas, tracking −0,15px |
+| Apoio | Lausanne (150) | Detalhes |
+| Japonês | YakuHanJP + Noto Sans JP | Versão em japonês |
+
+**A assinatura tipográfica** é misturar, no mesmo título, uma linha em **serifa fina** com uma linha em **sem serifa forte**, com recuos diferentes ("EXPLORING / THE SHIFT / OF TODAY"). As letras do título têm entrelinha negativa (11,5px numa fonte de 15px de base, escalada).
+
+#### Paleta
+
+| Token | Valor | Onde |
+|---|---|---|
+| Claro | `rgb(240,240,240)` (`#f0f0f0`) | Fundo das seções claras |
+| Escuro | `rgb(20,20,20)` (`#141414`) | Fundo das seções escuras e texto |
+| Cinzas | `#323232`, `#e6e6e6`, `#f5f5f5` | Linhas e apoio |
+| **Acento único** | **`#fe4249`** (vermelho coral) | Só no cursor |
+| Modo escuro | Variáveis trocam claro por escuro (`--col-black` / `--col-white` invertidas) | Botão "DARK MODE" no rodapé |
+
+#### Sequência da página e animações
+
+| # | Seção | O que acontece | Como |
+|---|---|---|---|
+| 1 | Hero | Título em três linhas mistas, um texto curto à direita e o relógio de Tóquio ao vivo no canto | — |
+| 2 | **Janela em arco** | Card com o **topo arredondado em arco**, no canto direito, mostrando vídeos de projetos em carrossel ("01/05"), com botão de seta | Vídeos em loop; troca com GSAP |
+| 3 | **Cursor próprio** | Um **ponto vermelho `#fe4249`** substitui o cursor e segue o mouse com atraso suave. Ele aparece em todas as capturas | Elementos `.ui-cursor`, `.ui-cursor-body`, `.ui-cursor-text` |
+| 4 | **Desfoque na rolagem** | Durante a rolagem, a página inteira **desfoca** e volta a ficar nítida quando para (visível nas capturas) | Filtro ligado à velocidade da rolagem virtual |
+| 5 | Claro → escuro | "WHAT WE DO" num bloco escuro, frase em Everett leve e um **botão circular branco** "ABOUT US" | — |
+| 6 | **Lista de projetos com imagem no hover** | Lista grande de nomes em Gallery ("FOCUS ON STRETCH PLEATS", "LEVEL OF DISTANCE"…), numerada (01)–(05), com recuos alternados. Ao passar o mouse, **a imagem ou o vídeo do projeto aparece sobre o texto** e acompanha o cursor | Canvas WebGL fixo; transições de 2s com `cubic-bezier(.22,1,.36,1)` |
+| 7 | **Faixa de áreas** | Duas linhas gigantes em Gallery ("PRODUCE · DIRECTION · DESIGN" / "SPACE · EDUCATION · FOOD · MUSIC") correndo em **sentidos opostos** | CSS `marquee` e `marquee_backward`, **80s**, linear |
+| 8 | Contato | "GET IN TOUCH" gigante em Everett, botão "BACK TO TOP" circular, Instagram e o botão de modo escuro | — |
+
+**Curvas de animação usadas** (o CSS conta quantas vezes cada uma aparece): `cubic-bezier(.66,0,.34,1)` (40×, entra e sai suave), `cubic-bezier(.32,.94,.6,1)` (33×, saída rápida), `cubic-bezier(.22,1,.36,1)` (saída exponencial). As durações mais comuns são 1s, 0,3s, 0,6s e 0,8s, e as transições de imagem chegam a 2s.
+
+**O que inspirar:** a mistura serifa fina + sem serifa forte num mesmo título, o acento único usado só no cursor, a lista com imagem no hover, as faixas em sentidos opostos, o arco como forma recorrente e o modo escuro.
+
+### B. Ovia (ovia.agency)
 
 Estúdio francês. Usa fontes **gratuitas** e técnica simples, com resultado vibrante.
 
@@ -211,48 +261,14 @@ Estúdio francês. Usa fontes **gratuitas** e técnica simples, com resultado vi
 - **CTA em bloco lima** gigante e **logotipo enorme** no rodapé.
 - Menu que muda de cor conforme a seção que está por baixo.
 
----
+#### Abertura e celular (The Shift e Ovia)
 
-## 5. Síntese: o que as referências têm em comum
-
-1. **Tipografia como imagem principal.** Títulos de 70 a 170px com tracking negativo entre −3% e −4,5%.
-2. **Mistura de famílias:** uma serifa editorial (Gallery, Editorial New, SeasonMix), uma sem serifa (Everett, Helvetica, Season, Diatype) e muitas vezes uma monoespaçada para rótulos (Azeret, Space Mono).
-3. **Base monocromática**, com escala de cinzas de `#0d0d0d`–`#141414` a `#f0f0f0`–`#f9f9f9`, e **no máximo um acento** (vermelho no cursor, azul na onda), ou nenhum.
-4. **Alternância claro/escuro** entre as seções, com uma transição marcante (onda, desfoque, troca de fundo pela rolagem).
-5. **Rolagem suave** (Lenis ou rolagem virtual) como base de todas as animações.
-6. **Movimento contínuo e lento:** faixas de 26s a 200s, relógios ao vivo e textos girando.
-7. **Interações de cursor:** cursor próprio, imagem que segue o mouse e hover com revelação.
-8. **WebGL pontual e com propósito:** vidro, pontilhado, tecido, física. Ele não aparece em toda a página.
-9. **Detalhes de "estúdio vivo":** hora local, cidade, prêmios e modo escuro.
-
-## 6. Riscos e cuidados para o nosso projeto
-
-- **Fontes pagas:** Gallery, Everett, Lausanne, Editorial New, Season, Diatype e Helvetica Neue exigem licença. As alternativas gratuitas ficam para a fase de identidade.
-- **Peso e desempenho:** o RayRay baixa 37 vídeos e ~1,8 MB de JavaScript. O cenário `site-estatico` exige metas de Lighthouse, então cada efeito pesado precisa justificar o custo e ter versão leve ou estática.
-- **Acessibilidade:** respeitar `prefers-reduced-motion` (desligar a rolagem suave, o desfoque e os shaders), não depender só do hover (o toque não tem hover) e manter o contraste mínimo nos títulos em cinza.
-- **Celular:** cursor próprio, hover e parte dos shaders não existem no toque. Veja a seção abaixo.
-- **Direitos:** reproduzir comportamento e estrutura, nunca os arquivos. Os logos de clientes e os depoimentos da path digital são de terceiros, e no nosso site esses espaços vão ser preenchidos com conteúdo próprio.
-
-## 7. Abertura da página, medida no tempo
-
-Capturas a cada 300–500 ms a partir do carregamento, em 1440×900.
-
-| Site | O que acontece | Tempo até o hero completo |
+| Site | Abertura | Tempo até o hero |
 |---|---|---|
-| RayRay | **Preloader** com um vídeo pequeno e uma frase que se **digita sozinha** ("Creative dev, logical design, web experience lab"). Depois a tela fica em branco, as formas de vidro aparecem desfocadas e entram em foco, e por fim surge o logotipo com glitch | **~4 s** (preloader ~2 s, vazio ~1,5 s, entrada ~0,5 s) |
 | The Shift | Tela vazia e, em seguida, cada linha do título **sobe por trás de uma máscara** (o texto nasce cortado embaixo e desliza para cima), uma linha depois da outra. Junto entra o card em arco | **~2,5 s** (vazio ~1,4 s, revelação ~0,7 s) |
-| path digital | **Sem abertura.** O conteúdo já está lá no primeiro quadro e só o carrossel de logos começa a andar | **imediato** |
 | Ovia | Sem preloader. A palavra destacada do título **troca a cada ~2,7 s** (letras caindo por uma máscara), e a cor da palavra e o brilho de fundo mudam juntos (azul, depois rosa…) | **imediato** |
 
-**Leitura:** os estúdios autorais (RayRay, The Shift) usam a abertura como espetáculo. A agência que vende (path digital) prioriza o conteúdo imediato. Uma abertura curta, de até ~1,5 s e que não bloqueie, é o meio-termo a decidir no desenho.
-
-## 8. No celular (390×844, toque)
-
-| Site | O que muda |
+| Site | Celular |
 |---|---|
-| RayRay | O hero com glitch e vidro **continua** (logotipo menor). A galeria horizontal de trabalhos vira uma **pilha vertical**. O manifesto continua justificado. O cubo com física do rodapé **continua** |
 | The Shift | Título em três linhas recuadas, mantido. O card em arco fica centralizado. A **lista de projetos perde a imagem no hover** e vira uma lista centralizada. O cursor próprio some. As faixas em sentidos opostos continuam |
-| path digital | Menu vira **hambúrguer + pílula "Book a call" sempre visível**. A parede de projetos em perspectiva e o texto revelado pela rolagem continuam. Os casos deixam de se empilhar e viram cartões em sequência, com métricas ("2x Demo requests") |
 | Ovia | Hambúrguer, palavra que troca mantida e grade de serviços em uma coluna. O **menu assume a cor da seção** que está por baixo |
-
-**Leitura:** o que depende de cursor (hover com imagem, cursor próprio) é trocado por uma versão estática. O WebGL leve continua no celular. O CTA principal fica fixo.
