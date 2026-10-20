@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "rewrites": [
+    { "source": "/", "destination": "/docs/identidade/identidade-da-marca.html" },
+    { "source": "/catalogo-de-efeitos.html", "destination": "/docs/identidade/catalogo-de-efeitos.html" },
+    { "source": "/catalogo-de-efeitos", "destination": "/docs/identidade/catalogo-de-efeitos.html" }
+  ]
+}
