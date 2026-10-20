@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identidade da marca</title>
+<!-- Registro interativo de tudo o que foi decidido sobre a identidade até 2026-10-20.
+     Abra direto no navegador. Fonte das decisões: docs/memoria-do-projeto.md e a conversa de descoberta. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Azeret+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --claro: #F7F7F5; --c2: #DCDCD8; --c3: #787878; --escuro: #121813; --azul: #002FA7;
+    --azul-escuro-prop: #5B7BFF; --cinza-texto-prop: #6B6B6B;
+    --bg: var(--claro); --fg: var(--escuro); --muted: #5f635f; --linha: var(--c2); --cartao: #ffffff; --acento: var(--azul);
+    --mono: 'Azeret Mono', ui-monospace, monospace; --sans: 'Inter Tight', system-ui, sans-serif; --serif: 'Instrument Serif', Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: var(--escuro); --fg: var(--claro); --muted: #9aa09b; --linha: #2c3530; --cartao: #1a211c; --acento: var(--azul-escuro-prop); } }
+  :root[data-theme="dark"] { --bg: var(--escuro); --fg: var(--claro); --muted: #9aa09b; --linha: #2c3530; --cartao: #1a211c; --acento: var(--azul-escuro-prop); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 400 16px/1.55 var(--sans); transition: background .3s, color .3s; }
+  ::selection { background: var(--azul); color: #fff; }
+  a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--acento); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .02em; text-transform: uppercase; }
+  .muted { color: var(--muted); }
+
+  /* cabeçalho */
+  header.topo { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linha); }
+  header.topo .wrap { display: flex; align-items: center; gap: 20px; height: 54px; }
+  .rec { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--acento); animation: pisca 1.6s steps(1) infinite; }
+  @keyframes pisca { 50% { opacity: .15; } }
+  nav.menu { display: flex; gap: 16px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+  nav.menu a { border: 0; white-space: nowrap; color: var(--muted); transition: color .2s; }
+  nav.menu a.on, nav.menu a:hover { color: var(--fg); }
+  .tema { all: unset; cursor: pointer; border: 1px solid var(--linha); border-radius: 999px; padding: 5px 10px; white-space: nowrap; }
+
+  /* hero */
+  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--linha); position: relative; overflow: hidden; }
+  .hero .bar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .glitch { position: relative; display: inline-block; font: 800 clamp(56px, 11vw, 150px)/.86 var(--sans); letter-spacing: -.045em; text-transform: uppercase; margin: 0; }
+  .glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; pointer-events: none; }
+  .glitch::before { color: var(--acento); opacity: 0; animation: g1 3.2s infinite steps(1); }
+  .glitch::after { color: var(--fg); clip-path: inset(100% 0 0 0); animation: g2 3.2s infinite steps(1); }
+  @keyframes g1 { 0%,70%,100% { opacity: 0; transform: none; } 72% { clip-path: inset(10% 0 62% 0); transform: translate(-6px); opacity: .6; } 76% { clip-path: inset(48% 0 30% 0); transform: translate(5px); opacity: .6; } 80% { opacity: 0; } }
+  @keyframes g2 { 0%,70%,100% { clip-path: inset(100% 0 0 0); transform: none; } 73% { clip-path: inset(30% 0 52% 0); transform: translate(8px); } 78% { clip-path: inset(100% 0 0 0); } }
+  .glitch .p { color: var(--acento); }
+  .vidro { position: absolute; right: 6%; top: 120px; width: min(380px, 40vw); aspect-ratio: 1.4; border-radius: 48px; transform: rotate(-14deg);
+           background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(0,47,167,.10)); backdrop-filter: blur(6px) saturate(1.2);
+           box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 24px 60px rgba(0,47,167,.18); animation: flutua 9s ease-in-out infinite; pointer-events: none; }
+  @keyframes flutua { 50% { transform: translate(-40px, 20px) rotate(-6deg); } }
+  .hero .linha { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-top: 34px; }
+  .hero .linha p { max-width: 520px; margin: 0; font-size: 18px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { border: 1px solid var(--linha); border-radius: 999px; padding: 5px 11px; font: 500 12px var(--sans); white-space: nowrap; }
+  .chip.ok::before { content: '● '; color: var(--acento); font-size: 9px; }
+  .chip.pend::before { content: '○ '; color: var(--muted); font-size: 9px; }
+
+  /* seções */
+  section.sec { padding: 72px 0; border-bottom: 1px solid var(--linha); }
+  .sec-h { display: grid; grid-template-columns: 180px 1fr; gap: 24px; margin-bottom: 36px; }
+  .sec-h h2 { font: 500 clamp(30px, 4.4vw, 52px)/1.02 var(--sans); letter-spacing: -.035em; margin: 0; }
+  .sec-h h2 span { color: var(--muted); }
+  .sec-h .num { padding-top: 10px; }
+  .grade { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+  .cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: 12px; padding: 20px; }
+  .cartao h3 { font: 500 20px/1.15 var(--sans); letter-spacing: -.02em; margin: 6px 0 8px; }
+  .cartao p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .status { display: inline-block; font: 500 10.5px var(--mono); text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .status.ok { background: var(--azul); color: #fff; } .status.pend { border: 1px solid var(--linha); color: var(--muted); } .status.prop { border: 1px dashed var(--acento); color: var(--acento); }
+  .citacao { font: italic 400 clamp(30px, 4.4vw, 54px)/1.08 var(--serif); letter-spacing: -.01em; margin: 0 0 24px; }
+  .citacao b { font-style: normal; font-family: var(--sans); font-weight: 800; letter-spacing: -.04em; text-transform: uppercase; font-size: .8em; }
+
+  /* paleta */
+  .faixa { display: flex; height: 120px; border-radius: 12px; overflow: hidden; border: 1px solid var(--linha); margin-bottom: 18px; }
+  .faixa div { display: flex; align-items: flex-end; padding: 8px 10px; font: 10.5px var(--mono); cursor: pointer; transition: flex .4s; }
+  .faixa div:hover { flex-grow: 1.4 !important; }
+  .cor { cursor: pointer; overflow: hidden; padding: 0; }
+  .cor .amostra { height: 120px; position: relative; }
+  .cor .amostra span { position: absolute; left: 12px; bottom: 10px; font: 11px var(--mono); }
+  .cor .info { padding: 14px 16px; }
+  .cor .info b { display: block; font: 500 16px var(--sans); }
+  .cor .info small { display: block; color: var(--muted); font-size: 13px; line-height: 1.45; margin-top: 4px; }
+  .copiado { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); background: var(--fg); color: var(--bg); padding: 9px 16px; border-radius: 999px; font: 12px var(--mono); opacity: 0; transition: all .3s; z-index: 99; pointer-events: none; }
+  .copiado.on { opacity: 1; transform: translate(-50%, 0); }
+  .contraste { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; align-items: stretch; }
+  .contraste .seletores { display: flex; flex-direction: column; gap: 14px; }
+  .seletor { display: flex; gap: 8px; flex-wrap: wrap; }
+  .seletor button { all: unset; cursor: pointer; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--linha); position: relative; }
+  .seletor button.on { outline: 2px solid var(--acento); outline-offset: 2px; }
+  .previa { border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 210px; border: 1px solid var(--linha); transition: background .3s, color .3s; }
+  .previa .grande { font: 800 46px/.9 var(--sans); letter-spacing: -.045em; text-transform: uppercase; }
+  .previa .pequeno { font-size: 14px; }
+  .nota { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .nota b { font: 500 38px var(--sans); letter-spacing: -.03em; }
+  .selo { font: 500 10.5px var(--mono); text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .selo.passa { background: #1f7a3a; color: #fff; } .selo.falha { background: #a8322a; color: #fff; }
+  .alerta { border-left: 3px solid var(--acento); padding: 12px 16px; background: var(--cartao); border-radius: 0 10px 10px 0; font-size: 14.5px; }
+  .alerta + .alerta { margin-top: 10px; }
+
+  /* tipografia */
+  .fam { display: grid; grid-template-columns: 220px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--linha); align-items: center; }
+  .fam .esp { overflow: hidden; }
+  .fam .esp.t1 { font: 800 clamp(48px, 7vw, 96px)/.88 var(--sans); letter-spacing: -.045em; text-transform: uppercase; }
+  .fam .esp.t2 { font: 400 clamp(16px, 2vw, 22px)/1.4 var(--mono); text-transform: uppercase; }
+  .fam .esp.t3 { font: italic 400 clamp(34px, 5vw, 64px)/1.05 var(--serif); }
+  .testador { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .testador input { flex: 1; min-width: 220px; font: 16px var(--sans); padding: 11px 14px; border-radius: 10px; border: 1px solid var(--linha); background: var(--cartao); color: var(--fg); outline: none; }
+  .testador input:focus { border-color: var(--acento); }
+  .escala { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .escala td, .escala th { text-align: left; padding: 10px 8px; border-top: 1px solid var(--linha); vertical-align: middle; }
+  .escala th { font: 500 10.5px var(--mono); text-transform: uppercase; color: var(--muted); }
+
+  /* elementos */
+  .el { min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
+  .el .palco { height: 96px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--claro); color: var(--escuro); position: relative; overflow: hidden; margin-bottom: 14px; }
+  .el .palco.dk { background: var(--escuro); color: var(--claro); }
+  .mini-vidro { position: absolute; width: 90px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(0,47,167,.12)); backdrop-filter: blur(4px); box-shadow: inset 0 0 0 1px #fff, 0 10px 24px rgba(0,47,167,.2); animation: mv 6s ease-in-out infinite; }
+  @keyframes mv { 50% { transform: translateX(60px) rotate(8deg); } }
+  .link-demo { font: 500 15px var(--sans); color: var(--escuro); border-bottom: 2px solid var(--azul); padding-bottom: 2px; }
+  .link-demo::after { content: ' →'; color: var(--azul); display: inline-block; transition: transform .25s; }
+  .link-demo:hover::after { transform: translateX(4px); }
+
+  /* efeitos */
+  .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .filtros button { all: unset; cursor: pointer; border: 1px solid var(--linha); border-radius: 999px; padding: 6px 12px; font: 500 12.5px var(--sans); }
+  .filtros button.on { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .efeitos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .ef { display: flex; gap: 10px; align-items: baseline; padding: 11px 12px; border: 1px solid var(--linha); border-radius: 10px; background: var(--cartao); font-size: 14px; cursor: pointer; transition: border-color .2s; }
+  .ef:hover { border-color: var(--acento); }
+  .ef.marcado { border-color: var(--acento); box-shadow: inset 3px 0 0 var(--acento); }
+  .ef .n { font: 500 11px var(--mono); color: var(--muted); min-width: 22px; }
+  .ef .o { margin-left: auto; font: 10px var(--mono); text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .ef .ap { color: var(--acento); }
+
+  /* aplicação */
+  .app { border-radius: 12px; overflow: hidden; border: 1px solid var(--linha); }
+  .app .hero2 { position: relative; height: 360px; padding: 26px 32px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; font-family: var(--mono); }
+  .app .hero2.cl { background: var(--claro); color: var(--escuro); } .app .hero2.es { background: var(--escuro); color: var(--claro); }
+  .app .t { font: 800 clamp(46px, 7.5vw, 104px)/.86 var(--sans); letter-spacing: -.045em; text-transform: uppercase; position: relative; z-index: 1; }
+  .app .hero2.es .manif { font: 500 clamp(18px, 2.4vw, 28px)/1.02 var(--sans); text-transform: uppercase; text-align: justify; max-width: 760px; }
+  .app .hero2.es .serif { font: italic 22px var(--serif); color: #dcdcd8; } .app .hero2.es .serif b { font-weight: 400; color: #fff; border-bottom: 1px solid var(--azul-escuro-prop); }
+  .app .barra { display: flex; justify-content: space-between; font-size: 11px; text-transform: uppercase; gap: 10px; position: relative; z-index: 2; }
+
+  /* linha do tempo e pendências */
+  .tempo { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--linha); }
+  .tempo li { position: relative; padding: 0 0 22px 22px; }
+  .tempo li::before { content: ''; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--acento); }
+  .tempo time { font: 11px var(--mono); color: var(--muted); }
+  .tempo b { display: block; font-weight: 500; font-size: 16px; }
+  .pend label { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--linha); cursor: pointer; }
+  .pend input { margin-top: 5px; accent-color: var(--azul); }
+  .pend small { display: block; color: var(--muted); }
+  footer { padding: 40px 0 60px; }
+
+  .nomes { display: flex; flex-wrap: wrap; gap: 8px; }
+  .nomes span { border: 1px solid var(--linha); border-radius: 999px; padding: 5px 12px; font: 500 14px var(--sans); }
+  .nomes span.fav { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+  @media (max-width: 900px) {
+    .g3, .g4, .efeitos { grid-template-columns: repeat(2, 1fr); } .g2, .contraste { grid-template-columns: 1fr; }
+    .sec-h, .fam { grid-template-columns: 1fr; gap: 10px; } .vidro { display: none; }
+  }
+  @media (max-width: 560px) { .g3, .g4, .efeitos { grid-template-columns: 1fr; } nav.menu { display: none; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <span class="rec mono"><i></i>REC <span id="relogio"></span></span>
+    <nav class="menu mono" id="menu">
+      <a href="#essencia">Essência</a><a href="#nome">Nome</a><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a>
+      <a href="#elementos">Elementos</a><a href="#efeitos">Efeitos</a><a href="#aplicacao">Aplicação</a><a href="#pendencias">Pendências</a>
+    </nav>
+    <button class="tema mono" id="tema" aria-label="Alternar tema claro e escuro">◐ Tema</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="vidro" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="bar mono"><span>Identidade da marca · registro vivo</span><span>Atualizado em 20/10/2026</span><span>Nome provisório: “Marca”</span></div>
+      <h1 class="glitch" data-t="Identidade.">Identidade<span class="p">.</span></h1>
+      <div class="linha">
+        <p>Tudo o que já foi decidido sobre a marca da empresa que entrega sites B2B, num lugar só: o que a marca precisa provocar, a paleta, as fontes, os elementos visuais e os efeitos guardados. Esta página já usa a própria identidade.</p>
+        <div class="chips">
+          <span class="chip ok">Objetivo</span><span class="chip ok">Referências</span><span class="chip ok">Direção visual</span><span class="chip ok">Paleta</span><span class="chip ok">Tipografia</span><span class="chip ok">Efeitos guardados</span>
+          <span class="chip pend">Nome</span><span class="chip pend">Logotipo</span><span class="chip pend">Tom de voz</span><span class="chip pend">Efeitos escolhidos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="essencia">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">01 · Essência</span><h2>O que a marca precisa provocar<br><span>nos primeiros segundos.</span></h2></div>
+      <p class="citacao">Que o visitante pense, de imediato: <b>“esses caras são bons.”</b></p>
+      <div class="grade g3">
+        <div class="cartao"><span class="status ok">Decidido</span><h3>O site é a prova</h3><p>A marca não <em>diz</em> que faz sites excelentes: o próprio site mostra. Animação, inovação, tipografia e acabamento são a mensagem principal, não enfeite.</p></div>
+        <div class="cartao"><span class="status ok">Decidido</span><h3>Para quem</h3><p>Empresas B2B de três nichos: <b>imobiliárias</b>, <b>clínicas odontológicas</b> e <b>escritórios de advocacia</b>. A ousadia visual não é diluída para agradar o público mais conservador.</p></div>
+        <div class="cartao"><span class="status ok">Decidido</span><h3>Falhas desmentem a mensagem</h3><p>Lentidão, travamento no celular ou um detalhe mal resolvido fazem o visitante pensar o contrário. Desempenho e acessibilidade fazem parte da identidade.</p></div>
+      </div>
+      <div class="grade g2" style="margin-top:16px">
+        <div class="cartao"><span class="mono muted">Referência 1</span><h3>RayRay Lab: a linguagem visual</h3><p>Monocromático rigoroso, tipografia gigante, mono nos rótulos, serifa editorial nos detalhes e WebGL com propósito (vidro, glitch, ASCII, tecido, física). É o “uau”.</p></div>
+        <div class="cartao"><span class="mono muted">Referência 2</span><h3>path digital: a estrutura que vende</h3><p>Títulos em duas cores, escala de cinzas organizada e a página em sequência de convencimento: promessa, prova, processo, depoimentos, comparação, perguntas frequentes e chamada final.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="nome">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">02 · Nome</span><h2>Nome adiado<br><span>por enquanto.</span></h2></div>
+      <div class="grade g2">
+        <div class="cartao">
+          <span class="status pend">Favorito, não decidido</span>
+          <h3 style="font:italic 400 56px/1 var(--serif);letter-spacing:-.01em;margin:12px 0">Vero</h3>
+          <p>Italiano para <b>verdadeiro</b>; do latim <em>vērus</em>, raiz de “verdade”, “verídico” e <em>verify</em>. Em português existe como adjetivo literário. Pela tradição popular, Verônica viria de <em>vera icona</em>, “a imagem verdadeira”.</p>
+          <p style="margin-top:10px">Complementos considerados: <b>Vero Studio</b> (recomendado), Vero Lab, Vero Atelier, Vero Digital, Vero Works.</p>
+          <p style="margin-top:10px"><span class="status prop">A verificar</span> domínio <code>.com.br</code>/<code>.com</code>, registro no INPI (classe de serviços de design e desenvolvimento) e possível conflito nas buscas com uma operadora de internet chamada Vero.</p>
+        </div>
+        <div class="cartao">
+          <span class="mono muted">Todas as opções levantadas (28)</span>
+          <div class="nomes" style="margin-top:14px" id="nomes"></div>
+          <p style="margin-top:14px">Critérios usados: até 6 letras, fácil de falar em português e em inglês, sem sentido estranho em português e ligado a movimento, construção, precisão ou excelência.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="paleta">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">03 · Paleta</span><h2>Laboratório monocromático<br><span>com detalhes em azul profundo.</span></h2></div>
+      <p class="mono muted" style="margin:0 0 10px">Proporção de uso (clique em uma cor para copiar o código)</p>
+      <div class="faixa" id="faixa"></div>
+      <div class="grade g4" id="cores"></div>
+
+      <h3 style="font:500 24px var(--sans);letter-spacing:-.02em;margin:48px 0 6px">Onde o azul aparece</h3>
+      <p class="muted" style="margin:0 0 16px">Só em <b>detalhes</b>, nunca como fundo de seção nem em blocos grandes:</p>
+      <div class="chips" style="margin-bottom:40px">
+        <span class="chip">Ponto “gravando” do relógio</span><span class="chip">Eco do glitch no título</span><span class="chip">Ponto final dos títulos</span>
+        <span class="chip">Reflexo no vidro fosco</span><span class="chip">Sublinhado e seta dos links</span><span class="chip">Seleção de texto</span>
+      </div>
+
+      <h3 style="font:500 24px var(--sans);letter-spacing:-.02em;margin:0 0 6px">Teste de contraste</h3>
+      <p class="muted" style="margin:0 0 16px">Escolha a cor do texto e a do fundo. A nota segue a regra WCAG: 4,5 para texto normal (AA), 3 para texto grande (AA) e 7 para AAA.</p>
+      <div class="contraste">
+        <div class="seletores cartao">
+          <div><span class="mono muted">Texto</span><div class="seletor" id="sel-fg" style="margin-top:8px"></div></div>
+          <div><span class="mono muted">Fundo</span><div class="seletor" id="sel-bg" style="margin-top:8px"></div></div>
+          <div class="nota"><b id="razao">—</b><span class="selo" id="s-aa">AA</span><span class="selo" id="s-aag">AA grande</span><span class="selo" id="s-aaa">AAA</span></div>
+        </div>
+        <div class="previa" id="previa"><div class="grande">Sites que ficam.</div><div class="pequeno">Texto corrido em 14px, para conferir a leitura em tamanho pequeno.</div></div>
+      </div>
+      <div style="margin-top:24px">
+        <div class="alerta"><b>Achado:</b> o azul profundo <code>#002FA7</code> sobre o preto esverdeado <code>#121813</code> tem contraste de só <b>1,69</b>, o que o deixa quase invisível nas seções escuras. <span class="status prop">Proposta a aprovar</span> usar <b><code>#5B7BFF</code></b> (contraste 4,91) como versão do azul em fundo escuro, como os protótipos já fazem.</div>
+        <div class="alerta"><b>Achado:</b> o cinza <code>#787878</code> sobre o claro tem contraste <b>4,12</b>, abaixo dos 4,5 exigidos para texto pequeno. <span class="status prop">Proposta a aprovar</span> usar o cinza só em textos grandes ou decorativos, e <b><code>#6B6B6B</code></b> (4,97) para texto secundário pequeno.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="tipografia">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">04 · Tipografia</span><h2>Três famílias,<br><span>todas gratuitas (Google Fonts).</span></h2></div>
+      <div class="testador"><input id="tt" value="Sites que ficam." aria-label="Digite um texto para testar as fontes"><button class="tema mono" id="tt-reset">Restaurar</button></div>
+      <p class="mono muted" style="margin:0 0 10px">Digite acima para ver o texto nas três famílias</p>
+      <div class="fam"><div><span class="status ok">Títulos e manifesto</span><h3 style="font:500 22px var(--sans);margin:10px 0 4px">Inter Tight</h3><p class="muted" style="margin:0;font-size:14px">Peso 800 em caixa-alta nos títulos; 500 justificado no manifesto. A mais próxima da Helvetica do RayRay.</p></div><div class="esp t1" data-tt>Sites que ficam.</div></div>
+      <div class="fam"><div><span class="status ok">Rótulos e interface</span><h3 style="font:500 22px var(--sans);margin:10px 0 4px">Azeret Mono</h3><p class="muted" style="margin:0;font-size:14px">Menu, rótulos, relógio e legendas, em caixa-alta e tamanho pequeno.</p></div><div class="esp t2" data-tt>Sites que ficam.</div></div>
+      <div class="fam"><div><span class="status ok">Detalhes</span><h3 style="font:500 22px var(--sans);margin:10px 0 4px">Instrument Serif</h3><p class="muted" style="margin:0;font-size:14px">Itálico, em frases de destaque e no rodapé. Dá o toque editorial.</p></div><div class="esp t3" data-tt>Sites que ficam.</div></div>
+      <h3 style="font:500 24px var(--sans);letter-spacing:-.02em;margin:40px 0 10px">Escala usada nos protótipos</h3>
+      <table class="escala">
+        <tr><th>Papel</th><th>Família</th><th>Tamanho</th><th>Detalhes</th></tr>
+        <tr><td>Título do hero</td><td>Inter Tight 800</td><td>≈ 112–118px no desktop</td><td>Caixa-alta, entrelinha 0,86, tracking −4,5%</td></tr>
+        <tr><td>Manifesto</td><td>Inter Tight 500</td><td>≈ 24–28px</td><td>Caixa-alta, justificado, entrelinha ≈ 1,0</td></tr>
+        <tr><td>Texto corrido</td><td>Inter Tight 400</td><td>16–18px</td><td>Entrelinha ≈ 1,5</td></tr>
+        <tr><td>Rótulos e menu</td><td>Azeret Mono 400</td><td>10,5–15px</td><td>Caixa-alta, tracking leve</td></tr>
+        <tr><td>Frase de destaque</td><td>Instrument Serif itálico</td><td>≈ 19–24px</td><td>Palavra-chave sublinhada em azul</td></tr>
+      </table>
+      <p class="muted" style="font-size:13.5px;margin-top:10px">A escala final (com versões para celular) entra na spec do site.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="elementos">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">05 · Elementos visuais</span><h2>Os detalhes que<br><span>assinam a marca.</span></h2></div>
+      <div class="grade g3">
+        <div class="cartao el"><div class="palco"><span style="font:800 40px var(--sans);letter-spacing:-.04em">SITES</span><div class="mini-vidro"></div></div><div><h3>Vidro fosco</h3><p>Formas que flutuam e desfocam o que está por trás, com reflexo azul. No site, em 3D.</p></div></div>
+        <div class="cartao el"><div class="palco"><span class="glitch" data-t="Marca" style="font-size:44px">Marca</span></div><div><h3>Glitch com eco azul</h3><p>O título “falha” em fatias por um instante. Tecnologia viva, sem exagero.</p></div></div>
+        <div class="cartao el"><div class="palco"><span style="font:800 44px var(--sans);letter-spacing:-.045em;text-transform:uppercase">Ficam<span style="color:var(--azul)">.</span></span></div><div><h3>Ponto final azul</h3><p>A única cor dentro do título. Discreto e reconhecível.</p></div></div>
+        <div class="cartao el"><div class="palco"><span class="rec mono" style="font-size:16px"><i style="background:var(--azul)"></i>REC <span data-relogio></span></span></div><div><h3>Relógio “gravando”</h3><p>Hora ao vivo no cabeçalho: um estúdio funcionando agora.</p></div></div>
+        <div class="cartao el"><div class="palco"><span class="link-demo">Ver projetos</span></div><div><h3>Links com sublinhado azul</h3><p>Sublinhado de 2px e seta azul que avança no hover.</p></div></div>
+        <div class="cartao el"><div class="palco dk"><span style="font:500 13px var(--mono);text-transform:uppercase;color:#9aa09b">(Quem somos)</span></div><div><h3>Rótulos entre parênteses</h3><p>Seções marcadas em mono pequeno, à moda do RayRay.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="efeitos">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">06 · Movimento</span><h2>47 efeitos guardados<br><span>e a escolha ainda pendente.</span></h2></div>
+      <p class="muted" style="margin:0 0 18px">Todos vêm das duas referências e têm protótipo funcionando no <a href="catalogo-de-efeitos.html">catálogo de efeitos</a>. Os marcados com <span class="ap" style="color:var(--acento)">≈</span> são aproximações de efeitos que, no original, são WebGL/3D. Clique para marcar seus favoritos (a marcação fica salva neste navegador).</p>
+      <div class="filtros" id="filtros">
+        <button data-f="todos" class="on">Todos (47)</button><button data-f="rayray">RayRay Lab</button><button data-f="path">path digital</button><button data-f="ap">Aproximações ≈</button><button data-f="marcados">Marcados por mim</button>
+      </div>
+      <div class="efeitos" id="lista"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="aplicacao">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">07 · Aplicação</span><h2>A identidade junta,<br><span>no claro e no escuro.</span></h2></div>
+      <div class="app">
+        <div class="hero2 cl">
+          <div class="barra"><span class="rec"><i style="background:var(--azul)"></i>REC <span data-relogio></span></span><span>©Marca web lab</span><span>Work · Contact</span></div>
+          <div class="vidro" style="right:14%;top:70px;width:300px" aria-hidden="true"></div>
+          <div class="t">Sites<br>que ficam<span style="color:var(--azul)">.</span></div>
+          <div class="barra"><span style="max-width:340px;line-height:1.5">Design, desenvolvimento e interação para imobiliárias, clínicas e escritórios.</span><span class="link-demo" style="font:400 11px var(--mono);text-transform:uppercase">Ver projetos</span></div>
+        </div>
+        <div class="hero2 es">
+          <div class="barra" style="color:#9aa09b"><span>(Manifesto)</span><span>02</span></div>
+          <div class="manif">Não fazemos sites para ocupar espaço na internet. Fazemos a primeira impressão que faz seu cliente decidir em segundos.</div>
+          <div class="serif">Um estúdio para quem leva o <b>próprio nome</b> a sério.</div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13.5px;margin-top:10px">Os textos são provisórios, só para mostrar a identidade aplicada. O tom de voz ainda não foi definido.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="decisoes">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">08 · Linha do tempo</span><h2>Como chegamos<br><span>até aqui.</span></h2></div>
+      <ol class="tempo">
+        <li><time>19/10/2026</time><b>Projeto definido</b><span class="muted">Identidade e depois o site da própria empresa, para imobiliárias, clínicas odontológicas e escritórios de advocacia.</span></li>
+        <li><time>19/10/2026</time><b>Referências estudadas</b><span class="muted">Quatro sites analisados com medições; depois, só RayRay Lab e path digital ficaram como base.</span></li>
+        <li><time>19/10/2026</time><b>Objetivo confirmado</b><span class="muted">“Esses caras são bons”, de imediato. O site é a prova.</span></li>
+        <li><time>20/10/2026</time><b>Nome adiado</b><span class="muted">28 nomes levantados em três rodadas; Vero é o favorito.</span></li>
+        <li><time>20/10/2026</time><b>Direção A escolhida</b><span class="muted">Laboratório monocromático, entre três direções comparadas.</span></li>
+        <li><time>20/10/2026</time><b>Azul profundo #002FA7</b><span class="muted">Escolhido entre elétrico, profundo e azul luz, só para detalhes.</span></li>
+        <li><time>20/10/2026</time><b>Família tipográfica 1</b><span class="muted">Inter Tight + Azeret Mono + Instrument Serif.</span></li>
+        <li><time>20/10/2026</time><b>47 efeitos guardados</b><span class="muted">21 na primeira passada e 26 achados na verificação com o REA, todos com protótipo.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="pendencias">
+    <div class="wrap">
+      <div class="sec-h"><span class="num mono muted">09 · Pendências</span><h2>O que ainda<br><span>falta decidir.</span></h2></div>
+      <div class="pend" id="pend">
+        <label><input type="checkbox" data-k="efeitos"><span><b>Escolher os efeitos</b> que entram no site, entre os 47 do catálogo.<small>Próximo passo combinado.</small></span></label>
+        <label><input type="checkbox" data-k="nome"><span><b>Nome da marca</b>, com verificação de domínio e INPI.<small>Favorito: Vero (Studio).</small></span></label>
+        <label><input type="checkbox" data-k="logo"><span><b>Logotipo</b>, que depende do nome.</span></label>
+        <label><input type="checkbox" data-k="tom"><span><b>Tom de voz</b> e textos.</span></label>
+        <label><input type="checkbox" data-k="azul"><span><b>Azul em fundo escuro</b>: aprovar <code>#5B7BFF</code> ou outra opção.</span></label>
+        <label><input type="checkbox" data-k="cinza"><span><b>Cinza de texto secundário</b>: aprovar <code>#6B6B6B</code> para textos pequenos.</span></label>
+        <label><input type="checkbox" data-k="abertura"><span><b>Abertura do site</b>: com ou sem preloader, e de quanto tempo.<small>Sugestão anterior: até ~1,5 s, sem bloquear o conteúdo.</small></span></label>
+      </div>
+      <p class="muted" style="font-size:13.5px">As caixas marcadas ficam salvas só neste navegador, como lembrete pessoal. As decisões de verdade vão para <code>docs/memoria-do-projeto.md</code>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap mono muted" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <span>Identidade da marca · registro vivo</span><span>Catálogo: <a href="catalogo-de-efeitos.html">catalogo-de-efeitos.html</a></span><span>Memória: docs/memoria-do-projeto.md</span>
+  </div>
+</footer>
+<div class="copiado" id="copiado">Copiado</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const guarda = { ler(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+
+  // relógio
+  const dias = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'], z = n => String(n).padStart(2, '0');
+  const tic = () => { const d = new Date(), s = `${dias[d.getDay()]} ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`; $('relogio').textContent = s; document.querySelectorAll('[data-relogio]').forEach(e => e.textContent = s); };
+  tic(); setInterval(tic, 1000);
+
+  // tema
+  const raiz = document.documentElement, temaSalvo = guarda.ler('id-tema', null); if (temaSalvo) raiz.dataset.theme = temaSalvo;
+  $('tema').addEventListener('click', () => { const escuro = raiz.dataset.theme ? raiz.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; raiz.dataset.theme = escuro ? 'light' : 'dark'; guarda.gravar('id-tema', raiz.dataset.theme); });
+
+  // menu ativo
+  const links = [...document.querySelectorAll('#menu a')];
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section.sec').forEach(s => io.observe(s));
+
+  // nomes
+  const nomes = ['Moveo', 'Vante', 'Tessel', 'Strata', 'Arco', 'Vektor', 'Kanso', 'Nodo', 'Fold', 'Glint', 'Mira', 'Lapis', 'Karat', 'Rara', 'Vero', 'Brio', 'Auge', 'Onyx', 'Kern', 'Facet', 'Zelo', 'Atrium', 'Torque', 'Optik', 'Kuro', 'Noir', 'Velta', 'Kova'];
+  $('nomes').innerHTML = nomes.map(n => `<span class="${n === 'Vero' ? 'fav' : ''}">${n}</span>`).join('');
+
+  // paleta
+  const cores = [
+    { hex: '#F7F7F5', nome: 'Claro', uso: 'Fundo principal das seções claras.', peso: 40, txt: '#121813' },
+    { hex: '#DCDCD8', nome: 'Cinza claro', uso: 'Linhas, divisórias e estados apagados.', peso: 12, txt: '#121813' },
+    { hex: '#787878', nome: 'Cinza médio', uso: 'Segunda linha dos títulos e textos grandes de apoio.', peso: 8, txt: '#ffffff' },
+    { hex: '#121813', nome: 'Preto esverdeado', uso: 'Texto principal e fundo das seções escuras.', peso: 37, txt: '#F7F7F5' },
+    { hex: '#002FA7', nome: 'Azul profundo', uso: 'Só detalhes: ponto, eco do glitch, links, seleção.', peso: 3, txt: '#ffffff' },
+  ];
+  const copia = hex => { navigator.clipboard?.writeText(hex).catch(() => {}); const c = $('copiado'); c.textContent = `${hex} copiado`; c.classList.add('on'); setTimeout(() => c.classList.remove('on'), 1400); };
+  $('faixa').innerHTML = cores.map(c => `<div style="flex:${c.peso};background:${c.hex};color:${c.txt}" data-hex="${c.hex}" title="${c.nome}">${c.peso >= 8 ? c.hex : ''}</div>`).join('');
+  $('cores').innerHTML = cores.map(c => `<div class="cartao cor" data-hex="${c.hex}"><div class="amostra" style="background:${c.hex};color:${c.txt}"><span>${c.hex}</span></div><div class="info"><b>${c.nome}</b><small>${c.uso}</small></div></div>`).join('');
+  document.querySelectorAll('[data-hex]').forEach(e => e.addEventListener('click', () => copia(e.dataset.hex)));
+
+  // contraste (fórmula WCAG 2.x)
+  const lum = h => { const [r, g, b] = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4); return .2126 * r + .7152 * g + .0722 * b; };
+  const razao = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + .05) / (y + .05); };
+  const opcoes = [...cores.map(c => c.hex), '#5B7BFF', '#6B6B6B', '#FFFFFF'];
+  let fg = '#121813', bg = '#F7F7F5';
+  const monta = (id, atual, set) => { $(id).innerHTML = opcoes.map(h => `<button style="background:${h}" title="${h}${h === '#5B7BFF' || h === '#6B6B6B' ? ' (proposta)' : ''}" data-h="${h}" class="${h === atual ? 'on' : ''}"></button>`).join('');
+    $(id).querySelectorAll('button').forEach(b => b.addEventListener('click', () => { set(b.dataset.h); $(id).querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); atualiza(); })); };
+  const selo = (id, ok) => { $(id).className = 'selo ' + (ok ? 'passa' : 'falha'); };
+  const atualiza = () => { const r = razao(fg, bg); $('razao').textContent = r.toFixed(2).replace('.', ',') + ':1'; selo('s-aa', r >= 4.5); selo('s-aag', r >= 3); selo('s-aaa', r >= 7); $('previa').style.background = bg; $('previa').style.color = fg; };
+  monta('sel-fg', fg, v => fg = v); monta('sel-bg', bg, v => bg = v); atualiza();
+
+  // testador de fontes
+  const tt = $('tt'), alvos = [...document.querySelectorAll('[data-tt]')];
+  const aplica = () => alvos.forEach(a => a.textContent = tt.value || ' ');
+  tt.addEventListener('input', aplica); $('tt-reset').addEventListener('click', () => { tt.value = 'Sites que ficam.'; aplica(); });
+
+  // efeitos
+  const nomesEf = ['Abertura com texto digitando', 'Glitch com linhas de varredura', 'Formas de vidro em 3D', 'Faixas de serviços em sentidos opostos', 'Texto que se monta embaralhado', 'Texto circular girando', 'Claro → escuro na rolagem', 'Palavra em contorno empilhado', 'Imagem com desfoque de movimento', 'Imagem que nasce em ASCII', 'Galeria horizontal de projetos', 'Lista num “lençol” que ondula', 'Física num cubo que gira', 'Grade de pontos animada', 'Logos com bordas esmaecidas', 'Parede de projetos em perspectiva', 'Texto revelado pela rolagem', 'Onda de luz azul entre seções', 'Menu que vira pílula de vidro', 'Estudos de caso que se empilham', 'Processo com lista fixa', 'Logo que distorce seguindo o mouse', 'Seção que gira como cubo e vira caixas', 'Espaço que se abre no texto', 'Menu com texto que rola no hover', 'Logo do cabeçalho que se recolhe', 'Prévia do site no cartão do projeto', 'Barra de progresso com tracinhos', 'Projetos em tela cheia', 'Cabeçalho que inverte a cor por seção', 'Relógio ao vivo', 'Logo que vira pontos (braille)', 'Menu da marca no clique direito', 'Logos que abrem depoimento', 'Depoimento em vídeo numa janela', 'Cartões que surgem na rolagem', 'Mega menu de serviços', 'Indicador deslizante no menu', 'Abas com sublinhado deslizante', 'Carrossel de depoimentos', 'Antes e depois', 'Índice lateral fixo', 'Ilustração isométrica em linhas', 'Interfaces em vidro azul', 'Hora local e “pergunte à IA”', 'Perguntas frequentes em acordeão', 'Formulário com estados'];
+  const aprox = new Set([1, 2, 3, 8, 9, 10, 12, 13, 14, 16, 18, 22, 23, 27, 43, 44]);
+  const origem = n => (n <= 13 || (n >= 22 && n <= 31)) ? 'rayray' : 'path';
+  let marcados = new Set(guarda.ler('id-efeitos', [])), filtro = 'todos';
+  const desenha = () => {
+    $('lista').innerHTML = nomesEf.map((t, i) => ({ n: i + 1, t })).filter(e => filtro === 'todos' || (filtro === 'ap' ? aprox.has(e.n) : filtro === 'marcados' ? marcados.has(e.n) : origem(e.n) === filtro))
+      .map(e => `<div class="ef ${marcados.has(e.n) ? 'marcado' : ''}" data-n="${e.n}"><span class="n">${String(e.n).padStart(2, '0')}</span><span>${e.t}${aprox.has(e.n) ? ' <span class="ap">≈</span>' : ''}</span><span class="o">${origem(e.n) === 'rayray' ? 'RayRay' : 'path'}</span></div>`).join('') || '<p class="muted">Nenhum efeito marcado ainda.</p>';
+    $('lista').querySelectorAll('.ef').forEach(el => el.addEventListener('click', () => { const n = +el.dataset.n; marcados.has(n) ? marcados.delete(n) : marcados.add(n); guarda.gravar('id-efeitos', [...marcados]); desenha(); }));
+    const b = document.querySelector('[data-f="marcados"]'); b.textContent = `Marcados por mim (${marcados.size})`;
+  };
+  document.querySelectorAll('#filtros button').forEach(b => b.addEventListener('click', () => { filtro = b.dataset.f; document.querySelectorAll('#filtros button').forEach(x => x.classList.toggle('on', x === b)); desenha(); }));
+  desenha();
+
+  // pendências
+  const pend = guarda.ler('id-pend', {});
+  document.querySelectorAll('#pend input').forEach(i => { i.checked = !!pend[i.dataset.k]; i.addEventListener('change', () => { pend[i.dataset.k] = i.checked; guarda.gravar('id-pend', pend); }); });
+})();
+</script>
+</body>
+</html>
