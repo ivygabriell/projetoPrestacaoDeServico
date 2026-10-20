@@ -72,6 +72,34 @@ Todos os efeitos encontrados nas duas referências (RayRay Lab e path digital), 
 | 46 | **Perguntas frequentes em acordeão animado** | `.faq-item` / `summary` |
 | 47 | **Formulário de agendamento com estados** (enviando, sucesso, erro) | `data-form-states`, `/strategy-call` |
 
+## Fidelidade dos protótipos
+
+Os 47 efeitos saíram das duas referências: RayRay Lab (01–13 e 22–31) e path digital (14–21 e 32–47). Os protótipos são **recriações**: reproduzem o comportamento com a paleta, as fontes e os textos da marca, e os nomes de clientes e os números são inventados. A fidelidade varia.
+
+**Fiéis ao comportamento original** (a mesma mecânica, com valores próximos): 04, 05, 06, 07, 11, 15, 17, 19, 20, 21, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47.
+
+**Aproximações simplificadas**: no original são WebGL/3D; no protótipo viraram CSS ou canvas 2D, só para mostrar a ideia.
+
+| Efeito | No site de referência | No protótipo |
+|---|---|---|
+| 01 Abertura | Vídeo real + texto digitando | Bloco animado no lugar do vídeo |
+| 02, 22 Glitch do logo | Shader WebGL | Fatias de texto em CSS |
+| 03 Vidro 3D | Modelo 3D com vidro que refrata de verdade | Formas 2D com desfoque |
+| 08 Contorno empilhado | Texto 3D com interação do mouse | Cópias em perspectiva CSS |
+| 09 Desfoque de movimento | Shader sobre foto real | Desfoque SVG sobre uma figura simples |
+| 10 ASCII | Shader de pontilhado sobre vídeos | ASCII em canvas sobre um degradê |
+| 12 Lençol | Malha 3D que ondula | Faixas de canvas deslocadas |
+| 13 Física | Cubo 3D com esferas | Caixa 2D girando |
+| 14, 18 Pontos e onda | Canvas/gradiente próprio | Versões parecidas, sem medir os valores exatos |
+| 16 Parede | Capturas reais de sites de clientes | Cartões genéricos |
+| 23 Cubo e caixas | Timeline GSAP com 3D | Versão simplificada da mesma ideia |
+| 27 Prévia do site | Vídeo real do site | Página falsa rolando |
+| 43, 44 Ilustrações | Desenhos próprios da path digital | Desenhos novos, só inspirados |
+
+**Ajustes só para a demonstração:** algumas velocidades foram aceleradas para dar para ver o efeito no quadro. As faixas, por exemplo, levam 200 s por volta no RayRay e 22 s no protótipo.
+
+**Na construção do site:** os efeitos escolhidos da tabela acima serão feitos de verdade (3D/WebGL quando for o caso). Antes disso, os valores exatos são medidos no site de referência e viram critério de aceite.
+
 ## Base técnica observada
 
 - **RayRay Lab:** Next.js + React, Three.js r180 via react-three-fiber (eventos `onPointerMove`/`onPointerOver` nos objetos 3D), GSAP com ScrollTrigger e Lenis (`syncTouch`).
