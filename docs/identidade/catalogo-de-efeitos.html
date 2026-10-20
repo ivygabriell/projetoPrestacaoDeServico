@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo de efeitos</title>
+<!-- Protótipos dos efeitos estudados no RayRay Lab e na path digital, refeitos do zero com a paleta e as fontes da marca.
+     Abra este arquivo direto no navegador. Nada aqui é código ou arquivo copiado das referências. -->
+<style>
+  body { margin: 0; padding: 32px; background: #ececea; font-family: 'Inter Tight', system-ui, sans-serif; color: #121813; }
+  h2 { font-size: 26px; margin: 0 0 6px; } .subtitle { color: #555; max-width: 900px; line-height: 1.5; }
+  .cards { display: grid; gap: 14px; } .card { background: #fff; border-radius: 10px; overflow: hidden; border: 2px solid transparent; cursor: pointer; }
+  .card.selected { border-color: #002fa7; } .card-body { color: #444; }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr !important; } body { padding: 16px; } }
+</style>
+<script>function toggleSelect(el) { el.classList.toggle('selected'); }</script>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800&family=Azeret+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --claro:#f7f7f5; --c2:#dcdcd8; --c3:#787878; --escuro:#121813; --azul:#002fa7; --azul-luz:#4a6cf0; }
+  .cards { grid-template-columns: repeat(3, 1fr) !important; }
+  .card-image { display: block !important; height: auto !important; padding: 0 !important; aspect-ratio: auto !important; }
+  .demo { position: relative; height: 270px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', sans-serif; background: var(--claro); color: var(--escuro); }
+  .demo.dk { background: var(--escuro); color: var(--claro); }
+  .meta { padding: 10px 14px 4px; font-size: 12.5px; line-height: 1.5; }
+  .meta h3 { font-size: 14.5px; margin: 0 0 4px; }
+  .tag { font: 9.5px 'Azeret Mono', monospace; text-transform: uppercase; color: var(--c3); position: absolute; left: 12px; top: 10px; z-index: 9; pointer-events: none; }
+  .dk .tag { color: #9aa09b; }
+  .dica { font: 9.5px 'Azeret Mono', monospace; text-transform: uppercase; position: absolute; right: 12px; bottom: 10px; z-index: 9; color: var(--azul); pointer-events: none; }
+  .dk .dica { color: var(--azul-luz); }
+  .grupo { font: 600 13px 'Azeret Mono', monospace; text-transform: uppercase; letter-spacing: .04em; margin: 34px 0 10px; color: #555; }
+  .sb { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .caps { text-transform: uppercase; }
+
+  /* 01 preloader */
+  .pre-box { width: 120px; height: 66px; background: linear-gradient(120deg,#3a3f3b,#9aa09b,#3a3f3b); background-size: 300% 100%; animation: shimmer 2.4s linear infinite; }
+  @keyframes shimmer { to { background-position: -300% 0; } }
+  .pre-txt { font: 10.5px 'Azeret Mono'; margin-top: 10px; min-height: 14px; text-align: center; }
+  .pre-hero { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 800 70px/1 'Inter Tight'; letter-spacing: -.045em; opacity: 0; transition: opacity .6s, filter .9s; filter: blur(14px); }
+  .pre-hero.on { opacity: 1; filter: blur(0); }
+  /* 02 glitch */
+  .glitch { position: relative; font: 800 78px/1 'Inter Tight'; letter-spacing: -.045em; text-transform: uppercase; }
+  .glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; }
+  .glitch::before { color: var(--azul); opacity: 0; animation: g1 2.4s infinite steps(1); }
+  .glitch::after { color: var(--escuro); animation: g2 2.4s infinite steps(1); }
+  @keyframes g1 { 0%,62%,100% { clip-path: inset(0); transform: none; opacity: 0; } 64% { clip-path: inset(10% 0 62% 0); transform: translate(-7px); opacity: .6; } 68% { clip-path: inset(48% 0 30% 0); transform: translate(6px); opacity: .6; } 72% { clip-path: inset(75% 0 6% 0); transform: translate(-4px); opacity: .6; } 76% { opacity: 0; } }
+  @keyframes g2 { 0%,62%,100% { clip-path: inset(100% 0 0 0); transform: none; } 65% { clip-path: inset(30% 0 52% 0); transform: translate(9px); } 70% { clip-path: inset(60% 0 22% 0); transform: translate(-8px); } 74% { clip-path: inset(100% 0 0 0); } }
+  .scan { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(18,24,19,.05) 0 1px, transparent 1px 4px); pointer-events: none; }
+  /* 03 vidro */
+  .vt { font: 800 74px/.86 'Inter Tight'; letter-spacing: -.05em; text-transform: uppercase; text-align: center; }
+  .vidro { position: absolute; width: 170px; height: 120px; border-radius: 36px; z-index: 2; background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(0,47,167,.10)); backdrop-filter: blur(6px) saturate(1.3); box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), 0 20px 50px rgba(0,47,167,.18); animation: flutua 7s ease-in-out infinite; }
+  .vidro.b { width: 90px; height: 90px; border-radius: 50%; animation-duration: 9s; animation-delay: -3s; }
+  @keyframes flutua { 0%,100% { transform: translate(-90px,-16px) rotate(-14deg); } 50% { transform: translate(95px,20px) rotate(10deg); } }
+  /* 04 faixas */
+  .faixas { width: 100%; display: flex; flex-direction: column; gap: 4px; background: #fff; padding: 8px 0; border-top: 1px solid var(--c2); border-bottom: 1px solid var(--c2); }
+  .fx-row { display: flex; white-space: nowrap; font: 500 12px 'Inter Tight'; text-transform: uppercase; gap: 38px; width: max-content; animation: corre 22s linear infinite; }
+  .fx-row.r { animation-direction: reverse; padding-left: 60px; }
+  .fx-row span:nth-child(3n) { color: var(--azul); }
+  @keyframes corre { to { transform: translateX(-50%); } }
+  /* 05 embaralhado */
+  .scr { font: 500 22px/1.1 'Inter Tight'; text-transform: uppercase; text-align: center; max-width: 360px; }
+  .scr .x { color: var(--azul-luz); }
+  /* 06 circular */
+  .circ { width: 190px; height: 190px; animation: gira 12s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+  .circ-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--azul); }
+  /* 07 claro → escuro */
+  .ce-wrap { min-height: 760px; padding: 40px 22px 60px; }
+  .ce-wrap p { font: 800 34px/.95 'Inter Tight'; letter-spacing: -.04em; text-transform: uppercase; margin: 0 0 70px; }
+  /* 08 contorno */
+  .stack { position: relative; perspective: 500px; }
+  .stack span { position: absolute; left: 50%; top: 50%; font: 800 64px/1 'Inter Tight'; letter-spacing: -.03em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px var(--claro); white-space: nowrap; transform-origin: center; }
+  .stack span.cheia { color: var(--claro); -webkit-text-stroke: 0; }
+  /* 10 ascii, 12 lençol, 13 física, 14 pontos */
+  .demo canvas { width: 100%; height: 100%; display: block; }
+  /* 11 galeria horizontal */
+  .gal { position: absolute; inset: 0; overflow-x: auto; overflow-y: hidden; display: flex; gap: 10px; padding: 34px 14px 24px; scrollbar-width: thin; overscroll-behavior: contain; }
+  .gal .it { flex: 0 0 140px; border-radius: 4px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 10px; color: #fff; font: 10px 'Inter Tight'; text-transform: uppercase; text-align: center; }
+  .gal .it b { font-weight: 500; font-size: 11px; }
+  /* 15 logos */
+  .logos { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg,#0000,#000 22%,#000 78%,#0000); mask-image: linear-gradient(90deg,#0000,#000 22%,#000 78%,#0000); }
+  .logos .fx-row { gap: 46px; font-size: 19px; color: #9aa09b; animation-duration: 18s; text-transform: none; }
+  .logos .fx-row span:nth-child(3n) { color: #9aa09b; }
+  /* 16 parede */
+  .parede { position: absolute; left: 50%; top: 50%; width: 560px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; transform: translate(-50%,-50%) perspective(900px) rotateX(38deg) rotateZ(-14deg); animation: sobe 14s linear infinite; }
+  .parede .s { height: 82px; border-radius: 6px; background: #1d2420; border: 1px solid #2c3530; padding: 7px; display: flex; flex-direction: column; gap: 5px; box-shadow: 0 10px 24px rgba(0,0,0,.45); }
+  .parede .s i { display: block; height: 5px; border-radius: 3px; background: #39433d; } .parede .s i:nth-child(2) { width: 60%; background: #5b665f; } .parede .s i.a { background: var(--azul); width: 30%; }
+  @keyframes sobe { from { margin-top: 140px; } to { margin-top: -260px; } }
+  /* 17 revelação */
+  .rv-wrap { height: 780px; padding: 0 22px; }
+  .rv { position: sticky; top: 0; padding-top: 64px; font: 500 26px/1.15 'Inter Tight'; letter-spacing: -.03em; }
+  .rv span { color: var(--c2); transition: color .25s; } .rv span.on { color: var(--escuro); } .rv span.on.az { color: var(--azul); }
+  /* 18 onda */
+  .onda-top { position: absolute; inset: 0 0 45% 0; background: var(--escuro); }
+  .onda { position: absolute; left: -20%; right: -20%; top: 38%; height: 120px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #2a4fff 0%, #002fa7 38%, rgba(0,47,167,0) 70%); filter: blur(16px); animation: ondula 6s ease-in-out infinite alternate; }
+  @keyframes ondula { 0% { transform: translateX(-6%) scaleY(.85) rotate(-2deg); border-radius: 48% 52% 50% 50%; } 100% { transform: translateX(6%) scaleY(1.15) rotate(2deg); border-radius: 55% 45% 50% 50%; } }
+  .onda-txt { position: absolute; bottom: 26px; left: 22px; font: 500 22px/1.15 'Inter Tight'; letter-spacing: -.03em; }
+  .onda-txt span { color: var(--c3); }
+  /* 19 pílula */
+  .pl-head { position: sticky; top: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; margin: 0 auto; padding: 12px 16px; width: 100%; box-sizing: border-box; color: var(--claro); font: 11px 'Inter Tight'; transition: all .45s cubic-bezier(.22,1,.36,1); }
+  .pl-head.on { width: 84%; margin-top: 8px; border-radius: 999px; background: rgba(40,46,42,.62); backdrop-filter: blur(12px); padding: 9px 14px; }
+  .pl-head b { font-size: 13px; } .pl-head .bt { background: var(--claro); color: var(--escuro); border-radius: 999px; padding: 4px 9px; }
+  .pl-body { padding: 0 20px 40px; }
+  .pl-body h4 { font: 500 28px/1.05 'Inter Tight'; letter-spacing: -.03em; color: var(--claro); margin: 34px 0 260px; }
+  .pl-body h4 span { color: var(--c3); }
+  /* 20 empilhados */
+  .st-wrap { padding: 16px 16px 140px; }
+  .st { position: sticky; height: 150px; border-radius: 10px; background: #fff; box-shadow: 0 -6px 20px rgba(18,24,19,.08); margin-bottom: 70px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid var(--c2); }
+  .st .tx { padding: 14px; font: 11px/1.4 'Inter Tight'; } .st .tx b { display: block; font: 500 16px/1.1 'Inter Tight'; margin: 4px 0 6px; letter-spacing: -.02em; }
+  .st .im { background: linear-gradient(135deg, #121813, #2c3a6e 60%, #002fa7); }
+  /* 21 processo */
+  .pr { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 22px 16px 120px; }
+  .pr ul { position: sticky; top: 22px; align-self: start; list-style: none; margin: 0; padding: 0; font: 12px/1.9 'Inter Tight'; color: var(--c3); }
+  .pr li.on { color: var(--escuro); } .pr li.on::before { content: '● '; color: var(--azul); font-size: 9px; }
+  .pr .bl { height: 200px; margin-bottom: 26px; border-radius: 8px; background: linear-gradient(140deg,#0f1a3d,#002fa7 60%,#5b78e6); color: #fff; padding: 12px; font: 500 14px 'Inter Tight'; box-sizing: border-box; }
+</style>
+
+<h2>Catálogo dos efeitos mais chamativos das duas referências</h2>
+<p class="subtitle">Todos refeitos do zero com a nossa paleta e as nossas fontes. Onde aparece <b>“role aqui”</b>, use a roda do mouse dentro do quadro. Escolha com quais vamos trabalhar: clique em quantos quiser e me conte no terminal.</p>
+
+<div class="grupo">RayRay Lab · 13 efeitos</div>
+<div class="cards" data-multiselect>
+
+  <div class="card" data-choice="01-preloader" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo" id="pre"><span class="tag">01</span><div style="display:flex;flex-direction:column;align-items:center" id="pre-a"><div class="pre-box"></div><div class="pre-txt" id="pre-t"></div></div><div class="pre-hero" id="pre-h">MARCA</div></div></div>
+    <div class="card-body meta"><h3>Abertura com texto digitando</h3><p>Um vídeo pequeno e uma frase que se digita sozinha. Depois a página entra saindo do desfoque.</p></div>
+  </div>
+
+  <div class="card" data-choice="02-glitch" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">02</span><div class="glitch" data-t="Marca">Marca</div><div class="scan"></div></div></div>
+    <div class="card-body meta"><h3>Glitch com linhas de varredura</h3><p>O logotipo “falha” em fatias, com eco azul e linhas de TV por cima.</p></div>
+  </div>
+
+  <div class="card" data-choice="03-vidro-3d" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">03</span><div class="vt">Sites<br>que ficam.</div><div class="vidro"></div><div class="vidro b"></div></div></div>
+    <div class="card-body meta"><h3>Formas de vidro em 3D</h3><p>Peças de vidro fosco refratam e desfocam o texto por trás. No site, em 3D real.</p></div>
+  </div>
+
+  <div class="card" data-choice="04-faixas-opostas" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">04</span><div class="faixas"><div class="fx-row" id="fx1"></div><div class="fx-row r" id="fx2"></div></div></div></div>
+    <div class="card-body meta"><h3>Faixas de serviços em sentidos opostos</h3><p>Duas linhas de palavras correndo devagar, uma para cada lado. No RayRay, uma volta leva 200 s.</p></div>
+  </div>
+
+  <div class="card" data-choice="05-texto-embaralhado" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">05</span><div class="scr" id="scr"></div></div></div>
+    <div class="card-body meta"><h3>Texto que se monta embaralhado</h3><p>As letras aparecem sorteadas e se acertam até formar a frase.</p></div>
+  </div>
+
+  <div class="card" data-choice="06-texto-circular" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">06</span>
+      <svg class="circ" viewBox="0 0 200 200"><defs><path id="cp" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text font-family="Azeret Mono" font-size="12.5" letter-spacing="3" fill="#121813"><textPath href="#cp">MARCA · WEB LAB · DESIGN · CÓDIGO · MOVIMENTO · </textPath></text></svg>
+      <span class="circ-dot"></span></div></div>
+    <div class="card-body meta"><h3>Texto circular girando</h3><p>Um selo de texto em círculo, girando sem parar (12 s por volta). Bom como selo ou botão.</p></div>
+  </div>
+
+  <div class="card" data-choice="07-claro-escuro-rolagem" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">07</span><span class="dica">role aqui ↓</span><div class="sb" id="ce-sb"><div class="ce-wrap" id="ce"><p>O site começa claro,</p><p>e escurece conforme você rola,</p><p>até virar outro clima.</p></div></div></div></div>
+    <div class="card-body meta"><h3>Claro → escuro na rolagem</h3><p>O fundo escurece aos poucos conforme a rolagem, sem corte seco entre as seções.</p></div>
+  </div>
+
+  <div class="card" data-choice="08-contorno-empilhado" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">08</span><div class="stack" id="stk"></div></div></div>
+    <div class="card-body meta"><h3>Palavra em contorno empilhado</h3><p>A mesma palavra repetida em contorno, extrudada em perspectiva, como um eco em 3D.</p></div>
+  </div>
+
+  <div class="card" data-choice="09-desfoque-movimento" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">09</span>
+      <svg width="100%" height="100%" viewBox="0 0 400 270" preserveAspectRatio="xMidYMid slice"><defs><filter id="mb" x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter><radialGradient id="rg" cx="50%" cy="40%"><stop offset="0" stop-color="#f7f7f5"/><stop offset=".6" stop-color="#787878"/><stop offset="1" stop-color="#121813"/></radialGradient></defs>
+        <g filter="url(#mb)"><rect width="400" height="270" fill="#cfd1cc"/><ellipse cx="200" cy="120" rx="62" ry="78" fill="url(#rg)"/><rect x="120" y="190" width="160" height="90" rx="60" fill="#3a403c"/></g>
+        <text x="200" y="140" text-anchor="middle" font-family="Azeret Mono" font-size="9" fill="#121813">INTERAÇÕES QUE MOVEM A MARCA</text></svg></div></div>
+    <div class="card-body meta"><h3>Imagem com desfoque de movimento</h3><p>A foto ganha um rastro lateral, como se estivesse em movimento, e volta a ficar nítida.</p></div>
+  </div>
+
+  <div class="card" data-choice="10-ascii" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">10</span><canvas id="ascii"></canvas></div></div>
+    <div class="card-body meta"><h3>Imagem que nasce em ASCII</h3><p>Os projetos surgem como uma grade de caracteres e viram a imagem real.</p></div>
+  </div>
+
+  <div class="card" data-choice="11-galeria-horizontal" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">11</span><span class="dica">role aqui ↔</span><div class="gal" id="gal"></div></div></div>
+    <div class="card-body meta"><h3>Galeria horizontal de projetos</h3><p>Cartões altos que correm para o lado com a rolagem normal do mouse.</p></div>
+  </div>
+
+  <div class="card" data-choice="12-lencol-ondulando" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">12</span><canvas id="lencol"></canvas></div></div>
+    <div class="card-body meta"><h3>Lista num “lençol” que ondula</h3><p>Uma folha branca com a lista de conquistas, que ondula como tecido.</p></div>
+  </div>
+
+  <div class="card" data-choice="13-fisica-cubo" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">13</span><canvas id="fis"></canvas></div></div>
+    <div class="card-body meta"><h3>Física num cubo que gira</h3><p>Bolinhas com peso se acomodam numa caixa que gira devagar.</p></div>
+  </div>
+
+</div>
+
+<div class="grupo">path digital · 8 efeitos</div>
+<div class="cards" data-multiselect>
+
+  <div class="card" data-choice="14-grade-pontos" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">14</span><canvas id="pontos" style="position:absolute;inset:0"></canvas><div style="position:relative;font:500 26px/1.1 'Inter Tight';letter-spacing:-.03em;padding:0 22px">Sites que fazem seu cliente pensar <span style="color:#787878">“esses caras são bons”.</span></div></div></div>
+    <div class="card-body meta"><h3>Grade de pontos animada</h3><p>Fundo escuro com uma malha de pontos que acende em ondas, atrás do título.</p></div>
+  </div>
+
+  <div class="card" data-choice="15-logos-esmaecidos" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">15</span><div class="logos"><div class="fx-row" id="lg"></div></div></div></div>
+    <div class="card-body meta"><h3>Logos de clientes com bordas esmaecidas</h3><p>Carrossel contínuo de clientes que some suavemente nas pontas (aqui com marcas inventadas).</p></div>
+  </div>
+
+  <div class="card" data-choice="16-parede-perspectiva" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">16</span><div class="parede" id="par"></div></div></div>
+    <div class="card-body meta"><h3>Parede de projetos em perspectiva</h3><p>Dezenas de sites feitos, inclinados em 3D, deslizando. Mostra volume de trabalho num relance.</p></div>
+  </div>
+
+  <div class="card" data-choice="17-revelacao-rolagem" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">17</span><span class="dica">role aqui ↓</span><div class="sb" id="rv-sb"><div class="rv-wrap"><div class="rv" id="rv"></div></div></div></div></div>
+    <div class="card-body meta"><h3>Texto revelado pela rolagem</h3><p>As palavras passam de cinza para preto conforme a pessoa rola, com as palavras-chave em azul.</p></div>
+  </div>
+
+  <div class="card" data-choice="18-onda-azul" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag" style="color:#9aa09b">18</span><div class="onda-top"></div><div class="onda"></div><div class="onda-txt">Onde seu site<br><span>precisa chegar</span></div></div></div>
+    <div class="card-body meta"><h3>Onda de luz azul entre seções</h3><p>Uma faixa de luz azul, ondulando, faz a passagem do escuro para o claro.</p></div>
+  </div>
+
+  <div class="card" data-choice="19-menu-pilula" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo dk"><span class="tag">19</span><span class="dica">role aqui ↓</span><div class="sb" id="pl-sb"><div class="pl-head" id="pl"><b>marca</b><span style="color:#9aa09b">Serviços · Casos · Processo</span><span class="bt">Agendar</span></div><div class="pl-body"><h4>Role um pouco<br><span>e veja o menu virar pílula.</span></h4><h4>O menu continua<br><span>sempre à mão.</span></h4></div></div></div></div>
+    <div class="card-body meta"><h3>Menu que vira pílula de vidro</h3><p>Ao rolar, o menu se recolhe numa pílula de vidro fosco que acompanha a página.</p></div>
+  </div>
+
+  <div class="card" data-choice="20-casos-empilhados" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">20</span><span class="dica">role aqui ↓</span><div class="sb"><div class="st-wrap" id="st"></div></div></div></div>
+    <div class="card-body meta"><h3>Estudos de caso que se empilham</h3><p>Cada caso para sobre o anterior conforme a rolagem, como cartas sendo colocadas na mesa.</p></div>
+  </div>
+
+  <div class="card" data-choice="21-processo-lista-fixa" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="demo"><span class="tag">21</span><span class="dica">role aqui ↓</span><div class="sb" id="pr-sb"><div class="pr"><ul id="pr-l"><li>01 Estratégia</li><li>02 Design</li><li>03 Código</li><li>04 Evolução</li></ul><div id="pr-b"></div></div></div></div></div>
+    <div class="card-body meta"><h3>Processo com lista fixa</h3><p>À esquerda as etapas ficam paradas e destacam a atual. À direita, o conteúdo de cada etapa rola.</p></div>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fit = c => { const r = c.getBoundingClientRect(), d = devicePixelRatio || 1; c.width = r.width * d; c.height = r.height * d; const x = c.getContext('2d'); x.setTransform(d, 0, 0, d, 0, 0); return [x, r.width, r.height]; };
+  const safe = f => { try { f(); } catch (e) { console.error(e); } };
+
+  safe(() => { // 01
+    const frase = 'Creative dev, design lógico, web experience lab', t = $('pre-t'), a = $('pre-a'), h = $('pre-h');
+    const ciclo = () => { let i = 0; a.style.opacity = 1; h.classList.remove('on'); t.textContent = '';
+      const iv = setInterval(() => { t.textContent = frase.slice(0, ++i); if (i >= frase.length) { clearInterval(iv);
+        setTimeout(() => { a.style.transition = 'opacity .4s'; a.style.opacity = 0; setTimeout(() => h.classList.add('on'), 500); setTimeout(ciclo, 3600); }, 700); } }, 45); };
+    ciclo();
+  });
+
+  safe(() => { // 04 e 15
+    const s = ['UX/UI design', 'Desenvolvimento web', 'Interação', 'Three.js', 'Branding', 'Planejamento', 'Movimento', 'Performance'];
+    const row = arr => (arr.map(w => `<span>${w}</span>`).join('')).repeat(2);
+    $('fx1').innerHTML = row(s); $('fx2').innerHTML = row([...s].reverse());
+    const marcas = ['<span style="font:800 19px Inter Tight">NORTE</span>', '<span style="font:italic 22px Instrument Serif">Almeida & Sá</span>', '<span style="font:500 17px Azeret Mono">ODONTO+</span>', '<span style="font:600 18px Inter Tight;letter-spacing:.2em">CASA ALTA</span>', '<span style="font:italic 21px Instrument Serif">Lumière</span>', '<span style="font:800 18px Inter Tight">VITA/CLINIC</span>'];
+    $('lg').innerHTML = (marcas.join('')).repeat(2);
+  });
+
+  safe(() => { // 05
+    const frase = 'Fazemos a primeira impressão que faz seu cliente decidir.', el = $('scr'), ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&*+=<>/'; let t0 = performance.now();
+    (function loop(now) { const p = Math.min(1, (now - t0) / 2400), n = Math.floor(p * frase.length);
+      el.innerHTML = frase.split('').map((c, i) => i < n || c === ' ' ? c : (i < n + 10 ? `<span class="x">${ch[(Math.random() * ch.length) | 0]}</span>` : '&nbsp;')).join('');
+      if (now - t0 > 4600) t0 = now; requestAnimationFrame(loop); })(t0);
+  });
+
+  safe(() => { // 07
+    const sb = $('ce-sb'), w = $('ce'), mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+    const up = () => { const t = Math.min(1, sb.scrollTop / (sb.scrollHeight - sb.clientHeight)); const bg = mix([247,247,245], [18,24,19], t), fg = mix([18,24,19], [247,247,245], t);
+      w.style.background = `rgb(${bg})`; w.style.color = `rgb(${fg})`; };
+    sb.addEventListener('scroll', up); up();
+  });
+
+  safe(() => { // 08
+    const st = $('stk'); let h = '';
+    for (let i = 7; i >= 0; i--) h += `<span class="${i === 0 ? 'cheia' : ''}" data-i="${i}">Marca</span>`;
+    st.innerHTML = h; const spans = [...st.children]; let t0 = performance.now();
+    (function loop(now) { const t = (now - t0) / 1000;
+      spans.forEach(s => { const i = +s.dataset.i, d = i * (9 + 4 * Math.sin(t * 1.2)); s.style.transform = `translate(-50%,-50%) translate3d(0, ${-d}px, ${-i * 14}px) rotateX(${28 + 6 * Math.sin(t * .8)}deg)`; s.style.opacity = 1 - i * .1; });
+      requestAnimationFrame(loop); })(t0);
+  });
+
+  safe(() => { // 09
+    const g = $('mbg'); let t0 = performance.now();
+    (function loop(now) { const t = (now - t0) / 1000, v = Math.max(0, Math.sin(t * 1.3)) ** 2 * 26; g.setAttribute('stdDeviation', `${v.toFixed(1)} 0`); requestAnimationFrame(loop); })(t0);
+  });
+
+  document.fonts.ready.then(() => safe(() => { // 10
+    const ca = $('ascii'); const [ax, aw, ah] = fit(ca); const ramp = ' .:-=+*#%@';
+    const lum = (u, v, t) => Math.min(1, Math.exp(-((u - .62) ** 2 + (v - .45) ** 2) * 9) * .95 + Math.exp(-((u - .3) ** 2 + (v - .7) ** 2) * 14) * .7 + .08 * Math.sin(u * 9 + t) * Math.sin(v * 7 - t));
+    const t0 = performance.now();
+    (function draw(now) { const t = (now - t0) / 1000, f = t % 6, mix = Math.max(0, Math.min(1, (f - 2.2) / 1.6)) * (f < 5.2 ? 1 : Math.max(0, 1 - (f - 5.2) / .8));
+      ax.fillStyle = '#121813'; ax.fillRect(0, 0, aw, ah);
+      const g = ax.createRadialGradient(aw * .62, ah * .45, 10, aw * .62, ah * .45, aw * .55); g.addColorStop(0, '#e9ecf7'); g.addColorStop(.35, '#5a74c9'); g.addColorStop(.7, '#1c2a55'); g.addColorStop(1, '#121813');
+      ax.globalAlpha = mix; ax.fillStyle = g; ax.fillRect(0, 0, aw, ah); ax.globalAlpha = 1;
+      const cs = 8; ax.font = `${cs + 2}px "Azeret Mono", monospace`; ax.fillStyle = `rgba(247,247,245,${1 - mix})`;
+      for (let y = cs; y < ah; y += cs + 3) for (let x = 0; x < aw; x += cs) ax.fillText(ramp[Math.min(9, (lum(x / aw, y / ah, t * .6) * 10) | 0)], x, y);
+      requestAnimationFrame(draw); })(t0);
+  }));
+
+  safe(() => { // 11
+    const gal = $('gal'), cores = [['#3a403c','#9aa09b'], ['#121813','#002fa7'], ['#5a4a3f','#c9b8a6'], ['#2c3530','#dcdcd8'], ['#0f1a3d','#5b78e6'], ['#4a4d4f','#f7f7f5'], ['#1d2420','#787878']];
+    const nomes = ['Casa Alta · Imobiliária', 'Vita · Odontologia', 'Almeida & Sá · Advocacia', 'Norte · Imóveis', 'Sorriso Prime · Clínica', 'Lex · Escritório', 'Horizonte · Lançamentos'];
+    gal.innerHTML = nomes.map((n, i) => `<div class="it" style="background:linear-gradient(160deg,${cores[i][0]},${cores[i][1]})"><b>${n.split(' · ')[0]}</b><span>${n.split(' · ')[1]}<br>2026</span></div>`).join('');
+    gal.addEventListener('wheel', e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { gal.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
+  });
+
+  document.fonts.ready.then(() => safe(() => { // 12
+    const c = $('lencol'); const [x, w, h] = fit(c);
+    const off = document.createElement('canvas'), ow = 230, oh = 190, d = devicePixelRatio || 1; off.width = ow * d; off.height = oh * d; const o = off.getContext('2d'); o.scale(d, d);
+    o.fillStyle = '#fff'; o.fillRect(0, 0, ow, oh); o.fillStyle = '#121813'; o.font = '600 17px "Inter Tight"';
+    ['PRÊMIO DE DESIGN ×3', 'SITE DO DIA ×1', 'MELHOR INTERAÇÃO ×4', 'DESTAQUE UX ×3', 'MENÇÃO HONROSA ×11', 'INOVAÇÃO WEB ×2'].forEach((l, i) => { o.fillText(l, 14, 30 + i * 26); o.font = '500 7px "Azeret Mono"'; o.fillStyle = '#002fa7'; o.fillText(`(${i + 1})`, 14 + o.measureText(l).width + 120, 22 + i * 26); o.font = '600 17px "Inter Tight"'; o.fillStyle = '#121813'; });
+    o.setLineDash([2, 3]); o.strokeStyle = '#787878'; o.beginPath(); o.moveTo(10, 10); o.lineTo(ow - 10, 10); o.moveTo(10, oh - 10); o.lineTo(ow - 10, oh - 10); o.stroke();
+    const t0 = performance.now(), cols = 46, sw = ow / cols;
+    (function loop(now) { const t = (now - t0) / 1000; x.fillStyle = '#121813'; x.fillRect(0, 0, w, h);
+      const ox = (w - ow) / 2, oy = (h - oh) / 2;
+      for (let i = 0; i < cols; i++) { const u = i / cols, dy = Math.sin(u * 5 + t * 1.6) * 9 + Math.sin(u * 11 - t * 2.3) * 3, sh = 1 + Math.cos(u * 5 + t * 1.6) * .05;
+        x.drawImage(off, i * sw * d, 0, sw * d + 1, oh * d, ox + i * sw, oy + dy, sw + .6, oh * sh); }
+      requestAnimationFrame(loop); })(t0);
+  }));
+
+  safe(() => { // 13
+    const cf = $('fis'); const [fx, fw, fh] = fit(cf); const S = Math.min(fw, fh) * .62, R = 5.5, balls = Array.from({ length: 70 }, () => ({ x: (Math.random() - .5) * S * .6, y: (Math.random() - .5) * S * .6, vx: 0, vy: 0 })); let ang = 0;
+    (function step() { ang += .006; const gx = Math.sin(-ang) * .25, gy = Math.cos(-ang) * .25, hh = S / 2 - R;
+      for (const b of balls) { b.vx = (b.vx + gx) * .985; b.vy = (b.vy + gy) * .985; b.x += b.vx; b.y += b.vy;
+        if (b.x > hh) { b.x = hh; b.vx *= -.4; } if (b.x < -hh) { b.x = -hh; b.vx *= -.4; } if (b.y > hh) { b.y = hh; b.vy *= -.4; } if (b.y < -hh) { b.y = -hh; b.vy *= -.4; } }
+      for (let i = 0; i < balls.length; i++) for (let j = i + 1; j < balls.length; j++) { const a = balls[i], b = balls[j], dx = b.x - a.x, dy = b.y - a.y, dd = Math.hypot(dx, dy);
+        if (dd > 0 && dd < 2 * R) { const o = (2 * R - dd) / 2, nx = dx / dd, ny = dy / dd; a.x -= nx * o; a.y -= ny * o; b.x += nx * o; b.y += ny * o; } }
+      fx.fillStyle = '#f7f7f5'; fx.fillRect(0, 0, fw, fh); fx.save(); fx.translate(fw / 2, fh / 2 + 6); fx.rotate(ang);
+      fx.strokeStyle = 'rgba(18,24,19,.35)'; fx.strokeRect(-S / 2, -S / 2, S, S); fx.strokeStyle = 'rgba(18,24,19,.15)'; fx.strokeRect(-S / 2 + 18, -S / 2 - 15, S, S);
+      fx.beginPath(); [[-1,-1],[1,-1],[1,1],[-1,1]].forEach(([sx, sy]) => { fx.moveTo(sx * S / 2, sy * S / 2); fx.lineTo(sx * S / 2 + 18, sy * S / 2 - 15); }); fx.stroke();
+      balls.forEach((b, i) => { fx.beginPath(); fx.arc(b.x, b.y, R, 0, 7); fx.fillStyle = i === 7 ? '#002fa7' : '#121813'; fx.fill(); });
+      fx.restore(); requestAnimationFrame(step); })();
+  });
+
+  safe(() => { // 14
+    const c = $('pontos'); const [x, w, h] = fit(c); const t0 = performance.now();
+    (function loop(now) { const t = (now - t0) / 1000; x.clearRect(0, 0, w, h);
+      for (let yy = 7; yy < h; yy += 13) for (let xx = 7; xx < w; xx += 13) { const v = (Math.sin(xx * .02 + t * 1.5) + Math.sin(yy * .03 - t) + Math.sin((xx + yy) * .012 + t * .7)) / 3;
+        const a = .06 + Math.max(0, v) * .35; x.fillStyle = v > .62 ? `rgba(74,108,240,${a + .2})` : `rgba(247,247,245,${a})`; x.fillRect(xx, yy, 1.6, 1.6); }
+      requestAnimationFrame(loop); })(t0);
+  });
+
+  safe(() => { // 16
+    $('par').innerHTML = Array.from({ length: 36 }, (_, i) => `<div class="s"><i class="${i % 5 === 1 ? 'a' : ''}"></i><i></i><i></i><i style="width:${40 + (i * 13) % 50}%"></i></div>`).join('');
+  });
+
+  safe(() => { // 17
+    const rv = $('rv'), sb = $('rv-sb');
+    rv.innerHTML = 'Seu cliente decide em segundos se confia em você. O site precisa vencer essa disputa antes da primeira conversa.'.split(' ').map(w => `<span${/segundos|vencer|conversa/.test(w) ? ' data-az' : ''}>${w}</span>`).join(' ');
+    const sp = [...rv.children];
+    const up = () => { const p = sb.scrollTop / (sb.scrollHeight - sb.clientHeight) * 1.35; sp.forEach((s, i) => { const on = i / sp.length < p; s.classList.toggle('on', on); s.classList.toggle('az', on && s.hasAttribute('data-az')); }); };
+    sb.addEventListener('scroll', up); up();
+  });
+
+  safe(() => { // 19
+    const sb = $('pl-sb'), pl = $('pl'); sb.addEventListener('scroll', () => pl.classList.toggle('on', sb.scrollTop > 30));
+  });
+
+  safe(() => { // 20
+    const casos = [['Imobiliária Casa Alta', 'Do Instagram ao site que gera visitas', '+2× contatos'], ['Clínica Vita', 'Agenda cheia vinda do Google', '+68% agendamentos'], ['Almeida & Sá Advocacia', 'Autoridade digital para um escritório tradicional', '+3× consultas'], ['Norte Imóveis', 'Lançamento com página que vende sozinha', '120 leads/mês']];
+    $('st').innerHTML = casos.map((c, i) => `<div class="st" style="top:${10 + i * 10}px"><div class="tx"><span style="font:9px Azeret Mono;color:#787878">${String(i + 1).padStart(2, '0')} · CASO</span><b>${c[0]}</b>${c[1]}<br><span style="color:#002fa7;font-weight:600">${c[2]}</span></div><div class="im"></div></div>`).join('');
+  });
+
+  safe(() => { // 21
+    const etapas = ['Estratégia: quem é seu cliente e por que ele escolhe você', 'Design: a primeira impressão desenhada', 'Código: rápido, acessível e animado', 'Evolução: medir e melhorar todo mês'];
+    $('pr-b').innerHTML = etapas.map((e, i) => `<div class="bl" data-i="${i}">${e}</div>`).join('');
+    const sb = $('pr-sb'), li = [...$('pr-l').children], bl = [...$('pr-b').children];
+    const up = () => { let at = 0; const top = sb.getBoundingClientRect().top; bl.forEach((b, i) => { if (b.getBoundingClientRect().top - top < 120) at = i; }); li.forEach((l, i) => l.classList.toggle('on', i === at)); };
+    sb.addEventListener('scroll', up); up();
+  });
+})();
+</script>
+
+</body>
+</html>
