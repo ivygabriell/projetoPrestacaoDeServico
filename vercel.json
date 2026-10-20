@@ -3,8 +3,28 @@
   "framework": null,
   "buildCommand": null,
   "rewrites": [
-    { "source": "/", "destination": "/docs/identidade/identidade-da-marca.html" },
-    { "source": "/catalogo-de-efeitos.html", "destination": "/docs/identidade/catalogo-de-efeitos.html" },
-    { "source": "/catalogo-de-efeitos", "destination": "/docs/identidade/catalogo-de-efeitos.html" }
+    {
+      "source": "/",
+      "destination": "/docs/identidade/identidade-da-marca.html"
+    },
+    {
+      "source": "/catalogo-de-efeitos.html",
+      "destination": "/docs/identidade/catalogo-de-efeitos.html"
+    },
+    {
+      "source": "/catalogo-de-efeitos",
+      "destination": "/docs/identidade/catalogo-de-efeitos.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
   ]
 }

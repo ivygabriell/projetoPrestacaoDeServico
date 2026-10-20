@@ -29,6 +29,8 @@ Enquanto o site não existe, a Vercel publica o manual de identidade. O `vercel.
 - `/` → `docs/identidade/identidade-da-marca.html`
 - `/catalogo-de-efeitos` e `/catalogo-de-efeitos.html` → `docs/identidade/catalogo-de-efeitos.html`
 
+Enquanto for rascunho, tudo sai dos buscadores: cabeçalho `X-Robots-Tag: noindex, nofollow` no `vercel.json` e `<meta name="robots">` nas duas páginas. Remover quando a identidade for decidida.
+
 Na Vercel: importar o repositório, preset **Other**, sem comando de build e com o diretório de saída padrão. Quando a stack do site for escolhida, este arquivo será substituído.
 
 ## Tarefas e sessões
