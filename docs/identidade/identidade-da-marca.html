@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identidade da marca</title>
+<!-- Registro interativo de tudo o que foi decidido sobre a identidade até 2026-10-20, montado na linguagem
+     das duas referências: RayRay Lab (estrutura editorial, mono, manifesto justificado, lençol, rodapé gigante)
+     e path digital (títulos em duas cores, cartões, processo com lista fixa, perguntas em acordeão, onda azul).
+     Abra direto no navegador. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Azeret+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --claro: #F7F7F5; --c2: #DCDCD8; --c3: #787878; --escuro: #121813; --azul: #002FA7;
+    --azul-no-escuro: #5B7BFF; /* proposta a aprovar */
+    --cartao: #ffffff; --cinza-escuro: #1d2420; --linha-escura: #2c3530; --texto-escuro-2: #9aa09b;
+    --mono: 'Azeret Mono', ui-monospace, monospace; --sans: 'Inter Tight', system-ui, sans-serif; --serif: 'Instrument Serif', Georgia, serif;
+    --gutter: 30px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--claro); color: var(--escuro); font: 400 17px/1.5 var(--sans); }
+  ::selection { background: var(--azul); color: #fff; }
+  a { color: inherit; }
+  .mono { font: 400 13px/1.35 var(--mono); text-transform: uppercase; letter-spacing: -.01em; }
+  .rotulo { font: 400 13px var(--sans); text-align: center; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---------- cabeçalho (RayRay) ---------- */
+  .cab { position: fixed; inset: 0 0 auto 0; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px var(--gutter); color: var(--escuro); transition: color .3s; pointer-events: none; }
+  .cab.inv { color: var(--claro); }
+  .cab > * { pointer-events: auto; }
+  .cab .nome { text-align: center; white-space: nowrap; }
+  .cab .nome b { font-weight: 400; display: inline-block; max-width: 260px; overflow: hidden; vertical-align: bottom; white-space: pre; transition: max-width .6s cubic-bezier(.76,0,.24,1); }
+  .cab.recolhe .nome b { max-width: 0; }
+  .cab nav { display: flex; gap: 22px; justify-content: flex-end; }
+  .cab nav a { text-decoration: none; display: inline-flex; flex-direction: column; height: 1.35em; overflow: hidden; }
+  .cab nav a span { transition: transform .45s cubic-bezier(.76,0,.24,1); }
+  .cab nav a span + span { color: var(--azul); }
+  .cab.inv nav a span + span { color: var(--azul-no-escuro); }
+  .cab nav a:hover span { transform: translateY(-100%); }
+  .rec i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--azul); margin-right: 8px; vertical-align: 1px; animation: pisca 1.6s steps(1) infinite; }
+  .cab.inv .rec i { background: var(--azul-no-escuro); }
+  @keyframes pisca { 50% { opacity: .15; } }
+
+  /* ---------- hero (RayRay) ---------- */
+  .hero { position: relative; min-height: 100vh; padding-bottom: 90px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 90px 0 70px; }
+  .hero h1 { position: relative; z-index: 1; margin: 0 auto; font: 800 15.4vw/.84 var(--sans); letter-spacing: -.055em; text-transform: uppercase; text-align: center; }
+  .hero h1 .p { color: var(--azul); }
+  .hero h1 .eco { position: absolute; inset: 0; color: var(--azul); opacity: 0; pointer-events: none; animation: eco 3.4s infinite steps(1); }
+  @keyframes eco { 0%,70%,100% { opacity: 0; transform: none; clip-path: inset(0); } 72% { opacity: .55; transform: translateX(-8px); clip-path: inset(12% 0 60% 0); } 76% { opacity: .55; transform: translateX(7px); clip-path: inset(50% 0 28% 0); } 80% { opacity: 0; } }
+  .vidro { position: absolute; z-index: 2; border-radius: 56px; pointer-events: none; background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(0,47,167,.10)); backdrop-filter: blur(7px) saturate(1.25);
+           box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), 0 30px 70px rgba(0,47,167,.16); }
+  .vidro.a { width: 30vw; height: 21vw; left: 44%; top: 22%; transform: rotate(-14deg); animation: flut 10s ease-in-out infinite; }
+  .vidro.b { width: 12vw; height: 12vw; border-radius: 50%; left: 18%; top: 52%; animation: flut 13s ease-in-out infinite reverse; }
+  @keyframes flut { 50% { translate: -40px 24px; rotate: 8deg; } }
+  .faixas { position: relative; z-index: 3; background: #fff; border-block: 1px solid var(--c2); margin-top: 3vw; padding: 7px 0; overflow: hidden; }
+  .faixa { display: flex; width: max-content; gap: 64px; font: 500 12px var(--sans); text-transform: uppercase; white-space: nowrap; animation: corre 90s linear infinite; }
+  .faixa.r { animation-direction: reverse; padding-left: 120px; margin-top: 2px; }
+  @keyframes corre { to { transform: translateX(-50%); } }
+  .hero .intro { position: relative; z-index: 3; max-width: 720px; margin: 46px auto 0; text-align: center; padding: 0 var(--gutter); }
+  .indice { position: relative; z-index: 3; list-style: none; margin: 42px auto 0; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(5, auto); justify-content: center; gap: 10px 34px; }
+  .indice a { text-decoration: none; } .indice a:hover { color: var(--azul); }
+  .hero .desca { position: absolute; bottom: 26px; left: 0; right: 0; text-align: center; font: 400 14px var(--sans); text-transform: uppercase; }
+
+  /* ---------- seções escuras (RayRay) ---------- */
+  .escura { background: var(--escuro); color: var(--claro); }
+  .manif { padding: 130px 0 120px; }
+  .manif .rotulo { margin-bottom: 34px; }
+  .manif-txt { font: 500 clamp(26px, 3.25vw, 50px)/1.0 var(--sans); text-transform: uppercase; text-align: justify; letter-spacing: -.01em; margin: 0; }
+  .manif-txt span { color: #3a423d; transition: color .25s; } .manif-txt span.on { color: var(--claro); } .manif-txt span.on.az { color: var(--azul-no-escuro); }
+  .unique { display: grid; grid-template-columns: 160px 1fr; gap: 30px; margin-top: 90px; font-size: 16px; color: #dcdcd8; max-width: 900px; margin-left: auto; }
+  .unique p { margin: 0 0 14px; }
+
+  /* ---------- títulos em duas cores (path) ---------- */
+  .clara { padding: 120px 0; }
+  .olho { font: 400 13px var(--sans); color: #4a4d4f; margin: 0 0 14px; }
+  .escura .olho { color: var(--texto-escuro-2); }
+  h2.duas { font: 500 clamp(34px, 3.4vw, 50px)/1.18 var(--sans); letter-spacing: -.03em; margin: 0 0 56px; }
+  h2.duas span { color: var(--c3); display: block; }
+  .escura h2.duas span { color: #7b8083; }
+  .cartoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cartoes.dois { grid-template-columns: repeat(2, 1fr); }
+  .card { background: var(--cartao); border-radius: 12px; padding: 22px 22px 26px; min-height: 230px; display: flex; flex-direction: column; }
+  .card .olho { margin-bottom: 18px; }
+  .card h3 { font: 500 24px/1.18 var(--sans); letter-spacing: -.025em; margin: 0 0 26px; }
+  .card p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #4a4d4f; }
+  .card .palco { height: 110px; border-radius: 8px; background: var(--claro); margin: -6px -6px 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .card .palco.dk { background: var(--escuro); color: var(--claro); }
+
+  /* ---------- lençol dos nomes (RayRay) ---------- */
+  .nomes-sec { padding: 120px 0 130px; text-align: center; }
+  .linha-rot { display: flex; align-items: center; gap: 18px; justify-content: center; font: 400 13px var(--sans); margin-bottom: 40px; }
+  .linha-rot::before, .linha-rot::after { content: ''; flex: 1; max-width: 360px; height: 1px; background: #4a524d; }
+  .lencol { width: min(720px, 100%); margin: 0 auto; background: #fff; color: var(--escuro); padding: 26px 34px 30px; text-align: left; position: relative; transform-origin: 50% 0; animation: ondula 7s ease-in-out infinite; }
+  .lencol::before, .lencol::after { content: ''; position: absolute; left: 22px; right: 22px; border-top: 1px dashed #787878; }
+  .lencol::before { top: 12px; } .lencol::after { bottom: 12px; }
+  @keyframes ondula { 0%,100% { transform: perspective(900px) rotateX(2deg) skewY(-.6deg); border-radius: 2px 2px 14px 6px; } 50% { transform: perspective(900px) rotateX(-2deg) skewY(.6deg); border-radius: 2px 2px 6px 14px; } }
+  .lencol ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
+  .lencol li { font: 600 clamp(20px, 2.3vw, 31px)/1.18 var(--sans); letter-spacing: -.02em; text-transform: uppercase; break-inside: avoid; }
+  .lencol li sup { font: 400 9px var(--sans); margin-left: 4px; vertical-align: 14px; letter-spacing: 0; }
+  .lencol li.fav { color: var(--azul); }
+  .lencol li.fav::after { content: ' ← favorito'; font: 400 10px var(--mono); vertical-align: 6px; letter-spacing: 0; }
+  .vero { max-width: 760px; margin: 64px auto 0; font: italic 400 clamp(22px, 2.2vw, 30px)/1.3 var(--serif); color: #dcdcd8; }
+  .vero b { font-weight: 400; color: #fff; border-bottom: 1px solid var(--azul-no-escuro); }
+  .vero small { display: block; margin-top: 18px; font: 400 14px/1.6 var(--sans); font-style: normal; color: var(--texto-escuro-2); }
+
+  /* ---------- paleta ---------- */
+  .faixas-cor { margin: 0 calc(var(--gutter) * -1); }
+  .fx-cor { display: grid; grid-template-columns: 1fr 340px; align-items: end; gap: 30px; padding: 26px var(--gutter); cursor: pointer; transition: padding .4s cubic-bezier(.22,1,.36,1); }
+  .fx-cor:hover { padding-block: 40px; }
+  .fx-cor .hex { font: 800 clamp(48px, 7vw, 108px)/.85 var(--sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .fx-cor .info { font: 400 13px/1.5 var(--mono); text-transform: uppercase; }
+  .fx-cor .info b { display: block; font: 500 17px var(--sans); text-transform: none; margin-bottom: 4px; }
+  .fx-cor .peso { display: block; margin-top: 8px; opacity: .7; }
+  .teste { display: grid; grid-template-columns: 1fr 1.35fr; gap: 16px; margin-top: 80px; }
+  .sel { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 22px; }
+  .sel button { all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(18,24,19,.15); }
+  .sel button.on { outline: 2px solid var(--azul); outline-offset: 3px; }
+  .nota { font: 500 46px var(--sans); letter-spacing: -.03em; }
+  .criterios { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+  .criterios span::before { content: '✕ '; color: var(--c3); } .criterios span.ok::before { content: '✓ '; color: var(--azul); }
+  .previa { border-radius: 12px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; min-height: 270px; transition: background .3s, color .3s; box-shadow: inset 0 0 0 1px rgba(18,24,19,.08); }
+  .previa .g { font: 800 clamp(40px, 4.6vw, 64px)/.86 var(--sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .achados { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .achados .card { min-height: 0; }
+  .prop { font: 400 11px var(--mono); text-transform: uppercase; color: var(--azul); border-bottom: 1px solid var(--azul); }
+
+  /* ---------- tipografia: processo com lista fixa (path) ---------- */
+  .processo { display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
+  .processo ul { position: sticky; top: 110px; align-self: start; list-style: none; margin: 0; padding: 0; font: 400 17px/2.05 var(--sans); color: var(--c3); }
+  .processo li { transition: color .3s; cursor: pointer; } .processo li.on { color: var(--escuro); }
+  .etapa { padding-bottom: 110px; }
+  .etapa h3 { font: 500 26px/1.2 var(--sans); letter-spacing: -.025em; margin: 0 0 12px; }
+  .etapa > p { margin: 0 0 30px; color: #4a4d4f; font-size: 15px; max-width: 620px; }
+  .especime { background: var(--cartao); border-radius: 12px; padding: 34px 30px; overflow: hidden; margin-bottom: 30px; }
+  .especime.t1 { font: 800 clamp(54px, 7vw, 112px)/.86 var(--sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .especime.t2 { font: 400 clamp(18px, 2vw, 26px)/1.4 var(--mono); text-transform: uppercase; }
+  .especime.t3 { font: italic 400 clamp(40px, 5vw, 76px)/1.05 var(--serif); }
+  .entregas .olho { margin-bottom: 4px; }
+  .entregas div { padding: 13px 0; border-top: 1px solid var(--c2); font-size: 15px; display: flex; justify-content: space-between; gap: 20px; }
+  .entregas div span { color: var(--c3); font-size: 14px; text-align: right; }
+  .testador { display: flex; align-items: center; gap: 16px; margin-bottom: 70px; border-bottom: 1px solid var(--escuro); }
+  .testador label { white-space: nowrap; }
+  .testador input { flex: 1; min-width: 0; border: 0; background: transparent; font: 500 22px var(--sans); letter-spacing: -.02em; padding: 12px 0; color: var(--escuro); outline: none; }
+
+  /* ---------- botões em pílula (path) ---------- */
+  .pilula { all: unset; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 999px; padding: 11px 18px; font: 500 14px var(--sans); background: var(--escuro); color: #fff; transition: transform .2s; }
+  .pilula:hover { transform: translateY(-1px); }
+  .pilula.clara { background: #fff; color: var(--escuro); padding: 11px 18px; }
+  .pilula.vidro-p { background: #252727; color: #f5f5f5; }
+
+  /* ---------- efeitos (path, seção escura) ---------- */
+  .efeitos-sec { padding: 120px 0; }
+  .ef-grid { display: grid; grid-template-columns: 360px 1fr; gap: 60px; }
+  .ef-grid aside { position: sticky; top: 110px; align-self: start; }
+  .ef-grid aside p { color: var(--texto-escuro-2); font-size: 15px; margin: 0 0 26px; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .filtros button { all: unset; cursor: pointer; padding: 9px 15px; border-radius: 999px; background: #252727; color: #c9cdc9; font: 500 13px var(--sans); transition: background .2s, color .2s; }
+  .filtros button.on { background: #f5f5f5; color: var(--escuro); }
+  .ef { display: grid; grid-template-columns: 44px 1fr auto 18px; gap: 14px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--linha-escura); cursor: pointer; font-size: 15.5px; color: #dcdcd8; transition: color .2s; }
+  .ef:hover { color: #fff; }
+  .ef .n { font: 400 12px var(--mono); color: #6f7670; }
+  .ef .o { font: 400 11px var(--mono); text-transform: uppercase; color: #6f7670; }
+  .ef .m { color: var(--azul-no-escuro); font-size: 15px; transition: transform .3s; text-align: right; }
+  .ef.marcado .m { transform: rotate(45deg); }
+  .ef .ap { color: var(--azul-no-escuro); margin-left: 6px; }
+  .ef.marcado { color: #fff; }
+
+  /* ---------- aplicação (RayRay, de ponta a ponta) ---------- */
+  .app .h { position: relative; height: 100vh; min-height: 620px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .app .h.cl { background: var(--claro); }
+  .app .titulo { font: 800 13vw/.84 var(--sans); letter-spacing: -.055em; text-transform: uppercase; padding: 0 var(--gutter); position: relative; z-index: 1; }
+  .app .titulo .p { color: var(--azul); }
+  .app .rodape-h { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .app .link { font: 400 13px var(--mono); text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--azul); padding-bottom: 3px; }
+  .app .link::after { content: ' →'; color: var(--azul); }
+
+
+  /* ---------- aplicação: exemplos emoldurados ---------- */
+  .apl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .moldura { margin: 0; background: var(--cartao); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+  .moldura.larga { grid-column: 1 / -1; }
+  .moldura figcaption { color: #4a4d4f; }
+  .tela { position: relative; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1px #ececea; }
+  .tela.cl { background: var(--claro); color: var(--escuro); } .tela.es { background: var(--escuro); color: var(--claro); }
+  .moldura.larga .tela { aspect-ratio: 16 / 7.5; display: flex; flex-direction: column; justify-content: space-between; padding: 22px 26px; }
+  .t-bar { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; position: relative; z-index: 3; }
+  .t-tit { position: relative; z-index: 1; font: 800 clamp(40px, 7.5vw, 112px)/.84 var(--sans); letter-spacing: -.055em; text-transform: uppercase; }
+  .manif-mini { aspect-ratio: 1; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+  .manif-mini p { margin: 0; font: 500 clamp(17px, 1.9vw, 26px)/1.0 var(--sans); text-transform: uppercase; text-align: justify; }
+  .manif-mini em { font: italic 17px var(--serif); color: #dcdcd8; } .manif-mini em b { font-weight: 400; color: #fff; border-bottom: 1px solid var(--azul-no-escuro); }
+  .cartoes-v { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 8px; }
+  .cv { aspect-ratio: 1.75; border-radius: 6px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 24px rgba(18,24,19,.12); }
+  .cv.cl { background: var(--claro); } .cv.cl b { font: 800 34px/.9 var(--sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .cv.es { background: var(--escuro); color: var(--claro); } .cv.es em { font: italic 18px var(--serif); } .cv .mono { font-size: 10px; }
+  .assin { aspect-ratio: 1; padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 2px; } .assin b { font: 500 22px var(--sans); letter-spacing: -.02em; } .assin .mono { font-size: 10.5px; }
+
+  /* ---------- linha do tempo: tabela comparativa (path) ---------- */
+  .tabela { background: var(--cartao); border-radius: 12px; overflow: hidden; }
+  .tabela .lin { display: grid; grid-template-columns: 170px 260px 1fr; gap: 20px; padding: 20px 26px; border-top: 1px solid #ececea; font-size: 14.5px; }
+  .tabela .lin:first-child { border-top: 0; }
+  .tabela .lin .d { font: 400 12px var(--mono); color: var(--c3); padding-top: 2px; }
+  .tabela .lin b { font-weight: 500; }
+  .tabela .lin span { color: #4a4d4f; }
+
+  /* ---------- pendências: acordeão (path, escuro) ---------- */
+  .faq { display: grid; grid-template-columns: 360px 1fr; gap: 60px; }
+  .faq-i { border-bottom: 1px solid var(--linha-escura); }
+  .faq-q { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; font-size: 16px; cursor: pointer; color: #dcdcd8; }
+  .faq-q:hover { color: #fff; }
+  .faq-q span { color: var(--azul-no-escuro); transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  .faq-i.on .faq-q span { transform: rotate(45deg); }
+  .faq-r { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.22,1,.36,1); }
+  .faq-i.on .faq-r { grid-template-rows: 1fr; }
+  .faq-r p { overflow: hidden; margin: 0; color: var(--texto-escuro-2); font-size: 14.5px; line-height: 1.6; }
+  .faq-i.on .faq-r p { padding-bottom: 22px; }
+
+  /* ---------- chamada final com onda azul (path) ---------- */
+  .cta { position: relative; padding: 200px 0 140px; text-align: center; overflow: hidden; background: var(--claro); }
+  .cta::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 120px; background: var(--escuro); }
+  .onda { position: absolute; left: -20%; right: -20%; top: 30px; height: 190px; border-radius: 50%; background: radial-gradient(ellipse at 50% 35%, #2a4fff 0%, #002FA7 36%, rgba(0,47,167,0) 70%); filter: blur(22px); animation: onda 7s ease-in-out infinite alternate; }
+  @keyframes onda { to { transform: translateX(5%) scaleY(1.15) rotate(1.5deg); } }
+  .cta h2.duas { margin-bottom: 20px; position: relative; } .cta p { position: relative; color: #4a4d4f; margin: 0 0 30px; }
+
+  /* ---------- rodapé (RayRay) ---------- */
+  .rodape { padding: 80px 0 34px; }
+  .rodape .gigante { font: 500 clamp(24px, 3.1vw, 46px)/1.0 var(--sans); text-transform: uppercase; text-align: justify; margin: 0 0 90px; }
+  .rodape .gigante .p { color: var(--azul); }
+  .rodape .serif { text-align: center; font: 400 15px/1.45 var(--serif); }
+  .rodape .serif i { font-size: 11px; margin-right: 4px; }
+  .rodape .serif .contato { font-size: 18px; margin-bottom: 18px; }
+  .rodape .base { display: flex; justify-content: space-between; margin-top: 40px; font: 400 13px var(--sans); color: #4a4d4f; }
+
+  .copiado { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px); background: var(--escuro); color: var(--claro); padding: 10px 18px; border-radius: 999px; font: 400 12px var(--mono); text-transform: uppercase; opacity: 0; transition: all .3s; z-index: 99; pointer-events: none; }
+  .copiado.on { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 900px) {
+    :root { --gutter: 18px; }
+    .cab { grid-template-columns: 1fr auto; } .cab .nome { display: none; } .cab nav { gap: 14px; }
+    .apl, .cartoes, .cartoes.dois, .teste, .achados, .processo, .ef-grid, .faq, .unique { grid-template-columns: 1fr; }
+    .processo ul, .ef-grid aside { position: static; }
+    .fx-cor { grid-template-columns: 1fr; gap: 10px; }
+    .tabela .lin { grid-template-columns: 1fr; gap: 4px; }
+    .lencol ol { columns: 1; } .indice { grid-template-columns: repeat(2, auto); }
+    .vidro.a { width: 52vw; height: 36vw; left: 40%; } .vidro.b { width: 22vw; height: 22vw; }
+  }
+  @media (max-width: 560px) { .cab nav a:nth-child(n+3) { display: none; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="cab mono" id="cab">
+  <span class="rec"><i></i>REC <span data-relogio></span></span>
+  <span class="nome">©MARCA<b> manual de identidade </b>v0.1</span>
+  <nav>
+    <a href="#paleta"><span>Paleta</span><span>Paleta</span></a>
+    <a href="#tipografia"><span>Tipo</span><span>Tipo</span></a>
+    <a href="#efeitos"><span>Efeitos</span><span>Efeitos</span></a>
+    <a href="#pendencias"><span>Pendências</span><span>Pendências</span></a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO · RayRay -->
+  <section class="hero" data-tom="claro">
+    <div class="vidro a" aria-hidden="true"></div><div class="vidro b" aria-hidden="true"></div>
+    <h1>Identidade<span class="p">.</span><span class="eco" aria-hidden="true">Identidade.</span></h1>
+    <div class="faixas" aria-hidden="true">
+      <div class="faixa" id="f1"></div>
+      <div class="faixa r" id="f2"></div>
+    </div>
+    <p class="intro mono">Manual de identidade · versão 0.1 · 20/10/2026<br>Registro do que já foi decidido sobre a marca da empresa que entrega sites B2B. Este documento é a identidade, não o site.</p>
+    <ol class="indice mono" id="indice"></ol>
+  </section>
+
+  <!-- ESSÊNCIA · manifesto RayRay -->
+  <section class="escura manif" data-tom="escuro" id="essencia">
+    <div class="wrap">
+      <div class="rotulo">(01 · Essência)</div>
+      <p class="manif-txt" id="manif">Que o visitante pense, de imediato: esses caras são bons. A marca não diz que faz sites excelentes. O próprio site mostra. Animação, inovação, tipografia e acabamento são a mensagem, não enfeite.</p>
+      <div class="unique">
+        <div class="rotulo" style="text-align:left">(Para quem)</div>
+        <div>
+          <p>Empresas B2B de três nichos: imobiliárias, clínicas odontológicas e escritórios de advocacia. A ousadia visual não é diluída para agradar o público mais conservador.</p>
+          <p>Qualquer falha desmente a mensagem: lentidão, travamento no celular ou um detalhe mal resolvido fazem o visitante pensar o contrário. Desempenho e acessibilidade fazem parte da identidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERÊNCIAS · cartões path -->
+  <section class="clara" data-tom="claro" id="referencias">
+    <div class="wrap">
+      <p class="olho">02 · Referências</p>
+      <h2 class="duas">Duas bases, uma marca.<span>O “uau” de uma, a venda da outra.</span></h2>
+      <div class="cartoes dois">
+        <article class="card"><p class="olho">01 · RayRay Lab</p><h3>A linguagem visual</h3><p>Monocromático rigoroso, tipografia gigante, mono nos rótulos, serifa editorial nos detalhes e WebGL com propósito: vidro, glitch, ASCII, tecido e física.</p></article>
+        <article class="card"><p class="olho">02 · path digital</p><h3>A estrutura que vende</h3><p>Títulos em duas cores, escala de cinzas organizada e a página em sequência de convencimento: promessa, prova, processo, depoimentos, comparação, perguntas e chamada final.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOME · lençol RayRay -->
+  <section class="escura nomes-sec" data-tom="escuro" id="nome">
+    <div class="wrap">
+      <p class="rotulo" style="margin-bottom:10px">O nome ficou em aberto por enquanto. Estas foram as opções levantadas em três rodadas.</p>
+      <div class="linha-rot">(03 · Nome)</div>
+      <div class="lencol"><ol id="nomes"></ol></div>
+      <p class="vero"><b>Vero</b> é o favorito: “verdadeiro” em italiano, do latim <i>vērus</i>, a raiz de verdade e de <i>verify</i>. Pela tradição popular, Verônica viria de <i>vera icona</i>, a imagem verdadeira.
+        <small>Complementos considerados: Vero Studio (recomendado), Vero Lab, Vero Atelier, Vero Digital, Vero Works. Antes de decidir: checar domínio .com.br e .com, registro no INPI e o possível conflito de busca com uma operadora de internet chamada Vero.</small></p>
+    </div>
+  </section>
+
+  <!-- PALETA -->
+  <section class="clara" data-tom="claro" id="paleta">
+    <div class="wrap">
+      <p class="olho">04 · Paleta</p>
+      <h2 class="duas">Laboratório monocromático.<span>O azul profundo só nos detalhes.</span></h2>
+      <div class="faixas-cor" id="cores"></div>
+      <div class="teste">
+        <div class="card">
+          <p class="olho">Teste de contraste · WCAG</p>
+          <span class="mono">Texto</span><div class="sel" id="sel-fg"></div>
+          <span class="mono">Fundo</span><div class="sel" id="sel-bg"></div>
+          <div class="nota" id="razao">—</div>
+          <div class="criterios mono"><span id="c1">AA texto</span><span id="c2">AA grande</span><span id="c3">AAA</span></div>
+        </div>
+        <div class="previa" id="previa"><div class="g">Sites que<br>ficam.</div><div style="font-size:14px">Texto corrido em 14px, para conferir a leitura em tamanho pequeno.</div></div>
+      </div>
+      <div class="achados">
+        <article class="card"><p class="olho">Achado 01 · <span class="prop">Proposta a aprovar</span></p><h3>O azul some no fundo escuro</h3><p><code>#002FA7</code> sobre <code>#121813</code> tem contraste de 1,69. Proposta: <code>#5B7BFF</code> (4,91) como versão do azul em fundo escuro. Esta página já usa a proposta nas seções escuras.</p></article>
+        <article class="card"><p class="olho">Achado 02 · <span class="prop">Proposta a aprovar</span></p><h3>O cinza médio não passa em texto pequeno</h3><p><code>#787878</code> sobre o claro tem 4,12, abaixo de 4,5. Proposta: cinza médio só em textos grandes (como a segunda linha dos títulos) e <code>#6B6B6B</code> (4,97) para texto secundário pequeno.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOGRAFIA · processo com lista fixa (path) -->
+  <section class="clara" data-tom="claro" id="tipografia" style="padding-top:0">
+    <div class="wrap">
+      <p class="olho">05 · Tipografia</p>
+      <h2 class="duas">Três famílias gratuitas.<span>Cada uma com um papel.</span></h2>
+      <div class="testador"><label class="mono" for="tt">Teste aqui →</label><input id="tt" value="Sites que ficam." autocomplete="off"></div>
+      <div class="processo">
+        <ul id="tipo-lista"><li class="on">01 Inter Tight</li><li>02 Azeret Mono</li><li>03 Instrument Serif</li></ul>
+        <div>
+          <div class="etapa" data-i="0"><h3>Inter Tight: títulos e manifesto</h3><p>A mais próxima da Helvetica do RayRay. Peso 800 em caixa-alta nos títulos gigantes; 500 justificado no manifesto; 500 nos títulos em duas cores.</p>
+            <div class="especime t1" data-tt>Sites que ficam.</div>
+            <div class="entregas"><p class="olho">Usos</p><div>Títulos de destaque<span>800 · ≈ 112–118px · tracking −4,5%</span></div><div>Manifesto<span>500 · ≈ 24–50px · caixa-alta justificada</span></div><div>Títulos em duas cores<span>500 · ≈ 34–50px · segunda linha em cinza</span></div><div>Texto corrido<span>400 · 16–18px · entrelinha 1,5</span></div></div></div>
+          <div class="etapa" data-i="1"><h3>Azeret Mono: rótulos e interface</h3><p>Menu, relógio, legendas e marcações técnicas. Sempre em caixa-alta e pequena.</p>
+            <div class="especime t2" data-tt>Sites que ficam.</div>
+            <div class="entregas"><p class="olho">Usos</p><div>Cabeçalho e menu<span>400 · 13px · caixa-alta</span></div><div>Relógio “REC”<span>400 · 13px · ao vivo</span></div><div>Legendas e fichas<span>400 · 10,5–13px</span></div></div></div>
+          <div class="etapa" data-i="2"><h3>Instrument Serif: detalhes</h3><p>O toque editorial: itálico em frases de destaque e no rodapé, no lugar da Editorial New do RayRay.</p>
+            <div class="especime t3" data-tt>Sites que ficam.</div>
+            <div class="entregas"><p class="olho">Usos</p><div>Frase de destaque<span>itálico · ≈ 22–30px · palavra-chave sublinhada</span></div><div>Rodapé<span>regular · 15–18px · centralizado</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELEMENTOS · cartões path -->
+  <section class="clara" data-tom="claro" id="elementos" style="padding-top:0">
+    <div class="wrap">
+      <p class="olho">06 · Elementos</p>
+      <h2 class="duas">Os detalhes que assinam.<span>Pequenos, repetidos, reconhecíveis.</span></h2>
+      <div class="cartoes">
+        <article class="card"><div class="palco"><span style="font:800 40px var(--sans);letter-spacing:-.05em">SITES</span><span class="vidro" style="width:96px;height:64px;border-radius:22px;animation:flut 6s ease-in-out infinite"></span></div><p class="olho">01 · Vidro</p><h3>Formas de vidro fosco</h3><p>Flutuam e desfocam o que está por trás, com reflexo azul. No site, em 3D de verdade.</p></article>
+        <article class="card"><div class="palco"><span style="position:relative;font:800 40px var(--sans);letter-spacing:-.05em;text-transform:uppercase">Marca<span class="eco" style="position:absolute;inset:0;color:var(--azul);opacity:0;animation:eco 3.4s infinite steps(1)">Marca</span></span></div><p class="olho">02 · Glitch</p><h3>Falha com eco azul</h3><p>O título “falha” em fatias por um instante. Tecnologia viva, sem exagero.</p></article>
+        <article class="card"><div class="palco"><span style="font:800 40px var(--sans);letter-spacing:-.05em;text-transform:uppercase">Ficam<span style="color:var(--azul)">.</span></span></div><p class="olho">03 · Ponto</p><h3>Ponto final azul</h3><p>A única cor dentro do título. Discreto e fácil de reconhecer.</p></article>
+        <article class="card"><div class="palco"><span class="mono rec"><i></i>REC <span data-relogio></span></span></div><p class="olho">04 · Relógio</p><h3>“Gravando” ao vivo</h3><p>A hora no cabeçalho: um estúdio funcionando agora.</p></article>
+        <article class="card"><div class="palco"><span class="mono" style="border-bottom:2px solid var(--azul);padding-bottom:3px">Ver projetos <span style="color:var(--azul)">→</span></span></div><p class="olho">05 · Links</p><h3>Sublinhado azul</h3><p>2px de sublinhado e uma seta azul que avança.</p></article>
+        <article class="card"><div class="palco dk"><span style="font:400 13px var(--sans)">(Quem somos)</span></div><p class="olho">06 · Rótulos</p><h3>Entre parênteses</h3><p>As seções se apresentam com um rótulo discreto, centralizado.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EFEITOS · seção escura path -->
+  <section class="escura efeitos-sec" data-tom="escuro" id="efeitos">
+    <div class="wrap ef-grid">
+      <aside>
+        <p class="olho">07 · Movimento</p>
+        <h2 class="duas">A linguagem de movimento.<span>47 efeitos guardados, escolha pendente.</span></h2>
+        <p>Todos saíram do RayRay Lab e da path digital e têm protótipo funcionando no catálogo. ≈ marca as aproximações de efeitos que, no original, são WebGL/3D. Clique numa linha para marcar como favorito (fica salvo neste navegador).</p>
+        <div class="filtros" id="filtros"><button data-f="todos" class="on">Todos</button><button data-f="rayray">RayRay</button><button data-f="path">path</button><button data-f="ap">≈ Aproximações</button><button data-f="marcados" id="fm">Favoritos (0)</button></div>
+        <a class="pilula clara" href="catalogo-de-efeitos.html">Abrir catálogo de efeitos</a>
+      </aside>
+      <div id="lista"></div>
+    </div>
+  </section>
+
+  <!-- APLICAÇÃO · exemplos emoldurados -->
+  <section class="clara" data-tom="claro" id="aplicacao">
+    <div class="wrap">
+      <p class="olho">08 · Aplicação</p>
+      <h2 class="duas">A identidade aplicada.<span>Exemplos para conferir, não o site.</span></h2>
+      <div class="apl">
+        <figure class="moldura larga">
+          <div class="tela cl"><div class="t-bar mono"><span class="rec"><i></i>REC <span data-relogio></span></span><span>©Marca</span><span>Work · Contact</span></div><span class="vidro" style="width:34%;height:46%;left:44%;top:24%;border-radius:26px"></span><div class="t-tit">Sites<br>que ficam<span style="color:var(--azul)">.</span></div><div class="t-bar mono"><span>Design e interação</span><span style="border-bottom:2px solid var(--azul)">Ver projetos <span style="color:var(--azul)">→</span></span></div></div>
+          <figcaption class="mono">A · Primeira tela de um site</figcaption>
+        </figure>
+        <figure class="moldura">
+          <div class="tela es manif-mini"><span class="mono" style="color:var(--texto-escuro-2)">(Manifesto)</span><p>Não fazemos sites para ocupar espaço. Fazemos a primeira impressão que decide.</p><em>Para quem leva o <b>próprio nome</b> a sério.</em></div>
+          <figcaption class="mono">B · Post quadrado</figcaption>
+        </figure>
+        <figure class="moldura">
+          <div class="cartoes-v"><div class="cv cl"><b>Marca<span style="color:var(--azul)">.</span></b><span class="mono">Web lab</span></div><div class="cv es"><span class="mono"><span class="rec"><i></i></span>Ana Souza · Direção</span><span class="mono">ana@marca.com.br</span><em>Sites que ficam.</em></div></div>
+          <figcaption class="mono">C · Cartão de visita, frente e verso</figcaption>
+        </figure>
+        <figure class="moldura">
+          <div class="tela cl assin"><b>Ana Souza</b><span>Direção de projetos</span><span class="mono" style="margin-top:12px">©Marca web lab <span style="color:var(--azul)">●</span> São Paulo</span><span class="mono" style="border-bottom:2px solid var(--azul);align-self:flex-start;margin-top:8px">Agendar conversa <span style="color:var(--azul)">→</span></span></div>
+          <figcaption class="mono">D · Assinatura de e-mail</figcaption>
+        </figure>
+      </div>
+      <p class="rotulo" style="margin-top:28px;color:#4a4d4f">Nome, pessoa, e-mail e textos são provisórios. O tom de voz ainda não foi definido.</p>
+    </div>
+  </section>
+
+  <!-- DECISÕES · tabela path -->
+  <section class="clara" data-tom="claro" id="decisoes">
+    <div class="wrap">
+      <p class="olho">09 · Decisões</p>
+      <h2 class="duas">O que já está decidido.<span>Em ordem, com data.</span></h2>
+      <div class="tabela">
+        <div class="lin"><span class="d">19/10/2026</span><b>Projeto</b><span>Identidade e depois o site da própria empresa, para imobiliárias, clínicas odontológicas e escritórios de advocacia.</span></div>
+        <div class="lin"><span class="d">19/10/2026</span><b>Objetivo</b><span>“Esses caras são bons”, de imediato. O site é a prova.</span></div>
+        <div class="lin"><span class="d">19/10/2026</span><b>Referências</b><span>Somente RayRay Lab e path digital. The Shift e Ovia saíram.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Nome</b><span>Adiado. 28 opções levantadas; Vero é o favorito.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Direção visual</b><span>A · Laboratório monocromático, entre três direções comparadas.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Cor de destaque</b><span>Azul profundo <code>#002FA7</code>, só em detalhes.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Tipografia</b><span>Inter Tight, Azeret Mono e Instrument Serif.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Efeitos</b><span>47 guardados, todos com protótipo; a escolha ainda está pendente.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENDÊNCIAS · acordeão path -->
+  <section class="escura efeitos-sec" data-tom="escuro" id="pendencias">
+    <div class="wrap faq">
+      <div><p class="olho">10 · Pendências</p><h2 class="duas">O que ainda falta.<span>Uma decisão por vez.</span></h2></div>
+      <div id="faq"></div>
+    </div>
+  </section>
+
+  <!-- CHAMADA FINAL · onda path -->
+  <section class="cta" data-tom="claro">
+    <div class="onda" aria-hidden="true"></div>
+    <h2 class="duas">Próxima decisão:<span>os efeitos da marca.</span></h2>
+    <p>Depois dela, esta identidade vira a base da spec do site.</p>
+    <a class="mono" href="catalogo-de-efeitos.html" style="position:relative;text-decoration:none;border-bottom:2px solid var(--azul);padding-bottom:3px">Abrir catálogo de efeitos <span style="color:var(--azul)">→</span></a>
+  </section>
+</main>
+
+<!-- RODAPÉ · RayRay -->
+<footer class="rodape" data-tom="claro">
+  <div class="wrap">
+    <p class="gigante">Uma marca monocromática, com azul nos detalhes, tipografia gigante e movimento com propósito, para fazer o cliente pensar em segundos: esses caras são bons<span class="p">.</span></p>
+    <div class="serif">
+      <div class="contato">Manual de identidade · versão 0.1</div>
+      <div><i>tipografia</i> Inter Tight, Azeret Mono, Instrument Serif <i>&nbsp;paleta</i> #F7F7F5, #DCDCD8, #787878, #121813, #002FA7</div>
+      <div><i>referências</i> RayRay Lab, path digital <i>&nbsp;catálogo</i> <a href="catalogo-de-efeitos.html">47 efeitos</a></div>
+      <div>Nome da marca a definir · 2026</div>
+    </div>
+    <div class="base"><span>São Paulo <span data-hora></span></span><span>docs/memoria-do-projeto.md</span></div>
+  </div>
+</footer>
+<div class="copiado" id="copiado">Copiado</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const guarda = { ler(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+
+  // relógio REC e hora local
+  const dias = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'], z = n => String(n).padStart(2, '0');
+  const tic = () => { const d = new Date(); document.querySelectorAll('[data-relogio]').forEach(e => e.textContent = `${dias[d.getDay()]}${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`);
+    document.querySelectorAll('[data-hora]').forEach(e => e.textContent = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' })); };
+  tic(); setInterval(tic, 1000);
+
+  // cabeçalho: inverte a cor por seção e recolhe o nome ao rolar
+  const cab = $('cab'), tons = [...document.querySelectorAll('[data-tom]')];
+  const cabUp = () => { const y = 30; const sob = tons.find(s => { const r = s.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
+    cab.classList.toggle('inv', !!sob && sob.dataset.tom === 'escuro'); cab.classList.toggle('recolhe', scrollY > 60); };
+  addEventListener('scroll', cabUp, { passive: true }); cabUp();
+
+  // índice da capa
+  const caps = [['essencia', 'Essência'], ['referencias', 'Referências'], ['nome', 'Nome'], ['paleta', 'Paleta'], ['tipografia', 'Tipografia'], ['elementos', 'Elementos'], ['efeitos', 'Movimento'], ['aplicacao', 'Aplicação'], ['decisoes', 'Decisões'], ['pendencias', 'Pendências']];
+  $('indice').innerHTML = caps.map((c, i) => `<li><a href="#${c[0]}">(${z(i + 1)}) ${c[1]}</a></li>`).join('');
+
+  // faixas do hero
+  const itens = ['Paleta monocromática', 'Azul profundo #002FA7', 'Inter Tight', 'Azeret Mono', 'Instrument Serif', '47 efeitos guardados', 'RayRay Lab + path digital', 'Nome em aberto', 'Esses caras são bons'];
+  const linha = a => (a.map(t => `<span>${t}</span>`).join('')).repeat(2);
+  $('f1').innerHTML = linha(itens); $('f2').innerHTML = linha([...itens].reverse());
+
+  // manifesto revelado pela rolagem
+  const m = $('manif'), destaque = /^(esses|caras|bons\.|mostra\.)$/i;
+  m.innerHTML = m.textContent.trim().split(/\s+/).map(w => `<span${destaque.test(w) ? ' data-az' : ''}>${w}</span>`).join(' ');
+  const ws = [...m.children];
+  const mUp = () => { const r = m.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / (r.height + innerHeight * .35)));
+    ws.forEach((w, i) => { const on = i / ws.length < p; w.classList.toggle('on', on); w.classList.toggle('az', on && w.hasAttribute('data-az')); }); };
+  addEventListener('scroll', mUp, { passive: true }); mUp();
+
+  // nomes no lençol
+  const nomes = ['Moveo', 'Vante', 'Tessel', 'Strata', 'Arco', 'Vektor', 'Kanso', 'Nodo', 'Fold', 'Glint', 'Mira', 'Lapis', 'Karat', 'Rara', 'Vero', 'Brio', 'Auge', 'Onyx', 'Kern', 'Facet', 'Zelo', 'Atrium', 'Torque', 'Optik', 'Kuro', 'Noir', 'Velta', 'Kova'];
+  $('nomes').innerHTML = nomes.map((n, i) => `<li class="${n === 'Vero' ? 'fav' : ''}">${n}<sup>(${i + 1})</sup></li>`).join('');
+
+  // paleta em faixas de ponta a ponta
+  const cores = [
+    { hex: '#F7F7F5', nome: 'Claro', uso: 'Fundo das seções claras', peso: '≈ 40%', txt: '#121813', borda: true },
+    { hex: '#DCDCD8', nome: 'Cinza claro', uso: 'Linhas, divisórias, estados apagados', peso: '≈ 12%', txt: '#121813' },
+    { hex: '#787878', nome: 'Cinza médio', uso: 'Segunda linha dos títulos, textos grandes', peso: '≈ 8%', txt: '#F7F7F5' },
+    { hex: '#121813', nome: 'Preto esverdeado', uso: 'Texto principal e seções escuras', peso: '≈ 37%', txt: '#F7F7F5' },
+    { hex: '#002FA7', nome: 'Azul profundo', uso: 'Só detalhes: ponto, eco, links, seleção', peso: '≈ 3%', txt: '#F7F7F5' },
+  ];
+  $('cores').innerHTML = cores.map(c => `<div class="fx-cor" data-hex="${c.hex}" style="background:${c.hex};color:${c.txt}${c.borda ? ';box-shadow:inset 0 -1px 0 #DCDCD8, inset 0 1px 0 #DCDCD8' : ''}"><div class="hex">${c.hex}</div><div class="info"><b>${c.nome}</b>${c.uso}<span class="peso">Uso ${c.peso} · clique para copiar</span></div></div>`).join('');
+  const copia = hex => { navigator.clipboard?.writeText(hex).catch(() => {}); const c = $('copiado'); c.textContent = `${hex} copiado`; c.classList.add('on'); setTimeout(() => c.classList.remove('on'), 1400); };
+  document.querySelectorAll('[data-hex]').forEach(e => e.addEventListener('click', () => copia(e.dataset.hex)));
+
+  // contraste (WCAG 2.x)
+  const lum = h => { const [r, g, b] = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4); return .2126 * r + .7152 * g + .0722 * b; };
+  const razao = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };
+  const opc = ['#F7F7F5', '#DCDCD8', '#787878', '#121813', '#002FA7', '#5B7BFF', '#6B6B6B', '#FFFFFF'];
+  let fg = '#121813', bg = '#F7F7F5';
+  const monta = (id, atual, set) => { $(id).innerHTML = opc.map(h => `<button style="background:${h}" data-h="${h}" title="${h}${h === '#5B7BFF' || h === '#6B6B6B' ? ' · proposta' : ''}" class="${h === atual ? 'on' : ''}"></button>`).join('');
+    $(id).querySelectorAll('button').forEach(b => b.addEventListener('click', () => { set(b.dataset.h); $(id).querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); conta(); })); };
+  const conta = () => { const r = razao(fg, bg); $('razao').textContent = r.toFixed(2).replace('.', ',') + ':1'; $('c1').classList.toggle('ok', r >= 4.5); $('c2').classList.toggle('ok', r >= 3); $('c3').classList.toggle('ok', r >= 7); $('previa').style.background = bg; $('previa').style.color = fg; };
+  monta('sel-fg', fg, v => fg = v); monta('sel-bg', bg, v => bg = v); conta();
+
+  // tipografia: testador e lista fixa
+  const tt = $('tt'), alvos = [...document.querySelectorAll('[data-tt]')]; tt.addEventListener('input', () => alvos.forEach(a => a.textContent = tt.value || ' '));
+  const lis = [...$('tipo-lista').children], etapas = [...document.querySelectorAll('.etapa')];
+  const tUp = () => { let at = 0; etapas.forEach((e, i) => { if (e.getBoundingClientRect().top < innerHeight * .45) at = i; }); lis.forEach((l, i) => l.classList.toggle('on', i === at)); };
+  addEventListener('scroll', tUp, { passive: true }); tUp();
+  lis.forEach((l, i) => l.addEventListener('click', () => etapas[i].scrollIntoView({ behavior: 'smooth', block: 'start' })));
+
+  // efeitos
+  const ef = ['Abertura com texto digitando', 'Glitch com linhas de varredura', 'Formas de vidro em 3D', 'Faixas de serviços em sentidos opostos', 'Texto que se monta embaralhado', 'Texto circular girando', 'Claro → escuro na rolagem', 'Palavra em contorno empilhado', 'Imagem com desfoque de movimento', 'Imagem que nasce em ASCII', 'Galeria horizontal de projetos', 'Lista num “lençol” que ondula', 'Física num cubo que gira', 'Grade de pontos animada', 'Logos com bordas esmaecidas', 'Parede de projetos em perspectiva', 'Texto revelado pela rolagem', 'Onda de luz azul entre seções', 'Menu que vira pílula de vidro', 'Estudos de caso que se empilham', 'Processo com lista fixa', 'Logo que distorce seguindo o mouse', 'Seção que gira como cubo e vira caixas', 'Espaço que se abre no texto', 'Menu com texto que rola no hover', 'Logo do cabeçalho que se recolhe', 'Prévia do site no cartão do projeto', 'Barra de progresso com tracinhos', 'Projetos em tela cheia', 'Cabeçalho que inverte a cor por seção', 'Relógio ao vivo', 'Logo que vira pontos (braille)', 'Menu da marca no clique direito', 'Logos que abrem depoimento', 'Depoimento em vídeo numa janela', 'Cartões que surgem na rolagem', 'Mega menu de serviços', 'Indicador deslizante no menu', 'Abas com sublinhado deslizante', 'Carrossel de depoimentos', 'Antes e depois', 'Índice lateral fixo', 'Ilustração isométrica em linhas', 'Interfaces em vidro azul', 'Hora local e “pergunte à IA”', 'Perguntas frequentes em acordeão', 'Formulário com estados'];
+  const aprox = new Set([1, 2, 3, 8, 9, 10, 12, 13, 14, 16, 18, 22, 23, 27, 43, 44]);
+  const orig = n => (n <= 13 || (n >= 22 && n <= 31)) ? 'rayray' : 'path';
+  let fav = new Set(guarda.ler('id-efeitos', [])), filtro = 'todos';
+  const desenha = () => {
+    const vis = ef.map((t, i) => ({ n: i + 1, t })).filter(e => filtro === 'todos' || (filtro === 'ap' ? aprox.has(e.n) : filtro === 'marcados' ? fav.has(e.n) : orig(e.n) === filtro));
+    $('lista').innerHTML = vis.map(e => `<div class="ef ${fav.has(e.n) ? 'marcado' : ''}" data-n="${e.n}"><span class="n">(${z(e.n)})</span><span>${e.t}${aprox.has(e.n) ? '<span class="ap">≈</span>' : ''}</span><span class="o">${orig(e.n) === 'rayray' ? 'RayRay' : 'path'}</span><span class="m">+</span></div>`).join('') || '<p style="color:var(--texto-escuro-2)">Nenhum favorito ainda. Clique numa linha em “Todos”.</p>';
+    $('lista').querySelectorAll('.ef').forEach(el => el.addEventListener('click', () => { const n = +el.dataset.n; fav.has(n) ? fav.delete(n) : fav.add(n); guarda.gravar('id-efeitos', [...fav]); desenha(); }));
+    $('fm').textContent = `Favoritos (${fav.size})`;
+  };
+  document.querySelectorAll('#filtros button').forEach(b => b.addEventListener('click', () => { filtro = b.dataset.f; document.querySelectorAll('#filtros button').forEach(x => x.classList.toggle('on', x === b)); desenha(); }));
+  desenha();
+
+  // pendências em acordeão
+  const P = [
+    ['Quais efeitos entram no site?', 'Escolher entre os 47 do catálogo. É o próximo passo combinado; depois disso a identidade vira a spec do site.'],
+    ['Qual será o nome da marca?', 'Adiado. Favorito: Vero (Studio). Antes de decidir: domínio .com.br e .com, registro no INPI e conflito de busca com a operadora de internet Vero.'],
+    ['Como será o logotipo?', 'Depende do nome. A direção visual já está definida: monocromático, tipografia forte e, se houver cor, o azul profundo.'],
+    ['Qual é o tom de voz?', 'Ainda não definido. Os textos desta página e dos protótipos são provisórios.'],
+    ['Qual azul usar em fundo escuro?', 'Proposta: #5B7BFF (contraste 4,91 sobre #121813), porque #002FA7 fica quase invisível no escuro (1,69). Precisa de aprovação.'],
+    ['Qual cinza usar em texto pequeno?', 'Proposta: #6B6B6B (4,97 sobre o claro) para texto secundário pequeno; #787878 fica para textos grandes. Precisa de aprovação.'],
+    ['Haverá abertura (preloader)?', 'O RayRay leva ~4 s até o hero; a path digital mostra o conteúdo na hora. A sugestão é até ~1,5 s, sem bloquear o conteúdo.'],
+  ];
+  const faq = $('faq'); faq.innerHTML = P.map(p => `<div class="faq-i"><div class="faq-q">${p[0]}<span>+</span></div><div class="faq-r"><p>${p[1]}</p></div></div>`).join('');
+  const its = [...faq.children]; its.forEach(it => it.querySelector('.faq-q').addEventListener('click', () => { const on = it.classList.contains('on'); its.forEach(x => x.classList.remove('on')); if (!on) it.classList.add('on'); }));
+})();
+</script>
+</body>
+</html>
