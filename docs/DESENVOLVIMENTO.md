@@ -22,6 +22,15 @@ Os detalhes de cada fase, os cenários, os casos e as lições ficam no reposit�
 - Build: (preencha)
 - Servidor local: (preencha)
 
+## Publicação provisória (Vercel)
+
+Enquanto o site não existe, a Vercel publica o manual de identidade. O `vercel.json` na raiz não tem build e só reescreve endereços:
+
+- `/` → `docs/identidade/identidade-da-marca.html`
+- `/catalogo-de-efeitos` e `/catalogo-de-efeitos.html` → `docs/identidade/catalogo-de-efeitos.html`
+
+Na Vercel: importar o repositório, preset **Other**, sem comando de build e com o diretório de saída padrão. Quando a stack do site for escolhida, este arquivo será substituído.
+
 ## Tarefas e sessões
 
 - Tarefas: issues com o formulário de tarefa (`.github/ISSUE_TEMPLATE/tarefa.yml`).
