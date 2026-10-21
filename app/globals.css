@@ -159,3 +159,28 @@ li { list-style: none; }
 .modo-lista .rotulo-capitulos, .modo-grade .rotulo-capitulos { position: static; margin-bottom: 20px; }
 .modo-lista .cartao-img img { width: 100%; height: auto; aspect-ratio: 730 / 1080; }
 .modo-grade .cartao-img img { width: 30vh; height: 44vh; }
+
+/* ---------- decisões ---------- */
+.secao-decisoes { position: relative; padding: 120px 18px 100px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.frases { text-align: center; font: 400 18px/23px var(--sans); }
+.titulo-decisoes { display: flex; align-items: center; justify-content: center; gap: 3px; height: 30px; font: 400 18px var(--sans); margin: 0; width: 100%; }
+.titulo-decisoes .linha { display: block; width: 0; height: 1px; background: var(--claro); }
+.lista-decisoes { width: min(53vw, 100%); background: var(--branco); color: var(--escuro); padding: 40px 50px; border-top: 2px dashed var(--escuro); border-bottom: 2px dashed var(--escuro); background-clip: padding-box; outline: 18px solid var(--branco); outline-offset: -18px; }
+.lista-decisoes li { font: 500 3.7vw/4.4vw var(--sans); letter-spacing: -0.02em; text-transform: uppercase; }
+.lista-decisoes sup { font: 400 14px var(--sans); margin-left: 6px; letter-spacing: 0; }
+
+/* Desktop com lençol: título no meio da tela, frases acima, máscara escura até a linha e a lista só para leitores de tela. */
+.com-lencol { display: block; padding: 50vh 0 100px; min-height: calc(50vh + var(--altura-folha, 60vw) + 100px); }
+.com-lencol .frases { position: absolute; z-index: 2; top: calc(47vh - 150px); left: 0; right: 0; }
+.com-lencol .titulo-decisoes { position: absolute; z-index: 2; top: calc(50vh - 15px); left: 0; }
+.com-lencol .mascara-decisoes { position: absolute; z-index: 1; top: 0; left: 0; right: 0; height: calc(50vh + 1px); background: var(--escuro); }
+.com-lencol .lista-decisoes { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); padding: 0; border: 0; }
+
+@media (max-width: 899px) {
+  .lista-decisoes { width: 100%; padding: 24px 20px; }
+  .lista-decisoes li { font-size: 7vw; line-height: 8.4vw; }
+  .lista-decisoes sup { font-size: 10px; }
+  .frases { font-size: 15px; line-height: 20px; }
+}
+.secao-decisoes:not(.com-lencol) .titulo-decisoes { gap: 12px; }
+.secao-decisoes:not(.com-lencol) .titulo-decisoes .linha { width: 20vw; }
