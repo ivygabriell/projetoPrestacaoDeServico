@@ -1,13 +1,14 @@
 'use client';
 
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { apoio, manifesto, unico } from '@/conteudo/identidade';
 import { gsap } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
+import { useEfeitoDeLayout } from '@/lib/useEfeitoDeLayout';
 import { CuboMarca } from './CuboMarca';
 
 export function Manifesto() {
-  useEffect(() => {
+  useEfeitoDeLayout(() => {
     const secao = document.querySelector<HTMLElement>('.secao-manifesto')!;
     const ajustarEscala = () => secao.style.setProperty('--escala-cubo', String(Math.min(1, (window.innerWidth - 60) / 1000)));
     ajustarEscala();
