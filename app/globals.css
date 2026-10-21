@@ -28,7 +28,7 @@ li { list-style: none; }
 .cabecalho .nome .recolhe { display: inline-block; width: 15ch; overflow: hidden; text-align: center; transition: width 0.3s; }
 .cabecalho .nome:hover .recolhe, .cabecalho .nome:focus-visible .recolhe { width: 0; }
 .cabecalho nav { display: flex; gap: 20px; }
-.cabecalho nav a { position: relative; display: inline-block; perspective: 200px; }
+.cabecalho nav a { position: relative; display: inline-block; }
 .cabecalho nav a .menu-texto { display: inline-block; transition: transform 0.3s; }
 .cabecalho nav a .menu-texto2 { position: absolute; right: 0; top: 10px; transform: translateZ(20px) rotateX(90deg); transition: transform 0.3s, top 0.3s; pointer-events: none; }
 .cabecalho nav a:hover .menu-texto { transform: translateY(-10px) rotateX(90deg); }
@@ -46,3 +46,33 @@ li { list-style: none; }
 .abertura .trechos { font: 400 14px/16px var(--mono); letter-spacing: -0.02em; text-align: center; }
 .abertura .trecho { opacity: 0; }
 @media (max-width: 899px), (prefers-reduced-motion: reduce) { .abertura { display: none; } }
+
+/* ---------- hero ---------- */
+.secao-hero { position: relative; height: 100vh; overflow: hidden; pointer-events: none; }
+.titulo-hero { position: absolute; left: 7vw; right: 7vw; top: calc(50vh - 0.178 * 100vh - 7vw); font: 800 15.6vw/1 var(--sans); letter-spacing: -0.055em; text-align: center; margin: 0; }
+.titulo-hero .ponto { color: inherit; }
+.js-global-canvas-error .titulo-hero .ponto { color: var(--azul); }
+.secao-hero .faixas { position: absolute; top: calc(50vh - 15px); left: 0; height: 30px; padding: 3px 0; background: var(--branco); z-index: 10; opacity: 0; overflow: hidden; width: 100%; }
+.secao-hero .faixa { width: 9000px; display: flex; justify-content: space-between; padding: 0 30px; font: 500 11px/12px var(--sans); text-transform: uppercase; letter-spacing: -0.01em; color: var(--escuro); }
+.secao-hero .faixa-1 { animation: correr 200s linear infinite; }
+.secao-hero .faixa-2 { animation: correr-volta 200s linear infinite; }
+@keyframes correr { to { transform: translateX(-6000px); } }
+@keyframes correr-volta { from { transform: translateX(-6000px); } to { transform: translateX(0); } }
+.secao-hero .intro { position: absolute; top: calc(50vh + 64px); left: calc(50% - 350px); width: 700px; font: 400 13px/14px var(--mono); letter-spacing: -0.01em; text-transform: uppercase; text-align: center; z-index: 10; opacity: 0; }
+.secao-hero .role-para-baixo { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font: 400 14px/17px var(--sans); letter-spacing: 0.02em; text-transform: uppercase; z-index: 10; opacity: 0; }
+.secao-hero .vidro-dom { position: fixed; left: 50%; top: 50%; width: 0; height: 0; z-index: 1; opacity: 0; }
+.secao-hero .vidro-dom-recorte { position: absolute; width: 22vw; height: 22vw; left: -11vw; top: -11vw; border-radius: 38% 62% 47% 53% / 52% 38% 62% 48%; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+@media (max-width: 899px) {
+  .cabecalho { left: 18px; right: 18px; font-size: 12px; }
+  .cabecalho .relogio, .cabecalho .nome .recolhe, .cabecalho .nome span:last-child, .cabecalho nav a .menu-texto2 { display: none; }
+  .cabecalho .nome { position: static; transform: none; padding: 0; }
+  .cabecalho nav { gap: 12px; }
+  .titulo-hero { top: calc(50vh - 0.18 * 100vh - 8vw); font-size: 17vw; }
+  .secao-hero .intro { left: 18px; right: 18px; width: auto; top: calc(50vh + 50px); font: 400 13px/16px var(--sans); text-transform: none; text-align: left; }
+  .secao-hero .vidro-dom { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .secao-hero .faixa { animation: none; }
+  .secao-hero .faixas, .secao-hero .intro, .secao-hero .role-para-baixo { opacity: 1; }
+}
