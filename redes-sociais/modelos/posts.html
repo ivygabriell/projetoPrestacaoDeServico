@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Posts avulsos</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800&family=Azeret+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .p-manifesto .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 200px; font-size: 176px; }
+    .p-manifesto .negacoes { position: absolute; left: var(--margem); top: 760px; font-size: 76px; line-height: 1.05; color: var(--c3); }
+    .p-manifesto .assinatura { position: absolute; left: var(--margem); bottom: 150px; }
+    .p-detalhe .titulo { position: absolute; left: var(--margem); width: 540px; top: 200px; font-size: 92px; }
+    .p-detalhe .celular { right: 90px; top: 260px; color: var(--claro); }
+    .p-detalhe .anotacoes { position: absolute; left: var(--margem); top: 860px; display: flex; flex-direction: column; gap: 26px; }
+    .p-detalhe .anotacoes li { display: flex; align-items: center; gap: 18px; }
+    .p-detalhe .anotacoes .linha { width: 60px; background: var(--detalhe); }
+    .p-laboratorio .ascii { position: absolute; left: 50%; top: 150px; transform: translateX(-50%); color: var(--claro); font-size: 19px; line-height: 19px; }
+    .p-laboratorio .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 840px; }
+    .p-laboratorio .apoio { position: absolute; left: var(--margem); width: 700px; top: 1060px; color: var(--c2); }
+    .p-nicho .fundo { position: absolute; right: 60px; top: 150px; font-size: 470px; -webkit-text-stroke: 3px var(--c3); color: transparent; opacity: 0.5; z-index: -1; }
+    .p-nicho .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 560px; }
+    .p-nicho .apoio { position: absolute; left: var(--margem); width: 780px; top: 1000px; }
+    .p-imovel .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 180px; font-size: 150px; }
+    .p-imovel .faixa { top: 820px; }
+    .p-imovel .apoio { position: absolute; left: var(--margem); width: 780px; top: 1010px; }
+    .p-case .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 180px; }
+    .p-case .tela-case { position: absolute; left: var(--margem); right: var(--margem); top: 330px; height: 560px; background: var(--c2); display: flex; align-items: center; justify-content: center; color: var(--c3); }
+    .p-case .numeros { position: absolute; left: var(--margem); right: var(--margem); top: 950px; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .p-case .numeros div { border-top: 2px solid var(--escuro); padding-top: 18px; }
+    .p-case .numeros dd { margin: 12px 0 0; font: 800 64px/1 var(--sans); letter-spacing: -0.04em; }
+    .p-pergunta .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 200px; font-size: 150px; }
+    .p-pergunta .titulo .serif { display: block; }
+    .p-pergunta .apoio { position: absolute; left: var(--margem); width: 820px; top: 820px; }
+  </style>
+</head>
+<body data-pagina="modelo">
+  <header class="prancha-topo">
+    <h1>Posts avulsos</h1>
+    <span>7 peças · 1080×1350 · <a href="../manual.html">voltar ao manual</a></span>
+  </header>
+
+  <main class="prancha">
+    <section class="peca p-manifesto" data-formato="retrato" data-nome="manifesto">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Manifesto)</span></div>
+      <h2 class="titulo">O próprio site <span class="vao"></span> é a prova<span class="ponto">.</span></h2>
+      <ul class="negacoes serif"><li>Não o discurso.</li><li>Não a promessa.</li><li>Não o portfólio em PDF.</li></ul>
+      <p class="rotulo assinatura">— Laboratório de sites</p>
+      <div class="base"><span>@marca.lab</span><span>Design lógico, desenvolvimento criativo</span></div>
+    </section>
+
+    <section class="peca escura p-detalhe" data-formato="retrato" data-nome="detalhe-de-interface">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Detalhe nº 07)</span></div>
+      <h2 class="titulo m">O botão de agendar <span class="serif">nunca</span> sai da tela<span class="ponto">.</span></h2>
+      <div class="celular"><div class="tela"><b></b><b class="curto"></b><div class="bloco"></div><b></b><b></b><b class="curto"></b><div class="botao">Agendar consulta</div></div></div>
+      <ul class="anotacoes rotulo">
+        <li><span class="linha"></span>Fixo no rodapé do celular</li>
+        <li><span class="linha"></span>Um toque até a agenda</li>
+        <li><span class="linha"></span>Transição de 0,3 s</li>
+      </ul>
+      <div class="base"><span>@marca.lab</span><span>Nada aqui é enfeite</span></div>
+    </section>
+
+    <section class="peca escura p-laboratorio" data-formato="retrato" data-nome="bastidores-ascii">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Laboratório)</span></div>
+      <pre class="ascii" data-ascii="cubo" data-colunas="72" data-linhas="36" data-giro="0.62" data-inclinacao="0.62" aria-hidden="true"></pre>
+      <h2 class="titulo p">Todo site começa como <span class="serif">estrutura<span class="ponto">.</span></span></h2>
+      <p class="texto p apoio">Antes da cor e da animação: hierarquia, caminho do visitante e velocidade.</p>
+      <div class="base"><span>@marca.lab</span><span>Bastidores</span></div>
+    </section>
+
+    <section class="peca p-nicho" data-formato="retrato" data-nome="nicho-advocacia">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Advocacia)</span></div>
+      <p class="contorno fundo" aria-hidden="true">§</p>
+      <h2 class="titulo m">Sobriedade não é sinônimo de <span class="serif">site parado<span class="ponto">.</span></span></h2>
+      <p class="texto apoio">Um escritório pode ser sério e memorável ao mesmo tempo, com publicidade dentro do Provimento 205/2021 da OAB.</p>
+      <div class="base"><span>@marca.lab</span><span>Laboratório de sites</span></div>
+    </section>
+
+    <section class="peca p-imovel" data-formato="retrato" data-nome="nicho-imobiliario">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Imobiliário)</span></div>
+      <h2 class="titulo">O imóvel é visitado <span class="serif">primeiro</span> na tela<span class="ponto">.</span></h2>
+      <div class="faixa inclinada"><span>Fotos que carregam rápido</span><span>(01)</span><span>Filtros que funcionam</span><span>(02)</span><span>Mapa</span><span>(03)</span><span>Contato a um toque</span><span>(04)</span><span>Tour</span></div>
+      <p class="texto apoio">Quem compra ou aluga decide quais imóveis vai visitar pelo celular. O site é a primeira visita.</p>
+      <div class="base"><span>@marca.lab</span><span>Laboratório de sites</span></div>
+    </section>
+
+    <section class="peca p-case" data-formato="retrato" data-nome="case-modelo">
+      <div class="topo"><span class="marca">©MARCA</span><span>(Case) <span class="campo">[segmento]</span></span></div>
+      <h2 class="titulo p"><span class="campo">[Nome do cliente]</span></h2>
+      <div class="tela-case"><span class="rotulo">[captura do site, 952×560]</span></div>
+      <dl class="numeros">
+        <div><dt class="rotulo">Antes</dt><dd class="campo">[dado real]</dd></div>
+        <div><dt class="rotulo">Depois</dt><dd class="campo">[dado real]</dd></div>
+        <div><dt class="rotulo">Prazo</dt><dd class="campo">[semanas]</dd></div>
+      </dl>
+      <div class="base"><span>@marca.lab</span><span>Modelo · só com dados reais e autorizados</span></div>
+    </section>
+
+    <section class="peca escura p-pergunta" data-formato="retrato" data-nome="pergunta">
+      <svg class="borda" style="bottom: 0; height: 330px" viewBox="0 0 1080 330" preserveAspectRatio="none" aria-hidden="true"><path fill="#F7F7F5" d="M0 330 V150 C 120 90, 230 200, 380 140 C 520 80, 640 190, 780 120 C 900 60, 1000 130, 1080 90 V330 Z"/></svg>
+      <div class="topo"><span class="marca">©MARCA</span><span>(Teste)</span></div>
+      <h2 class="titulo">Seu site passa no teste dos <span class="serif">5 segundos?</span></h2>
+      <p class="texto apoio">Abra no celular, conte até cinco e responda: dá para saber o que vocês fazem e por que confiar?</p>
+      <div class="base" style="color: var(--escuro)"><span>@marca.lab</span><span>Responda nos comentários</span></div>
+    </section>
+  </main>
+  <script src="pecas.js"></script>
+</body>
+</html>
