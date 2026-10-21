@@ -76,3 +76,9 @@ li { list-style: none; }
   .secao-hero .faixa { animation: none; }
   .secao-hero .faixas, .secao-hero .intro, .secao-hero .role-para-baixo { opacity: 1; }
 }
+
+/* ---------- trecho escuro ---------- */
+/* Do manifesto até as decisões o texto é claro. No desktop o fundo escuro vem do plano WebGL;
+   no celular e com movimento reduzido, cada seção escura pinta o próprio fundo. */
+.trecho-escuro { color: var(--claro); }
+.fundo-por-secao .trecho-escuro { background: var(--escuro); }

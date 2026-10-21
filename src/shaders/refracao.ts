@@ -37,11 +37,12 @@ void main() {
   soma /= 9.0;
   vec3 base = soma.rgb + uClaro * (1.0 - soma.a); // o fundo transparente do alvo é o claro da página
 
-  float fresnel = pow(1.0 - abs(dot(vVisao, vNormal)), 3.0);
+  float fresnel = pow(1.0 - abs(dot(vVisao, vNormal)), 2.2);
   vec3 luz = normalize(vec3(0.0, 1.0, 1.2));
   float brilho = pow(max(dot(reflect(-luz, vNormal), -vVisao), 0.0), 24.0);
 
-  vec3 vidro = mix(base, vec3(1.0), 0.18) - fresnel * 0.22 + brilho * 0.35;
+  vec3 vidro = mix(base, vec3(1.0), 0.12) * (1.0 - fresnel * 0.75) + brilho * 0.5;
   gl_FragColor = vec4(vidro, uOpacidade * (0.9 + fresnel * 0.1));
+  #include <colorspace_fragment>
 }
 `;

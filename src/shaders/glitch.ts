@@ -16,5 +16,6 @@ void main() {
   for (int i = -3; i <= 3; i++) cor += texture2D(uLogo, uv + vec2(float(i) * 0.008 * falta, 0.0));
   cor /= 7.0;
   gl_FragColor = vec4(cor.rgb, cor.a * uProgresso);
+  #include <colorspace_fragment>
 }
 `;
