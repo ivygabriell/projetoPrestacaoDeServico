@@ -17,3 +17,25 @@ body { margin: 0; background: var(--claro); color: var(--escuro); font: 400 20px
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p, ul, li { margin: 0; padding: 0; font-weight: inherit; }
 li { list-style: none; }
+
+/* ---------- cabeçalho ---------- */
+.cabecalho { position: fixed; top: 12px; left: 30px; right: 30px; z-index: 100; display: flex; justify-content: space-between; align-items: center; color: var(--claro); mix-blend-mode: difference; font: 400 15px/1.2 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; opacity: 0; transform: translateY(-100px); }
+.cabecalho.visivel { opacity: 1; transform: none; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s, opacity 0s 1s; }
+.cabecalho .relogio { display: flex; align-items: center; gap: 8px; }
+.cabecalho .relogio i { width: 7px; height: 7px; border-radius: 50%; background: var(--claro); animation: piscar 1.6s steps(1) infinite; }
+@keyframes piscar { 50% { opacity: 0.2; } }
+.cabecalho .nome { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; padding: 0 30px; white-space: nowrap; }
+.cabecalho .nome .recolhe { display: inline-block; width: 15ch; overflow: hidden; text-align: center; transition: width 0.3s; }
+.cabecalho .nome:hover .recolhe, .cabecalho .nome:focus-visible .recolhe { width: 0; }
+.cabecalho nav { display: flex; gap: 20px; }
+.cabecalho nav a { position: relative; display: inline-block; perspective: 200px; }
+.cabecalho nav a .menu-texto { display: inline-block; transition: transform 0.3s; }
+.cabecalho nav a .menu-texto2 { position: absolute; right: 0; top: 10px; transform: translateZ(20px) rotateX(90deg); transition: transform 0.3s, top 0.3s; pointer-events: none; }
+.cabecalho nav a:hover .menu-texto { transform: translateY(-10px) rotateX(90deg); }
+.cabecalho nav a:hover .menu-texto2 { top: 0; transform: translateZ(0) rotateX(0deg); }
+.cabecalho a:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+
+/* ---------- selo lateral ---------- */
+.selo { position: fixed; z-index: 99; right: 0; top: 50%; transform: translateY(-50%); width: 34px; padding: 14px 0; background: var(--escuro); color: var(--claro); display: flex; justify-content: center; opacity: 0; transition: opacity 1s 1s; pointer-events: none; }
+.selo.visivel { opacity: 1; }
+.selo span { writing-mode: vertical-rl; transform: rotate(180deg); font: 400 11px var(--mono); text-transform: uppercase; letter-spacing: 0.04em; }

@@ -3,6 +3,8 @@ import { Azeret_Mono, Instrument_Serif, Inter_Tight } from 'next/font/google';
 import type { ReactNode } from 'react';
 import '@14islands/r3f-scroll-rig/css';
 import './globals.css';
+import { CabecalhoDaPagina } from '@/componentes/cabecalho/Cabecalho';
+import { SeloLateral } from '@/componentes/cabecalho/SeloLateral';
 import { CanvasGlobal } from '@/componentes/canvas/CanvasGlobal';
 import { Rolagem } from '@/componentes/canvas/Rolagem';
 import { ProvedorAbertura } from '@/estado/abertura';
@@ -23,6 +25,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body>
         <ProvedorAbertura>
           <Rolagem />
+          <CabecalhoDaPagina />
+          <SeloLateral />
           {children}
           <CanvasGlobal />
         </ProvedorAbertura>
