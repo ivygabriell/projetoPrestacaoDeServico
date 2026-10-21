@@ -1,5 +1,6 @@
 import { Abertura } from '@/componentes/abertura/Abertura';
 import { Capitulos } from '@/componentes/capitulos/Capitulos';
+import { Contato } from '@/componentes/contato/Contato';
 import { Decisoes } from '@/componentes/decisoes/Decisoes';
 import { Hero } from '@/componentes/hero/Hero';
 import { Manifesto } from '@/componentes/manifesto/Manifesto';
@@ -14,7 +15,7 @@ export default function Pagina() {
       <Manifesto />
       <Capitulos />
       <Decisoes />
-      <div style={{ height: '200vh' }} />
+      <Contato />
     </main>
   );
 }

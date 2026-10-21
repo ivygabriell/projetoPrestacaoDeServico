@@ -3,6 +3,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
+import { cena } from '@/estado/cena';
 import { gsap } from '@/gsap';
 import { vertUv } from '@/shaders/comum';
 import { passagemFrag } from '@/shaders/passagem';
@@ -36,6 +37,7 @@ export function CenaPassagem() {
   }, []);
 
   useFrame(({ clock }) => {
+    if (plano.current) plano.current.visible = !cena.contatoAtivo;
     material.uniforms.uTempo.value = clock.elapsedTime;
     material.uniforms.uProgresso.value = progresso.current.valor;
   });
