@@ -74,7 +74,7 @@ export function Capitulos() {
   return (
     <section className={`secao-capitulos trecho-escuro modo-${modo}${comWebgl ? ' com-webgl' : ''}`} id="capitulos">
       <div className="capitulos-palco">
-        <p className="rotulo-capitulos">{capitulosRotulo}</p>
+        <h2 className="rotulo-capitulos">{capitulosRotulo}</h2>
         <div className="cartoes">
           {capitulos.map((c, i) => (
             <article key={c.id} className="cartao" onMouseEnter={() => passar(i, true)} onMouseLeave={() => passar(i, false)}>

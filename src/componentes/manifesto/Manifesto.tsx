@@ -82,7 +82,7 @@ export function Manifesto() {
   return (
     <section className="secao-manifesto trecho-escuro" id="manifesto">
       <div className="manifesto-texto">
-        <span className="rotulo-manifesto">{manifesto.rotulo}</span>
+        <h2 className="rotulo-manifesto">{manifesto.rotulo}</h2>
         {manifesto.partes.map((parte, i) => (
           <Fragment key={i}>
             {i > 0 && <span className="vao" aria-hidden="true" />}

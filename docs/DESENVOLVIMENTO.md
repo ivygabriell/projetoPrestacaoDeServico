@@ -15,23 +15,27 @@ Os detalhes de cada fase, os cenários, os casos e as lições ficam no reposit�
 5. **As branches integradas ficam no GitHub.** Integre com `gh pr merge N --merge`, sem `--delete-branch`.
 6. **O humano decide o que é externo ou irreversível:** publicar, integrar, apagar, reescrever histórico.
 
+## Pilha
+
+Next.js 15.5 (App Router) com React 19, Three.js r180, @react-three/fiber 9, @14islands/r3f-scroll-rig 8 (canvas global e Lenis), GSAP 3.13 (ScrollTrigger, TextPlugin, EasePack), cannon-es e three-stdlib. É a pilha medida no RayRay Lab ([auditoria](referencias/rayraylab.md)); a escolha está na [spec](superpowers/specs/2026-10-20-identidade-rayray-design.md).
+
+- Um único canvas WebGL fica atrás do DOM (`src/componentes/canvas/CanvasGlobal.tsx`). Cada seção manda a própria cena com `<UseCanvas>`. O `UseCanvas` guarda o elemento filho na montagem: o que muda depois vai como prop do próprio `UseCanvas`.
+- Timelines com `pin` rodam em `useEfeitoDeLayout` (`src/lib/useEfeitoDeLayout.ts`), para o GSAP desfazer o pin-spacer antes de o React remover a seção.
+- Textos e dados ficam em `src/conteudo/identidade.ts`; cores só da paleta (teste-guarda em `tests/unit/guardas.test.ts`).
+
 ## Comandos do projeto
 
-- Testes: (preencha)
-- Tipos / lint: (preencha)
-- Build: (preencha)
-- Servidor local: (preencha)
+- Servidor local: `npm run dev` (http://localhost:3000)
+- Testes: `npm test` (Vitest, micro)
+- Tipos e lint: `npm run check`
+- Build e testes do build: `npm run test:build` (build em `.next-teste` + Playwright; usa o Chrome da máquina e, no CI, o Chromium do Playwright)
+- Build de produção: `npm run build` e `npm run start`
 
 ## Publicação provisória (Vercel)
 
-Enquanto o site não existe, a Vercel publica o manual de identidade. O `vercel.json` na raiz não tem build e só reescreve endereços:
+A Vercel publica a página de identidade a cada merge na `main`. O `vercel.json` declara `"framework": "nextjs"` (o projeto foi criado como "Other").
 
-- `/` → `docs/identidade/identidade-da-marca.html`
-- `/catalogo-de-efeitos` e `/catalogo-de-efeitos.html` → `docs/identidade/catalogo-de-efeitos.html`
-
-Enquanto for rascunho, tudo sai dos buscadores: cabeçalho `X-Robots-Tag: noindex, nofollow` no `vercel.json` e `<meta name="robots">` nas duas páginas. Remover quando a identidade for decidida.
-
-Na Vercel: importar o repositório, preset **Other**, sem comando de build e com o diretório de saída padrão. Quando a stack do site for escolhida, este arquivo será substituído.
+Enquanto for rascunho, tudo sai dos buscadores: cabeçalho `X-Robots-Tag: noindex, nofollow` no `vercel.json` e `robots: { index: false, follow: false }` nos metadados de `app/layout.tsx`. Remover quando a identidade for decidida.
 
 ## Tarefas e sessões
 

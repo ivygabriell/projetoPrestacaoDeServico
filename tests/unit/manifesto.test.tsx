@@ -10,7 +10,7 @@ describe('Manifesto', () => {
   it('tem o rótulo, as 4 partes do manifesto e 3 vãos entre elas', () => {
     const { container } = render(<Manifesto />);
     expect(container.querySelector('.secao-manifesto')?.classList.contains('trecho-escuro')).toBe(true);
-    expect(container.textContent).toContain(manifesto.rotulo);
+    expect(container.querySelector('h2.rotulo-manifesto')?.textContent).toBe(manifesto.rotulo);
     const texto = container.querySelector('.manifesto-texto')!;
     expect(texto.querySelectorAll('.vao')).toHaveLength(3);
     manifesto.partes.forEach((p) => expect(texto.textContent).toContain(p));

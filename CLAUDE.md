@@ -15,3 +15,5 @@ Versão do método: 2.3.2
 - **Comece lendo a memória** (`docs/memoria-do-projeto.md`) e atualize-a ao fim de cada fase, numa branch, junto com o trabalho da fase.
 - **O método é só leitura.** Nunca altere a cópia do método. Uma lição nova vira nota na memória e é levada ao método na Fase 9.
 - **Peça confirmação antes de ações externas ou irreversíveis:** push, abrir ou integrar PR, deploy, apagar algo, reescrever histórico. Nunca use `push --force`.
+- **Referência única: o RayRay Lab.** Estrutura, efeitos, seções e animações seguem a auditoria em `docs/referencias/rayraylab.md`; meça na referência antes de mudar um efeito. Nada do RayRay (código, shaders, imagens, textos) entra no repositório.
+- **Antes de dizer que terminou:** `npm test`, `npm run check` e `npm run test:build` verdes, e olhe a página no navegador (desktop, celular e movimento reduzido).

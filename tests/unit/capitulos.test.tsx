@@ -10,7 +10,7 @@ describe('Capitulos', () => {
   it('tem o rótulo e os 7 cartões com título e subtítulo', () => {
     const { container } = render(<Capitulos />);
     expect(container.querySelector('.secao-capitulos')?.id).toBe('capitulos');
-    expect(container.textContent).toContain(capitulosRotulo);
+    expect(container.querySelector('h2.rotulo-capitulos')?.textContent).toBe(capitulosRotulo); // h2 antes dos h3 dos cartões
     const cartoes = [...container.querySelectorAll('.cartao')];
     expect(cartoes).toHaveLength(7);
     cartoes.forEach((c, i) => {
