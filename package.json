@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "vitest run",
     "check": "tsc --noEmit && eslint .",
-    "test:build": "next build && playwright test"
+    "test:build": "NEXT_DIST_DIR=.next-teste next build && playwright test"
   },
   "dependencies": {
     "@14islands/r3f-scroll-rig": "8.15.0",

@@ -1,6 +1,6 @@
 import { rodape } from '@/conteudo/identidade';
 
-// Rodapé em serifa, fixo embaixo e visível só durante o contato (a classe "visivel" vem da timeline).
+// Rodapé em serifa, no pé da seção de contato e visível só enquanto o contato está ativo (a classe "visivel" vem da timeline).
 export function Rodape() {
   return (
     <footer className="rodape">
