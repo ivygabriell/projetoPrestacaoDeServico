@@ -1,6 +1,6 @@
 # Como desenvolvemos este projeto
 
-Versão do método: 2.3.2
+Versão do método: 2.4.0
 Cenários aplicados:
 - site-estatico (testado em 1 projeto)
 
@@ -42,6 +42,8 @@ Enquanto for rascunho, tudo sai dos buscadores: cabeçalho `X-Robots-Tag: noinde
 - Tarefas: issues com o formulário de tarefa (`.github/ISSUE_TEMPLATE/tarefa.yml`).
 - Worktrees: `scripts/nova-tarefa.sh <tipo> <slug>` e `scripts/remover-tarefa.sh <tipo> <slug>`.
 - Memória do projeto: `docs/memoria-do-projeto.md`.
+- Com o Orca (modo em rascunho): a coordenadora é a integradora e distribui as tarefas aos agentes (`orca orchestration worker-start`); o Orca cria e remove as worktrees, e os scripts acima ficam para quem trabalha sem ele. Prompt: `modelos/prompt-coordenadora-orca.md` do método.
+- Para trazer este projeto à versão mais nova do método: `/metodo:atualizar-projeto`.
 
 ## Antes do primeiro push para um repositório público
 
