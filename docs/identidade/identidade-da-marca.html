@@ -22,8 +22,13 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  /* rolagem lenta e limpa com Lenis 1.3.26, como em ivygabriell.vercel.app (valores padrão: lerp .1) */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
   /* um fundo só para a página inteira: o script mistura claro e escuro conforme a rolagem (RayRay),
-     então as seções não têm fundo próprio e a passagem entre elas não tem corte */
+     então as seções não têm fundo próprio e a passagem entre elas não tem corte. Só um trecho é escuro
+     (Essência e Referências, logo depois da capa); o resto da página é claro */
   body { margin: 0; background: var(--fundo, var(--claro)); color: var(--tinta, var(--escuro)); font: 400 17px/1.5 var(--sans); }
   ::selection { background: var(--azul); color: #fff; }
   a { color: inherit; }
@@ -77,6 +82,7 @@
 
   /* ---------- títulos em duas cores (path) ---------- */
   .clara { padding: 120px 0; }
+  .ref-sec { padding: 20px 0 150px; }
   .olho { font: 400 13px var(--sans); color: #4a4d4f; margin: 0 0 14px; }
   .escura .olho { color: var(--texto-escuro-2); }
   h2.duas { font: 500 clamp(34px, 3.4vw, 50px)/1.18 var(--sans); letter-spacing: -.03em; margin: 0 0 56px; }
@@ -94,8 +100,8 @@
   /* ---------- lençol dos nomes (RayRay) ---------- */
   .nomes-sec { padding: 120px 0 130px; text-align: center; }
   .linha-rot { display: flex; align-items: center; gap: 18px; justify-content: center; font: 400 13px var(--sans); margin-bottom: 40px; }
-  .linha-rot::before, .linha-rot::after { content: ''; flex: 1; max-width: 360px; height: 1px; background: #4f4f4f; }
-  .lencol { width: min(720px, 100%); margin: 0 auto; background: #fff; color: var(--escuro); padding: 26px 34px 30px; text-align: left; position: relative; transform-origin: 50% 0; animation: ondula 7s ease-in-out infinite; }
+  .linha-rot::before, .linha-rot::after { content: ''; flex: 1; max-width: 360px; height: 1px; background: var(--c2); }
+  .lencol { width: min(720px, 100%); margin: 0 auto; background: #fff; color: var(--escuro); padding: 26px 34px 30px; text-align: left; position: relative; box-shadow: 0 0 0 1px var(--c2), 0 30px 60px rgba(18,18,18,.07); transform-origin: 50% 0; animation: ondula 7s ease-in-out infinite; }
   .lencol::before, .lencol::after { content: ''; position: absolute; left: 22px; right: 22px; border-top: 1px dashed #787878; }
   .lencol::before { top: 12px; } .lencol::after { bottom: 12px; }
   @keyframes ondula { 0%,100% { transform: perspective(900px) rotateX(2deg) skewY(-.6deg); border-radius: 2px 2px 14px 6px; } 50% { transform: perspective(900px) rotateX(-2deg) skewY(.6deg); border-radius: 2px 2px 6px 14px; } }
@@ -104,9 +110,9 @@
   .lencol li sup { font: 400 9px var(--sans); margin-left: 4px; vertical-align: 14px; letter-spacing: 0; }
   .lencol li.fav { color: var(--azul); }
   .lencol li.fav::after { content: ' ← favorito'; font: 400 10px var(--mono); vertical-align: 6px; letter-spacing: 0; }
-  .vero { max-width: 760px; margin: 64px auto 0; font: italic 400 clamp(22px, 2.2vw, 30px)/1.3 var(--serif); color: #dcdcd8; }
-  .vero b { font-weight: 400; color: #fff; border-bottom: 1px solid var(--azul-no-escuro); }
-  .vero small { display: block; margin-top: 18px; font: 400 14px/1.6 var(--sans); font-style: normal; color: var(--texto-escuro-2); }
+  .vero { max-width: 760px; margin: 64px auto 0; font: italic 400 clamp(22px, 2.2vw, 30px)/1.3 var(--serif); color: #4a4d4f; }
+  .vero b { font-weight: 400; color: var(--escuro); border-bottom: 1px solid var(--azul); }
+  .vero small { display: block; margin-top: 18px; font: 400 14px/1.6 var(--sans); font-style: normal; color: #6b6b6b; }
 
   /* ---------- paleta ---------- */
   .faixas-cor { margin: 0 calc(var(--gutter) * -1); }
@@ -153,22 +159,22 @@
   .pilula.clara { background: #fff; color: var(--escuro); padding: 11px 18px; }
   .pilula.vidro-p { background: #252727; color: #f5f5f5; }
 
-  /* ---------- efeitos (path, seção escura) ---------- */
+  /* ---------- efeitos (path) ---------- */
   .efeitos-sec { padding: 120px 0; }
   .ef-grid { display: grid; grid-template-columns: 360px 1fr; gap: 60px; }
   .ef-grid aside { position: sticky; top: 110px; align-self: start; }
-  .ef-grid aside p { color: var(--texto-escuro-2); font-size: 15px; margin: 0 0 26px; }
+  .ef-grid aside p { color: #4a4d4f; font-size: 15px; margin: 0 0 26px; }
   .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-  .filtros button { all: unset; cursor: pointer; padding: 9px 15px; border-radius: 999px; background: #252727; color: #cbcbcb; font: 500 13px var(--sans); transition: background .2s, color .2s; }
-  .filtros button.on { background: #f5f5f5; color: var(--escuro); }
-  .ef { display: grid; grid-template-columns: 44px 1fr auto 18px; gap: 14px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--linha-escura); cursor: pointer; font-size: 15.5px; color: #dcdcd8; transition: color .2s; }
-  .ef:hover { color: #fff; }
+  .filtros button { all: unset; cursor: pointer; padding: 9px 15px; border-radius: 999px; background: #ebebe8; color: #3d3d3d; font: 500 13px var(--sans); transition: background .2s, color .2s; }
+  .filtros button.on { background: var(--escuro); color: var(--claro); }
+  .ef { display: grid; grid-template-columns: 44px 1fr auto 18px; gap: 14px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--c2); cursor: pointer; font-size: 15.5px; color: #3d3d3d; transition: color .2s; }
+  .ef:hover { color: var(--escuro); }
   .ef .n { font: 400 12px var(--mono); color: #737373; }
   .ef .o { font: 400 11px var(--mono); text-transform: uppercase; color: #737373; }
-  .ef .m { color: var(--azul-no-escuro); font-size: 15px; transition: transform .3s; text-align: right; }
+  .ef .m { color: var(--azul); font-size: 15px; transition: transform .3s; text-align: right; }
   .ef.marcado .m { transform: rotate(45deg); }
-  .ef .ap { color: var(--azul-no-escuro); margin-left: 6px; }
-  .ef.marcado { color: #fff; }
+  .ef .ap { color: var(--azul); margin-left: 6px; }
+  .ef.marcado { color: var(--escuro); font-weight: 500; }
 
   /* ---------- aplicação (RayRay, de ponta a ponta) ---------- */
   .app .h { position: relative; height: 100vh; min-height: 620px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
@@ -207,16 +213,16 @@
   .tabela .lin b { font-weight: 500; }
   .tabela .lin span { color: #4a4d4f; }
 
-  /* ---------- pendências: acordeão (path, escuro) ---------- */
+  /* ---------- pendências: acordeão (path) ---------- */
   .faq { display: grid; grid-template-columns: 360px 1fr; gap: 60px; }
-  .faq-i { border-bottom: 1px solid var(--linha-escura); }
-  .faq-q { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; font-size: 16px; cursor: pointer; color: #dcdcd8; }
-  .faq-q:hover { color: #fff; }
-  .faq-q span { color: var(--azul-no-escuro); transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  .faq-i { border-bottom: 1px solid var(--c2); }
+  .faq-q { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; font-size: 16px; cursor: pointer; color: #3d3d3d; }
+  .faq-q:hover { color: var(--escuro); }
+  .faq-q span { color: var(--azul); transition: transform .35s cubic-bezier(.22,1,.36,1); }
   .faq-i.on .faq-q span { transform: rotate(45deg); }
   .faq-r { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.22,1,.36,1); }
   .faq-i.on .faq-r { grid-template-rows: 1fr; }
-  .faq-r p { overflow: hidden; margin: 0; color: var(--texto-escuro-2); font-size: 14.5px; line-height: 1.6; }
+  .faq-r p { overflow: hidden; margin: 0; color: #4a4d4f; font-size: 14.5px; line-height: 1.6; }
   .faq-i.on .faq-r p { padding-bottom: 22px; }
 
   /* ---------- chamada final com onda azul (path) ---------- */
@@ -236,7 +242,7 @@
 
   .copiado { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px); background: var(--escuro); color: var(--claro); padding: 10px 18px; border-radius: 999px; font: 400 12px var(--mono); text-transform: uppercase; opacity: 0; transition: all .3s; z-index: 99; pointer-events: none; }
   /* títulos sobem e aparecem quando entram na tela, emendando uma seção na outra */
-  .js main .sobe { opacity: 0; transform: translateY(42px); transition: opacity 1s cubic-bezier(.22,1,.36,1), transform 1s cubic-bezier(.22,1,.36,1); }
+  .js main .sobe { opacity: 0; transform: translateY(70px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 2s cubic-bezier(.16,1,.3,1); }
   .js main .sobe.on { opacity: 1; transform: none; }
 
   .copiado.on { opacity: 1; transform: translate(-50%, 0); }
@@ -297,7 +303,7 @@
   </section>
 
   <!-- REFERÊNCIAS · cartões path -->
-  <section class="clara" data-tom="claro" id="referencias">
+  <section class="escura ref-sec" data-tom="escuro" id="referencias">
     <div class="wrap">
       <p class="olho">02 · Referências</p>
       <h2 class="duas">Duas bases, uma marca.<span>O “uau” de uma, a venda da outra.</span></h2>
@@ -309,7 +315,7 @@
   </section>
 
   <!-- NOME · lençol RayRay -->
-  <section class="escura nomes-sec" data-tom="escuro" id="nome">
+  <section class="nomes-sec" data-tom="claro" id="nome">
     <div class="wrap">
       <p class="rotulo" style="margin-bottom:10px">O nome ficou em aberto por enquanto. Estas foram as opções levantadas em três rodadas.</p>
       <div class="linha-rot">(03 · Nome)</div>
@@ -382,14 +388,14 @@
   </section>
 
   <!-- EFEITOS · seção escura path -->
-  <section class="escura efeitos-sec" data-tom="escuro" id="efeitos">
+  <section class="efeitos-sec" data-tom="claro" id="efeitos">
     <div class="wrap ef-grid">
       <aside>
         <p class="olho">07 · Movimento</p>
         <h2 class="duas">A linguagem de movimento.<span>47 efeitos guardados, escolha pendente.</span></h2>
         <p>Todos saíram do RayRay Lab e da path digital e têm protótipo funcionando no catálogo. ≈ marca as aproximações de efeitos que, no original, são WebGL/3D. Clique numa linha para marcar como favorito (fica salvo neste navegador).</p>
         <div class="filtros" id="filtros"><button data-f="todos" class="on">Todos</button><button data-f="rayray">RayRay</button><button data-f="path">path</button><button data-f="ap">≈ Aproximações</button><button data-f="marcados" id="fm">Favoritos (0)</button></div>
-        <a class="pilula clara" href="catalogo-de-efeitos.html">Abrir catálogo de efeitos</a>
+        <a class="pilula" href="catalogo-de-efeitos.html">Abrir catálogo de efeitos</a>
       </aside>
       <div id="lista"></div>
     </div>
@@ -436,14 +442,14 @@
         <div class="lin"><span class="d">20/10/2026</span><b>Cor de destaque</b><span>Azul profundo <code>#002FA7</code>, só em detalhes.</span></div>
         <div class="lin"><span class="d">20/10/2026</span><b>Preto</b><span>Preto neutro <code>#121212</code> no lugar do preto esverdeado.</span></div>
         <div class="lin"><span class="d">20/10/2026</span><b>Tipografia</b><span>Inter Tight, Azeret Mono e Instrument Serif.</span></div>
-        <div class="lin"><span class="d">20/10/2026</span><b>Passagem entre seções</b><span>Sem corte: um fundo só, que vai do claro ao escuro conforme a rolagem, como se a página fosse uma seção contínua.</span></div>
+        <div class="lin"><span class="d">20/10/2026</span><b>Passagem entre seções</b><span>Sem corte, com um fundo só. Um único trecho escuro (Essência e Referências, logo depois da capa); depois a página volta ao claro até o fim. Rolagem lenta e suave.</span></div>
         <div class="lin"><span class="d">20/10/2026</span><b>Efeitos</b><span>47 guardados, todos com protótipo; a escolha ainda está pendente.</span></div>
       </div>
     </div>
   </section>
 
   <!-- PENDÊNCIAS · acordeão path -->
-  <section class="escura efeitos-sec" data-tom="escuro" id="pendencias">
+  <section class="efeitos-sec" data-tom="claro" id="pendencias">
     <div class="wrap faq">
       <div><p class="olho">10 · Pendências</p><h2 class="duas">O que ainda falta.<span>Uma decisão por vez.</span></h2></div>
       <div id="faq"></div>
@@ -474,9 +480,17 @@
 </footer>
 <div class="copiado" id="copiado">Copiado</div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+
+  // rolagem lenta e limpa (Lenis com os valores padrão, como em ivygabriell.vercel.app); fica desligada
+  // no toque e para quem pede menos movimento, e a página volta à rolagem nativa se o CDN falhar
+  const lenis = window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches && !matchMedia('(pointer: coarse)').matches ? new Lenis({ autoRaf: true }) : null;
+  const rolaPara = alvo => lenis ? lenis.scrollTo(alvo, { duration: 1.4 }) : alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'), alvo = a && a.hash.length > 1 && document.querySelector(a.hash);
+    if (alvo) { e.preventDefault(); rolaPara(alvo); } });
   const guarda = { ler(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 
   // relógio REC e hora local
@@ -561,7 +575,7 @@
   const lis = [...$('tipo-lista').children], etapas = [...document.querySelectorAll('.etapa')];
   const tUp = () => { let at = 0; etapas.forEach((e, i) => { if (e.getBoundingClientRect().top < innerHeight * .45) at = i; }); lis.forEach((l, i) => l.classList.toggle('on', i === at)); };
   addEventListener('scroll', tUp, { passive: true }); tUp();
-  lis.forEach((l, i) => l.addEventListener('click', () => etapas[i].scrollIntoView({ behavior: 'smooth', block: 'start' })));
+  lis.forEach((l, i) => l.addEventListener('click', () => rolaPara(etapas[i])));
 
   // efeitos
   const ef = ['Abertura com texto digitando', 'Glitch com linhas de varredura', 'Formas de vidro em 3D', 'Faixas de serviços em sentidos opostos', 'Texto que se monta embaralhado', 'Texto circular girando', 'Claro → escuro na rolagem', 'Palavra em contorno empilhado', 'Imagem com desfoque de movimento', 'Imagem que nasce em ASCII', 'Galeria horizontal de projetos', 'Lista num “lençol” que ondula', 'Física num cubo que gira', 'Grade de pontos animada', 'Logos com bordas esmaecidas', 'Parede de projetos em perspectiva', 'Texto revelado pela rolagem', 'Onda de luz azul entre seções', 'Menu que vira pílula de vidro', 'Estudos de caso que se empilham', 'Processo com lista fixa', 'Logo que distorce seguindo o mouse', 'Seção que gira como cubo e vira caixas', 'Espaço que se abre no texto', 'Menu com texto que rola no hover', 'Logo do cabeçalho que se recolhe', 'Prévia do site no cartão do projeto', 'Barra de progresso com tracinhos', 'Projetos em tela cheia', 'Cabeçalho que inverte a cor por seção', 'Relógio ao vivo', 'Logo que vira pontos (braille)', 'Menu da marca no clique direito', 'Logos que abrem depoimento', 'Depoimento em vídeo numa janela', 'Cartões que surgem na rolagem', 'Mega menu de serviços', 'Indicador deslizante no menu', 'Abas com sublinhado deslizante', 'Carrossel de depoimentos', 'Antes e depois', 'Índice lateral fixo', 'Ilustração isométrica em linhas', 'Interfaces em vidro azul', 'Hora local e “pergunte à IA”', 'Perguntas frequentes em acordeão', 'Formulário com estados'];
@@ -570,7 +584,7 @@
   let fav = new Set(guarda.ler('id-efeitos', [])), filtro = 'todos';
   const desenha = () => {
     const vis = ef.map((t, i) => ({ n: i + 1, t })).filter(e => filtro === 'todos' || (filtro === 'ap' ? aprox.has(e.n) : filtro === 'marcados' ? fav.has(e.n) : orig(e.n) === filtro));
-    $('lista').innerHTML = vis.map(e => `<div class="ef ${fav.has(e.n) ? 'marcado' : ''}" data-n="${e.n}"><span class="n">(${z(e.n)})</span><span>${e.t}${aprox.has(e.n) ? '<span class="ap">≈</span>' : ''}</span><span class="o">${orig(e.n) === 'rayray' ? 'RayRay' : 'path'}</span><span class="m">+</span></div>`).join('') || '<p style="color:var(--texto-escuro-2)">Nenhum favorito ainda. Clique numa linha em “Todos”.</p>';
+    $('lista').innerHTML = vis.map(e => `<div class="ef ${fav.has(e.n) ? 'marcado' : ''}" data-n="${e.n}"><span class="n">(${z(e.n)})</span><span>${e.t}${aprox.has(e.n) ? '<span class="ap">≈</span>' : ''}</span><span class="o">${orig(e.n) === 'rayray' ? 'RayRay' : 'path'}</span><span class="m">+</span></div>`).join('') || '<p style="color:#6b6b6b">Nenhum favorito ainda. Clique numa linha em “Todos”.</p>';
     $('lista').querySelectorAll('.ef').forEach(el => el.addEventListener('click', () => { const n = +el.dataset.n; fav.has(n) ? fav.delete(n) : fav.add(n); guarda.gravar('id-efeitos', [...fav]); desenha(); }));
     $('fm').textContent = `Favoritos (${fav.size})`;
   };
