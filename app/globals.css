@@ -1,0 +1,19 @@
+/* Tokens da marca. Só estas cores entram no projeto (teste-guarda em tests/unit/guardas.test.ts). */
+:root {
+  --claro: #F7F7F5;
+  --c2: #DCDCD8;
+  --c3: #787878;
+  --escuro: #121212;
+  --azul: #002FA7;
+  --azul-no-escuro: #5B7BFF; /* proposta ainda a aprovar */
+  --branco: #FFFFFF;
+}
+
+* { box-sizing: border-box; }
+::-webkit-scrollbar { width: 0; height: 0; }
+html { scrollbar-width: none; }
+body { margin: 0; background: var(--claro); color: var(--escuro); font: 400 20px/1.25 var(--sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--azul); color: var(--branco); }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul, li { margin: 0; padding: 0; font-weight: inherit; }
+li { list-style: none; }
