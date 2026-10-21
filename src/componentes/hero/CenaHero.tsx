@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { logotipo } from '@/conteudo/identidade';
 import { useAbertura } from '@/estado/abertura';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { vertUv } from '@/shaders/comum';
 import { glitchFrag } from '@/shaders/glitch';
@@ -150,6 +150,7 @@ export function CenaHero() {
           start: 'top+=10',
           end: `+=${(celular ? 0.7 : 2) * window.innerHeight}`,
           scrub: 1,
+          refreshPriority: PRIORIDADE.hero,
           onLeave: () => mostrar(false),
           onEnterBack: () => mostrar(true),
         },
@@ -169,6 +170,7 @@ export function CenaHero() {
           .to(refLaje.current!.rotation, { y: -0.05 * Math.PI, duration: 1.4 }, 0.2)
           .to(pequena.rotation, { z: -0.05 * Math.PI, duration: 1.2 }, 0.2);
       }
+      recalcularGatilhos();
     }, 1000);
 
     return () => {
@@ -210,7 +212,8 @@ export function CenaHero() {
     materialVidro.uniforms.uBorrao.value.set(5 * m.x, 3 * m.y);
     materialVidro.uniforms.uOpacidade.value = s.opacidade;
 
-    if (!s.ativo || s.opacidade < 0.01) return;
+    // Fora do hero (inclusive com movimento reduzido, quando não há gatilho de saída) o passo da refração para.
+    if (!s.ativo || s.opacidade < 0.01 || sy > 2 * window.innerHeight) return;
     // Passo da refração: a cena sem o vidro vai para o alvo, e o vidro amostra esse alvo.
     const visiveis = [principal.visible, laje.visible, pequena.visible];
     principal.visible = laje.visible = pequena.visible = false;

@@ -14,3 +14,10 @@ test('com movimento reduzido não há abertura nem seção fixada, e o conteúdo
   }
   await expect(page.locator('html')).not.toHaveClass(/js-smooth-scrollbar-enabled/);
 });
+
+test('com movimento reduzido o cabeçalho não desliza e o ponto do relógio não pisca', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForTimeout(500);
+  await expect(page.locator('.cabecalho')).toHaveCSS('transition-duration', '0s');
+  await expect(page.locator('.cabecalho .relogio i')).toHaveCSS('animation-name', 'none');
+});

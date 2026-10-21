@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { cena } from '@/estado/cena';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { vertUv } from '@/shaders/comum';
 import { passagemFrag } from '@/shaders/passagem';
 
@@ -27,9 +27,10 @@ export function CenaPassagem() {
   useEffect(() => {
     plano.current?.scale.set(2 * window.innerWidth, 2 * window.innerHeight, 1);
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: '.secao-hero', start: `top+=${0.6 * window.innerHeight}`, end: `+=${0.6 * window.innerHeight}`, scrub: 1 },
+      scrollTrigger: { trigger: '.secao-hero', start: `top+=${0.6 * window.innerHeight}`, end: `+=${0.6 * window.innerHeight}`, scrub: 1, refreshPriority: PRIORIDADE.hero },
     });
     tl.to(progresso.current, { valor: 0, duration: 1, ease: 'none' });
+    recalcularGatilhos();
     return () => {
       tl.scrollTrigger?.kill();
       tl.kill();

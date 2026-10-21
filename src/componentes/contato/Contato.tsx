@@ -3,7 +3,7 @@
 import { UseCanvas, useScrollRig } from '@14islands/r3f-scroll-rig';
 import { useEffect, useRef, useState } from 'react';
 import { contato } from '@/conteudo/identidade';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { useEfeitoDeLayout } from '@/lib/useEfeitoDeLayout';
 import { CenaFisica, type EstadoFisica } from './CenaFisica';
@@ -15,6 +15,7 @@ export function Contato() {
   const { isCanvasAvailable } = useScrollRig();
   const [modo, setModo] = useState<Modo | null>(null);
   const [orbitar, setOrbitar] = useState(false);
+  const [alvo, setAlvo] = useState<HTMLElement | null>(null);
   const estado = useRef<EstadoFisica>({ ativo: false, rodando: false });
 
   useEffect(() => {
@@ -24,10 +25,12 @@ export function Contato() {
   useEfeitoDeLayout(() => {
     if (!modo) return;
     const secao = document.querySelector<HTMLElement>('.secao-contato')!;
+    setAlvo(modo === 'desktop' ? secao : null);
     const rodape = secao.querySelector<HTMLElement>('.rodape')!;
     const ativar = (sim: boolean) => {
       estado.current.ativo = sim;
       rodape.classList.toggle('visivel', sim);
+      secao.classList.toggle('ativo', sim);
       setOrbitar(sim);
     };
 
@@ -45,6 +48,7 @@ export function Contato() {
           scrollTrigger: {
             trigger: secao,
             start: 'top top+=35%',
+            refreshPriority: PRIORIDADE.contato,
             onEnter: () => ativar(true),
             onLeaveBack: () => ativar(false),
           },
@@ -58,6 +62,7 @@ export function Contato() {
           end: `+=${0.8 * window.innerHeight}`,
           scrub: 1,
           pin: true,
+          refreshPriority: PRIORIDADE.contato,
           onUpdate: ({ progress }) => {
             if (progress > 0.001 && !estado.current.ativo) ativar(true);
             if (progress <= 0.001 && estado.current.ativo) ativar(false);
@@ -65,6 +70,7 @@ export function Contato() {
           },
         },
       }).to(circulo, { scale: 0, duration: 1.5, ease: 'expoScale(3,1)' });
+      recalcularGatilhos();
     }, secao);
     return () => ctx.revert();
   }, [modo]);
@@ -75,7 +81,7 @@ export function Contato() {
       <div className="circulo-escuro" aria-hidden="true" />
       <Rodape />
       {isCanvasAvailable && modo && (
-        <UseCanvas orbitar={orbitar}>
+        <UseCanvas orbitar={orbitar} alvo={alvo}>
           <CenaFisica qtd={modo === 'celular' ? 50 : 100} estado={estado} parado={modo === 'reduzido'} />
         </UseCanvas>
       )}

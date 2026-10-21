@@ -3,7 +3,7 @@
 import { UseCanvas, useScrollRig } from '@14islands/r3f-scroll-rig';
 import { useEffect, useRef, useState } from 'react';
 import { decisoes } from '@/conteudo/identidade';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { useEfeitoDeLayout } from '@/lib/useEfeitoDeLayout';
 import { desenharFolha } from '@/texturas/folhaDecisoes';
@@ -37,6 +37,7 @@ export function Decisoes() {
           end: `+=${1.2 * altura}`,
           scrub: 1,
           pin: true,
+          refreshPriority: PRIORIDADE.decisoes,
           onUpdate: ({ progress }) => (estado.current.visivel = progress > 0),
           onLeaveBack: () => (estado.current.visivel = false),
         },
@@ -45,6 +46,7 @@ export function Decisoes() {
         .to('.titulo-decisoes', { gap: 20, duration: 0.2 }, 0.5)
         .from('.frase', { text: '', duration: 1.2, stagger: 0.5 }, 1.4)
         .to(estado.current, { descida: 1, duration: 6 }, 1.5);
+      recalcularGatilhos();
     }, secao);
     return () => ctx.revert();
   }, [comLencol, folha]);
