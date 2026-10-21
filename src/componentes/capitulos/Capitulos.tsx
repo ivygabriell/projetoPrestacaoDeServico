@@ -3,7 +3,7 @@
 import { UseCanvas, useScrollRig } from '@14islands/r3f-scroll-rig';
 import { useEffect, useRef, useState } from 'react';
 import { capitulos, capitulosRotulo } from '@/conteudo/identidade';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { suave } from '@/lib/suave';
 import { useEfeitoDeLayout } from '@/lib/useEfeitoDeLayout';
@@ -51,6 +51,7 @@ export function Capitulos() {
           end: `+=${Math.max(extra - 500, window.innerHeight)}`,
           scrub: 1,
           pin: true,
+          refreshPriority: PRIORIDADE.capitulos,
           onUpdate: ({ progress }) => {
             const t = Math.max(0, 1.2 * progress - 0.04);
             tracinhos.forEach((tr, i) => (tr.style.opacity = String(suave(0.02, 0.1, (i + 1) / 28 - t))));
@@ -62,6 +63,7 @@ export function Capitulos() {
         .to(fileira, { x: -extra, duration: 2 }, 0.6)
         .to('.barra-ativa', { width: '100%', duration: 2.5 }, 0)
         .to('.barra-progresso', { rotateZ: 6, opacity: 0, duration: 0.3 }, 2.6);
+      recalcularGatilhos();
     }, secao);
     return () => ctx.revert();
   }, [modo]);

@@ -190,6 +190,8 @@ li { list-style: none; }
 .frase-contato { position: relative; z-index: 1; font: 500 3.1vw/2.8vw var(--sans); letter-spacing: -0.02em; text-transform: uppercase; text-align: justify; }
 .circulo-escuro { position: absolute; z-index: 2; width: 130vw; height: 130vw; left: 50%; top: 50%; margin: -65vw 0 0 -65vw; border-radius: 50%; background: var(--escuro); }
 .modo-reduzido .circulo-escuro { display: none; }
+.secao-contato.modo-desktop.ativo { pointer-events: auto; cursor: grab; }
+.secao-contato.modo-desktop.ativo:active { cursor: grabbing; }
 
 /* ---------- rodapé ---------- */
 .rodape { position: absolute; z-index: 3; left: 0; right: 0; bottom: 20px; display: none; flex-direction: column; align-items: center; color: var(--escuro); font: 400 1.46vw/1.7vw var(--serif); pointer-events: none; }
@@ -207,3 +209,7 @@ li { list-style: none; }
   .rodape-linhas { width: 90%; margin-top: 12px; }
   .rodape-linha i { font-size: 10px; line-height: 14px; }
 }
+
+/* ---------- sem WebGL ---------- */
+.js-global-canvas-error .trecho-escuro { background: var(--escuro); }
+.js-global-canvas-error .cartao-img img { opacity: 1; }

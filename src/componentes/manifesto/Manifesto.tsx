@@ -2,7 +2,7 @@
 
 import { Fragment } from 'react';
 import { apoio, manifesto, unico } from '@/conteudo/identidade';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { useEfeitoDeLayout } from '@/lib/useEfeitoDeLayout';
 import { CuboMarca } from './CuboMarca';
@@ -28,7 +28,7 @@ export function Manifesto() {
       gsap.to('.manifesto-texto .vao', {
         width: 0.03 * window.innerWidth,
         ease: 'none',
-        scrollTrigger: { trigger: secao, start: 'top top-=50', end: '+=200', scrub: 1 },
+        scrollTrigger: { trigger: secao, start: 'top top-=50', end: '+=200', scrub: 1, refreshPriority: PRIORIDADE.manifesto },
       });
 
       // O cubo gira com a seção fixada; os retângulos encolhem e depois seguem o mouse.
@@ -51,6 +51,7 @@ export function Manifesto() {
           end: `+=${0.8 * window.innerHeight}`,
           scrub: 1,
           pin: true,
+          refreshPriority: PRIORIDADE.manifesto,
           onUpdate: ({ progress }) => {
             if (progress > 0.87 && !seguindo) {
               palavras.forEach((p) => (p.style.animationPlayState = 'paused'));
@@ -70,6 +71,7 @@ export function Manifesto() {
         .to('.cubo-lado', { borderWidth: 1, duration: 0.1, ease: 'none' }, 1.2)
         .from('.caixa', { width: 1200, height: 800, duration: 0.3, stagger: 0.01, ease: 'none' }, 1.1)
         .to('.cubo', { scale: 1, duration: 0.2, ease: 'none' }, 1.4);
+      recalcularGatilhos();
       return () => cuboEl.removeEventListener('mousemove', seguir);
     }, secao);
 

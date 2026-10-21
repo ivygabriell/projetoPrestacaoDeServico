@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { logotipo } from '@/conteudo/identidade';
 import { useAbertura } from '@/estado/abertura';
-import { gsap } from '@/gsap';
+import { PRIORIDADE, gsap, recalcularGatilhos } from '@/gsap';
 import { ehCelular, prefereMenosMovimento } from '@/lib/ambiente';
 import { vertUv } from '@/shaders/comum';
 import { glitchFrag } from '@/shaders/glitch';
@@ -150,6 +150,7 @@ export function CenaHero() {
           start: 'top+=10',
           end: `+=${(celular ? 0.7 : 2) * window.innerHeight}`,
           scrub: 1,
+          refreshPriority: PRIORIDADE.hero,
           onLeave: () => mostrar(false),
           onEnterBack: () => mostrar(true),
         },
@@ -169,6 +170,7 @@ export function CenaHero() {
           .to(refLaje.current!.rotation, { y: -0.05 * Math.PI, duration: 1.4 }, 0.2)
           .to(pequena.rotation, { z: -0.05 * Math.PI, duration: 1.2 }, 0.2);
       }
+      recalcularGatilhos();
     }, 1000);
 
     return () => {

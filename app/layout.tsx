@@ -6,6 +6,7 @@ import './globals.css';
 import { CabecalhoDaPagina } from '@/componentes/cabecalho/Cabecalho';
 import { SeloLateral } from '@/componentes/cabecalho/SeloLateral';
 import { CanvasGlobal } from '@/componentes/canvas/CanvasGlobal';
+import { RecarregarAoRedimensionar } from '@/componentes/canvas/RecarregarAoRedimensionar';
 import { Rolagem } from '@/componentes/canvas/Rolagem';
 import { ProvedorAbertura } from '@/estado/abertura';
 
@@ -25,6 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body>
         <ProvedorAbertura>
           <Rolagem />
+          <RecarregarAoRedimensionar />
           <CabecalhoDaPagina />
           <SeloLateral />
           {children}

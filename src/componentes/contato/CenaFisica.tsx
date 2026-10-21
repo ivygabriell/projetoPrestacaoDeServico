@@ -16,7 +16,9 @@ const gravidade = new THREE.Vector3();
 // Cubo de arestas finas com caixas que caem dentro dele. A câmera global vira a câmera do cubo enquanto
 // o contato está ativo, e a gravidade acompanha a câmera: as caixas escorregam conforme o cubo gira.
 // Atenção: o <UseCanvas> guarda o elemento filho na montagem; o que muda depois (orbitar) chega como prop do próprio UseCanvas.
-export function CenaFisica({ qtd, estado, parado, orbitar = false }: { qtd: number; estado: { current: EstadoFisica }; parado: boolean; orbitar?: boolean }) {
+// alvo: elemento que recebe o arraste (a seção de contato no desktop). Sem alvo, o próprio canvas, que fica atrás
+// do DOM: o cubo gira sozinho e o toque continua rolando a página no celular.
+export function CenaFisica({ qtd, estado, parado, orbitar = false, alvo }: { qtd: number; estado: { current: EstadoFisica }; parado: boolean; orbitar?: boolean; alvo?: HTMLElement | null }) {
   const { camera, gl } = useThree();
   const caixasMesh = useRef<THREE.InstancedMesh>(null);
   const arestas = useRef<THREE.LineSegments>(null);
@@ -47,7 +49,6 @@ export function CenaFisica({ qtd, estado, parado, orbitar = false }: { qtd: numb
         camera.position.set(0, 0, 600);
       }
       camera.lookAt(0, 0, 0);
-      gl.domElement.style.cursor = s.ativo ? 'grab' : 'auto';
     }
     if (!s.ativo) return;
     if (controles.current) controles.current.autoRotate = s.rodando && !parado;
@@ -85,6 +86,7 @@ export function CenaFisica({ qtd, estado, parado, orbitar = false }: { qtd: numb
           autoRotateSpeed={10}
           enableDamping
           enabled={!parado}
+          domElement={alvo ?? gl.domElement}
         />
       )}
     </group>
