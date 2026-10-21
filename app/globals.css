@@ -132,3 +132,30 @@ li { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .palavra-contorno { animation: none; }
 }
+
+/* ---------- capítulos ---------- */
+.secao-capitulos { position: relative; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.capitulos-palco { position: relative; }
+.rotulo-capitulos { position: absolute; top: -35px; left: 30px; font: 400 18px var(--sans); letter-spacing: -0.02em; }
+.cartoes { display: flex; gap: calc((100vw - 150vh - 60px) / 2); margin-left: 30px; padding-right: 30px; width: max-content; }
+.cartao { position: relative; display: block; cursor: pointer; pointer-events: none; }
+.cartao-info { position: absolute; inset: 15px 0; z-index: 2; color: var(--claro); mix-blend-mode: difference; display: flex; flex-direction: column-reverse; justify-content: space-between; align-items: center; text-align: center; }
+.cartao-subtitulo { font: 400 16px/17px var(--sans); letter-spacing: -0.02em; text-transform: uppercase; }
+.cartao-titulo { font: 500 17px/20px var(--sans); letter-spacing: -0.02em; margin: 0; }
+.cartao-previa { position: absolute; z-index: 2; width: 250px; height: 140px; left: calc(50% - 125px); top: calc(50% - 70px); transform: scaleY(0); transition: transform 0.3s; }
+.cartao:hover .cartao-previa { transform: scaleY(1); }
+.cartao-img img { display: block; width: 50vh; height: 74vh; object-fit: cover; }
+.com-webgl .cartao-img img { opacity: 0; }
+.barra-progresso { position: absolute; bottom: 30px; left: 50%; width: 253px; height: 16px; transform: translateX(-50%); transform-origin: top left; }
+.barra-ativa { position: relative; z-index: 2; width: 0; height: 16px; border: 1px solid var(--claro); background: var(--escuro); }
+.tracinho { position: absolute; top: 0; width: 1px; height: 16px; background: var(--claro); z-index: 1; }
+
+/* Celular: lista vertical. Movimento reduzido: grade parada. */
+.modo-lista, .modo-grade { height: auto; padding: 120px 18px 60px; }
+.modo-lista .cartoes, .modo-grade .cartoes { margin: 0; padding: 0; width: auto; }
+.modo-lista .cartoes { flex-direction: column; gap: 24px; }
+.modo-grade .cartoes { flex-wrap: wrap; gap: 24px; justify-content: center; }
+.modo-lista .cartao, .modo-grade .cartao { pointer-events: auto; }
+.modo-lista .rotulo-capitulos, .modo-grade .rotulo-capitulos { position: static; margin-bottom: 20px; }
+.modo-lista .cartao-img img { width: 100%; height: auto; aspect-ratio: 730 / 1080; }
+.modo-grade .cartao-img img { width: 30vh; height: 44vh; }
