@@ -15,7 +15,7 @@ export function Cabecalho({ visivel }: { visivel: boolean }) {
   }, []);
 
   return (
-    <header className={`cabecalho${visivel ? ' visivel' : ''}`}>
+    <header className={`cabecalho${visivel ? ' visivel' : ''}`} inert={!visivel}>
       <span className="relogio">
         <i aria-hidden="true" />
         <span suppressHydrationWarning>{agora}</span>

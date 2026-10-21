@@ -46,6 +46,12 @@ li { list-style: none; }
 .abertura .trechos { font: 400 14px/16px var(--mono); letter-spacing: -0.02em; text-align: center; }
 .abertura .trecho { opacity: 0; }
 @media (max-width: 899px), (prefers-reduced-motion: reduce) { .abertura { display: none; } }
+/* Já tocou nesta sessão (script no <head>) ou sem JavaScript: a abertura nem aparece. */
+.sem-abertura .abertura { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cabecalho, .cabecalho.visivel, .selo { transition: none; }
+  .cabecalho .relogio i { animation: none; }
+}
 
 /* ---------- hero ---------- */
 .secao-hero { position: relative; height: 100vh; overflow: hidden; pointer-events: none; }

@@ -212,7 +212,8 @@ export function CenaHero() {
     materialVidro.uniforms.uBorrao.value.set(5 * m.x, 3 * m.y);
     materialVidro.uniforms.uOpacidade.value = s.opacidade;
 
-    if (!s.ativo || s.opacidade < 0.01) return;
+    // Fora do hero (inclusive com movimento reduzido, quando não há gatilho de saída) o passo da refração para.
+    if (!s.ativo || s.opacidade < 0.01 || sy > 2 * window.innerHeight) return;
     // Passo da refração: a cena sem o vidro vai para o alvo, e o vidro amostra esse alvo.
     const visiveis = [principal.visible, laje.visible, pequena.visible];
     principal.visible = laje.visible = pequena.visible = false;

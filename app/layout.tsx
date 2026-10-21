@@ -14,6 +14,8 @@ const sans = Inter_Tight({ subsets: ['latin'], weight: ['400', '500', '700', '80
 const mono = Azeret_Mono({ subsets: ['latin'], weight: ['400'], variable: '--mono' });
 const serif = Instrument_Serif({ subsets: ['latin'], weight: ['400'], style: ['normal', 'italic'], variable: '--serif' });
 
+const SCRIPT_ABERTURA = "try{if(sessionStorage.getItem('abertura-tocou')==='1')document.documentElement.classList.add('sem-abertura')}catch(e){}";
+
 export const metadata: Metadata = {
   title: 'Identidade da marca',
   description: 'Rascunho v0.1 da identidade de um laboratório de sites B2B.',
@@ -22,7 +24,14 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${sans.variable} ${mono.variable} ${serif.variable}`}>
+    <html lang="pt-BR" className={`${sans.variable} ${mono.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Antes de pintar: se a abertura já tocou nesta sessão, ela não aparece nem por um quadro. */}
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_ABERTURA }} />
+        <noscript>
+          <style>{'.abertura { display: none; }'}</style>
+        </noscript>
+      </head>
       <body>
         <ProvedorAbertura>
           <Rolagem />

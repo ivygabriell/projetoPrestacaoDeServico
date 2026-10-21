@@ -20,4 +20,10 @@ describe('documentação do projeto', () => {
     expect(memoria).toContain('docs/referencias/rayraylab.md');
     expect(memoria).not.toMatch(/somente RayRay Lab e path digital/);
   });
+
+  it('não guarda detalhes da implementação antiga que já não valem', () => {
+    expect(memoria).not.toContain('âncoras em 1,4 s');
+    expect(memoria).not.toContain('Lenis 1.3.26');
+    expect(memoria).not.toContain('identidade-da-marca.html');
+  });
 });
