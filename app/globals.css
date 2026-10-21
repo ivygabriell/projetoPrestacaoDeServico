@@ -82,3 +82,53 @@ li { list-style: none; }
    no celular e com movimento reduzido, cada seção escura pinta o próprio fundo. */
 .trecho-escuro { color: var(--claro); }
 .fundo-por-secao .trecho-escuro { background: var(--escuro); }
+
+/* ---------- manifesto ---------- */
+.secao-manifesto { position: relative; padding: 85vh 30px 200px; display: flex; flex-direction: column; align-items: center; }
+.manifesto-texto { position: relative; width: 100%; font: 500 3.7vw/3.32vw var(--sans); letter-spacing: -0.01em; text-transform: uppercase; text-align: justify; }
+.manifesto-texto .vao { display: inline-block; width: 0; }
+.rotulo-manifesto { position: absolute; left: 50%; transform: translateX(-50%); top: calc(-2.5vw - 17px); font: 400 18px var(--sans); text-transform: none; }
+.manifesto-apoio { width: min(1000px, 100%); margin-top: 40px; font: 400 18px/25px var(--sans); letter-spacing: -0.02em; }
+.manifesto-conteudo { display: flex; flex-direction: column; align-items: center; gap: 50px; margin-top: 50px; width: 100%; }
+.unico { position: relative; width: min(1000px, 100%); font: 400 18px/25px var(--sans); letter-spacing: -0.02em; }
+.unico p { margin-bottom: 15px; }
+.rotulo-unico { position: absolute; left: -148px; top: 0; }
+
+/* ---------- cubo da marca ---------- */
+.cubo-palco { --escala-cubo: 1; width: calc(1000px * var(--escala-cubo)); height: calc(600px * var(--escala-cubo)); perspective: 2600px; }
+.cubo-escala { width: 1000px; height: 600px; transform: scale(var(--escala-cubo)); transform-origin: top left; transform-style: preserve-3d; }
+.cubo { position: relative; width: 1000px; height: 600px; transform-style: preserve-3d; transform: translateZ(-500px); will-change: transform; }
+.cubo-frente, .cubo-lado { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; }
+.cubo-frente { background: var(--escuro); transform: translateZ(500px); }
+.cubo-lado { transform: rotateY(90deg) translateZ(500px); background: var(--escuro) center / cover no-repeat; border: 0 solid var(--claro); }
+.palavra-contorno { position: absolute; left: 0; right: 0; top: 30%; text-align: center; font: 700 230px/174px var(--sans); letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1px var(--claro); transform-origin: center bottom; animation: girar-x 12s linear infinite; will-change: transform; }
+.palavra-contorno.linha-1 { top: calc(30% - 329px); }
+.palavra-contorno.linha-3 { top: calc(30% + 329px); }
+.palavra-contorno.parada { animation: none; }
+.palavra-contorno.parada-invertida { animation: none; transform: perspective(1000px) rotateX(180deg); }
+.palavra-contorno.g2 { animation-delay: 2.4s; }
+.palavra-contorno.g3 { animation-delay: 4.8s; }
+.palavra-contorno.g4 { animation-delay: 7.2s; }
+.palavra-contorno.g5 { animation-delay: 9.6s; }
+@keyframes girar-x {
+  0% { transform: perspective(1000px) rotateX(0deg); }
+  25% { transform: perspective(600px) rotateX(90deg); }
+  50% { transform: perspective(1000px) rotateX(180deg); }
+  75% { transform: perspective(600px) rotateX(270deg); }
+  100% { transform: perspective(1000px) rotateX(360deg); }
+}
+.caixa { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border: 1px solid var(--claro); pointer-events: none; z-index: 2; }
+.cubo-legenda { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 260px; text-align: center; font: 400 9px/11px var(--mono); text-transform: uppercase; z-index: 3; }
+.cubo-girado .cubo { transform: translateZ(-500px) rotateY(-90deg); }
+.cubo-girado .cubo-lado { border-width: 1px; }
+
+@media (max-width: 899px) {
+  .secao-manifesto { padding: 140px 18px 100px; }
+  .manifesto-texto { font-size: 6.4vw; line-height: 6vw; }
+  .rotulo-manifesto { top: -40px; font-size: 14px; }
+  .manifesto-apoio, .unico { font-size: 15px; line-height: 21px; }
+  .rotulo-unico { position: static; display: block; margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .palavra-contorno { animation: none; }
+}
