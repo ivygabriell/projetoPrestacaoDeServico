@@ -1,0 +1,144 @@
+/* Base das peças para as redes sociais. Mesmos tokens e fontes do site (app/globals.css).
+   Só estas cores entram na pasta (teste-guarda em tests/unit/redes-sociais.test.ts). */
+:root {
+  --claro: #F7F7F5;
+  --c2: #DCDCD8;
+  --c3: #787878;
+  --escuro: #121212;
+  --azul: #002FA7;
+  --azul-no-escuro: #5B7BFF; /* proposta ainda a aprovar, a mesma do site */
+  --branco: #FFFFFF;
+
+  --sans: 'Inter Tight', system-ui, sans-serif;
+  --mono: 'Azeret Mono', monospace;
+  --serif: 'Instrument Serif', serif;
+
+  --margem: 64px;
+  --escala-prancha: 0.32;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+h1, h2, h3, p, ul, ol, li, figure { margin: 0; padding: 0; font-weight: inherit; }
+li { list-style: none; }
+::selection { background: var(--azul); color: var(--branco); }
+
+/* ---------- prancha (o modelo aberto no navegador) ---------- */
+body { background: var(--c2); color: var(--escuro); font: 400 16px/1.3 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+.prancha-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 28px 32px 0; font: 400 13px/1.3 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; }
+.prancha-topo h1 { font: 700 28px/1 var(--sans); letter-spacing: -0.03em; text-transform: uppercase; }
+.prancha-topo a { color: inherit; }
+.prancha { display: flex; flex-wrap: wrap; gap: 20px; padding: 28px 32px 48px; align-items: flex-start; }
+.prancha.emendada { gap: 0; }
+.prancha .moldura-prancha { zoom: var(--escala-prancha); box-shadow: 0 0 0 1px var(--c3); }
+.prancha .legenda-prancha { display: block; margin-top: 8px; font: 400 12px var(--mono); text-transform: uppercase; color: var(--escuro); }
+
+/* Dentro do manual: sem título, fundo do manual. */
+.embutido { background: transparent; }
+.embutido .prancha-topo { display: none; }
+.embutido .prancha { padding: 4px 2px 8px; }
+.embutido .prancha.emendada { flex-wrap: nowrap; overflow-x: auto; }
+
+/* Modo de exportação: peças em tamanho real, uma embaixo da outra, sem prancha. */
+.exportar { background: var(--escuro); }
+.exportar .prancha-topo, .exportar .legenda-prancha { display: none; }
+.exportar .prancha { display: block; padding: 0; }
+.exportar .prancha .moldura-prancha { zoom: 1; box-shadow: none; }
+
+@media print {
+  @page { margin: 0; }
+  .prancha-topo, .legenda-prancha { display: none; }
+  .prancha { display: block; padding: 0; }
+  .prancha .moldura-prancha { zoom: 1; box-shadow: none; break-after: page; }
+}
+
+/* ---------- peça e formatos ---------- */
+.peca { position: relative; isolation: isolate; overflow: hidden; background: var(--claro); color: var(--escuro); --detalhe: var(--azul); }
+.peca[data-formato="retrato"] { width: 1080px; height: 1350px; }
+.peca[data-formato="quadrado"] { width: 1080px; height: 1080px; }
+.peca[data-formato="story"] { width: 1080px; height: 1920px; }
+.peca[data-formato="linkedin"] { width: 1584px; height: 396px; }
+.peca.escura { background: var(--escuro); color: var(--claro); --detalhe: var(--azul-no-escuro); }
+
+/* ---------- moldura: topo e base que se repetem em toda peça ---------- */
+.topo, .base { position: absolute; left: var(--margem); right: var(--margem); display: flex; justify-content: space-between; align-items: center; z-index: 5; font: 400 24px/1 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; }
+.topo { top: 56px; }
+.base { bottom: 56px; }
+.peca[data-formato="story"] .topo { top: 250px; }
+.peca[data-formato="story"] .base { bottom: 340px; }
+.marca { display: inline-flex; align-items: center; gap: 12px; }
+.rec { display: inline-flex; align-items: center; gap: 12px; }
+.rec::before { content: ''; width: 12px; height: 12px; border-radius: 50%; background: var(--detalhe); }
+
+/* Barra de progresso em tracinhos (29 no site; aqui um por lâmina). */
+.tracinhos { display: flex; gap: 8px; }
+.tracinhos i { width: 28px; height: 3px; background: currentColor; opacity: 0.25; }
+.tracinhos i.feito { opacity: 1; }
+.tracinhos i.atual { opacity: 1; background: var(--detalhe); }
+
+/* ---------- tipografia ---------- */
+.titulo { font: 800 160px/0.96 var(--sans); letter-spacing: -0.055em; text-transform: uppercase; }
+.titulo.g { font-size: 200px; }
+.titulo.m { font-size: 120px; line-height: 1; letter-spacing: -0.045em; }
+.titulo.p { font-size: 84px; line-height: 1; letter-spacing: -0.04em; }
+.manifesto { font: 500 64px/0.98 var(--sans); letter-spacing: -0.02em; text-transform: uppercase; text-align: justify; text-align-last: justify; }
+.texto { font: 400 36px/1.28 var(--sans); letter-spacing: -0.02em; }
+.texto.p { font-size: 30px; }
+.rotulo { font: 400 26px/1.2 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.01em; }
+.titulo .serif { letter-spacing: -0.03em; font-size: 1.08em; }
+.ponto { color: var(--detalhe); }
+.apagado { color: var(--c3); }
+.peca.escura .apagado { color: var(--c3); }
+
+/* ---------- elementos gráficos ---------- */
+/* Vão: espaço que abre dentro do texto justificado (manifesto do site). */
+.vao { display: inline-block; width: 120px; height: 0.6em; vertical-align: baseline; border-bottom: 3px solid var(--detalhe); margin: 0 8px; }
+.vao.limpo { border: 0; }
+
+/* Faixa: tira branca de palavras em caixa-alta, como as faixas do hero. */
+.faixa { position: absolute; left: 0; right: 0; height: 64px; display: flex; align-items: center; gap: 40px; padding: 0 32px; background: var(--branco); color: var(--escuro); font: 500 24px/1 var(--sans); text-transform: uppercase; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; z-index: 3; }
+.faixa.inclinada { transform: rotate(-4deg); left: -60px; right: -60px; }
+
+/* Palavra em contorno, como a palavra que gira no cubo da marca. */
+.contorno { font: 700 380px/0.8 var(--sans); letter-spacing: -0.04em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 2px var(--traco, var(--escuro)); white-space: nowrap; }
+.peca.escura .contorno { --traco: var(--claro); }
+
+/* Vidro: forma orgânica que desfoca o que está atrás (as formas de vidro do hero). */
+.vidro { position: absolute; z-index: 4; border-radius: 38% 62% 47% 53% / 52% 38% 62% 48%; background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.55), inset 30px 40px 60px rgba(255, 255, 255, 0.18), inset -30px -40px 60px rgba(18, 18, 18, 0.12); }
+.vidro::after { content: ''; position: absolute; left: 20%; top: 14%; width: 22%; height: 7%; border-radius: 50%; background: rgba(255, 255, 255, 0.7); filter: blur(6px); transform: rotate(-24deg); }
+
+/* ASCII: o "laboratório" desenhado em caracteres (preenchido por pecas.js). */
+.ascii { font: 400 18px/18px var(--mono); letter-spacing: 0; white-space: pre; margin: 0; }
+
+/* Borda orgânica: a passagem do claro para o escuro do site. */
+.borda { position: absolute; left: 0; width: 100%; display: block; z-index: 1; }
+
+/* Linha que cresce até o título, como em "(Decisões ── & Registro)". */
+.linha { display: inline-block; height: 3px; background: currentColor; vertical-align: middle; }
+
+/* Lista numerada em mono: (01) item. */
+.lista-mono li { display: grid; grid-template-columns: 110px 1fr; align-items: baseline; padding: 22px 0; border-top: 2px solid var(--c2); font: 500 44px/1.1 var(--sans); letter-spacing: -0.03em; text-transform: uppercase; }
+.peca.escura .lista-mono li { border-color: rgba(247, 247, 245, 0.2); }
+.lista-mono li span { font: 400 26px var(--mono); }
+
+/* Celular desenhado em CSS, para mostrar detalhes de interface. */
+.celular { position: absolute; width: 360px; height: 740px; border-radius: 56px; border: 3px solid currentColor; padding: 22px; }
+.celular .tela { position: relative; height: 100%; border-radius: 36px; background: var(--claro); color: var(--escuro); overflow: hidden; padding: 70px 26px 0; }
+.celular .tela b { display: block; height: 18px; margin-bottom: 14px; background: var(--c2); border-radius: 4px; }
+.celular .tela b.curto { width: 60%; }
+.celular .tela .bloco { height: 200px; margin: 26px 0; background: var(--c2); border-radius: 12px; }
+.celular .botao { position: absolute; left: 18px; right: 18px; bottom: 18px; height: 72px; border-radius: 40px; background: var(--azul); color: var(--branco); display: flex; align-items: center; justify-content: center; font: 500 22px var(--sans); text-transform: uppercase; letter-spacing: -0.01em; }
+
+/* Área reservada a figurinhas do Instagram (enquete, link, caixa de perguntas). */
+.figurinha { border: 3px dashed currentColor; border-radius: 28px; display: flex; align-items: center; justify-content: center; font: 400 24px var(--mono); text-transform: uppercase; opacity: 0.6; }
+
+/* Campo a preencher num modelo (nada de dado inventado). */
+.campo { color: var(--detalhe); }
+
+/* ---------- panorama: um desenho que atravessa todas as lâminas do carrossel ---------- */
+.panorama { position: absolute; top: 0; height: 100%; z-index: 0; pointer-events: none; }
+
+/* ---------- grade de apoio (?grade) ---------- */
+.grade .peca::after { content: ''; position: absolute; inset: var(--margem); border: 2px dashed var(--detalhe); z-index: 50; pointer-events: none; }
+.grade .peca[data-formato="story"]::before { content: ''; position: absolute; left: 0; right: 0; top: 250px; bottom: 340px; background: rgba(0, 47, 167, 0.06); z-index: 49; pointer-events: none; }

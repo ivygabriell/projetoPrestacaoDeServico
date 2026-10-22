@@ -8,7 +8,9 @@
     "start": "next start",
     "test": "vitest run",
     "check": "tsc --noEmit && eslint .",
-    "test:build": "NEXT_DIST_DIR=.next-teste next build && playwright test"
+    "test:build": "NEXT_DIST_DIR=.next-teste next build && playwright test",
+    "redes": "node redes-sociais/scripts/servidor.mjs",
+    "redes:exportar": "node redes-sociais/scripts/exportar.mjs"
   },
   "dependencies": {
     "@14islands/r3f-scroll-rig": "8.15.0",

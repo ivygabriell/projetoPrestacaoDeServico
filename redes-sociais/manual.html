@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Identidade nas redes</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800&family=Azeret+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modelos/base.css">
+  <style>
+    body { background: var(--claro); color: var(--escuro); font: 400 18px/1.45 var(--sans); }
+    a { color: inherit; text-decoration-color: var(--azul); text-underline-offset: 4px; }
+    .m-cab { position: sticky; top: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 30px; font: 400 13px/1.2 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; color: var(--claro); mix-blend-mode: difference; }
+    .m-cab nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    .m-cab a { text-decoration: none; }
+    .m-rec { display: inline-flex; align-items: center; gap: 8px; }
+    .m-rec::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+    .m-hero { position: relative; min-height: 92vh; padding: 16vh 30px 60px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .m-hero h1 { font: 800 13.4vw/0.86 var(--sans); letter-spacing: -0.055em; text-transform: uppercase; }
+    .m-hero h1 .serif { font-size: 1.04em; letter-spacing: -0.03em; }
+    .m-hero .intro { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 60px; font: 400 13px/1.35 var(--mono); text-transform: uppercase; letter-spacing: -0.01em; }
+    .m-hero .faixa { position: relative; margin: 50px -30px 0; height: 34px; font-size: 12px; }
+
+    .m-secao { padding: 120px 30px; border-top: 1px solid var(--c2); }
+    .m-secao.escura { background: var(--escuro); color: var(--claro); border: 0; }
+    .m-secao.escura .m-rotulo, .m-secao.escura .m-nota { color: var(--c2); }
+    .m-rotulo { font: 400 13px var(--mono); text-transform: uppercase; letter-spacing: -0.02em; }
+    .m-titulo { margin: 18px 0 50px; font: 800 clamp(48px, 7.4vw, 120px)/0.9 var(--sans); letter-spacing: -0.05em; text-transform: uppercase; max-width: 16ch; }
+    .m-titulo .serif { letter-spacing: -0.03em; }
+    .m-texto { max-width: 720px; font-size: 20px; letter-spacing: -0.015em; }
+    .m-texto + .m-texto { margin-top: 16px; }
+    .m-nota { margin-top: 18px; font: 400 12px/1.4 var(--mono); text-transform: uppercase; color: var(--c3); }
+    .m-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 50px; }
+    .m-cartao { padding: 26px; border: 1px solid var(--c2); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px; }
+    .m-secao.escura .m-cartao { border-color: rgba(247, 247, 245, 0.18); }
+    .m-cartao h3 { font: 700 30px/1 var(--sans); letter-spacing: -0.04em; text-transform: uppercase; }
+    .m-cartao p { font-size: 16px; }
+
+    /* Paleta */
+    .m-cores { display: grid; grid-template-columns: 70fr 20fr 6fr 2.4fr 1.6fr; height: 260px; margin-top: 40px; border: 1px solid var(--c2); }
+    .m-cores div { position: relative; padding: 14px; font: 400 12px/1.3 var(--mono); text-transform: uppercase; overflow: hidden; }
+    .m-cores small { position: absolute; left: 14px; bottom: 14px; }
+    .m-tabela { width: 100%; margin-top: 40px; border-collapse: collapse; font-size: 16px; }
+    .m-tabela th, .m-tabela td { text-align: left; padding: 14px 12px 14px 0; border-top: 1px solid var(--c2); vertical-align: top; }
+    .m-tabela th { font: 400 12px var(--mono); text-transform: uppercase; color: var(--c3); }
+    .m-secao.escura .m-tabela th, .m-secao.escura .m-tabela td { border-color: rgba(247, 247, 245, 0.18); }
+    .m-amostra { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 8px; box-shadow: 0 0 0 1px var(--c3); }
+
+    /* Tipografia */
+    .m-tipos { display: grid; gap: 0; margin-top: 30px; }
+    .m-tipo { display: grid; grid-template-columns: 220px 1fr; gap: 30px; padding: 34px 0; border-top: 1px solid var(--c2); align-items: baseline; }
+    .m-tipo .amostra-sans { font: 800 clamp(56px, 8vw, 128px)/0.9 var(--sans); letter-spacing: -0.055em; text-transform: uppercase; }
+    .m-tipo .amostra-mono { font: 400 clamp(20px, 2.4vw, 30px)/1.3 var(--mono); text-transform: uppercase; letter-spacing: -0.02em; }
+    .m-tipo .amostra-serif { font: italic 400 clamp(48px, 6vw, 96px)/1 var(--serif); letter-spacing: -0.02em; }
+    .m-tipo .amostra-corpo { font: 400 clamp(20px, 2vw, 28px)/1.3 var(--sans); letter-spacing: -0.02em; max-width: 34ch; }
+
+    /* Elementos */
+    .m-el { --detalhe: var(--azul); --traco: var(--escuro); position: relative; height: 200px; overflow: hidden; background: var(--claro); color: var(--escuro); display: flex; align-items: center; justify-content: center; }
+    .m-el.esc { --detalhe: var(--azul-no-escuro); background: var(--escuro); color: var(--claro); }
+    .m-el .faixa { position: absolute; top: 80px; height: 40px; font-size: 13px; }
+    .m-el .contorno { font-size: 150px; }
+    .m-el .ascii { font-size: 9px; line-height: 9px; }
+    .m-el .vidro { width: 140px; height: 140px; position: relative; }
+    .m-el .vidro-fundo { position: absolute; font: 800 90px/1 var(--sans); letter-spacing: -0.05em; }
+    .m-el .tracinhos i { width: 22px; }
+
+    /* Quadros dos modelos */
+    .m-quadro { width: 100%; border: 0; display: block; min-height: 300px; margin-top: 30px; background: transparent; }
+    .m-abrir { display: inline-flex; gap: 18px; margin-top: 10px; font: 400 13px var(--mono); text-transform: uppercase; }
+
+    /* Perfil simulado */
+    .m-perfil-area { display: grid; grid-template-columns: minmax(300px, 400px) 1fr; gap: 60px; align-items: start; margin-top: 40px; }
+    .m-celular { width: 100%; max-width: 400px; border: 2px solid var(--escuro); border-radius: 46px; padding: 14px; background: var(--escuro); }
+    .m-celular .tela { background: var(--branco); border-radius: 34px; overflow: hidden; color: var(--escuro); font: 400 13px/1.35 var(--sans); }
+    .ig-topo { display: flex; justify-content: space-between; padding: 18px 18px 8px; font-weight: 700; font-size: 15px; }
+    .ig-cab { display: flex; gap: 20px; align-items: center; padding: 6px 18px 12px; }
+    .ig-avatar { position: relative; width: 78px; height: 78px; border-radius: 50%; overflow: hidden; flex: none; box-shadow: 0 0 0 1px var(--c2); }
+    .ig-num { display: flex; gap: 18px; text-align: center; font-size: 12px; }
+    .ig-num b { display: block; font-size: 15px; }
+    .ig-bio { padding: 0 18px 12px; }
+    .ig-bio b { display: block; }
+    .ig-bio a { color: var(--azul); text-decoration: none; }
+    .ig-destaques { display: flex; gap: 12px; padding: 4px 18px 14px; overflow: hidden; }
+    .ig-destaque { text-align: center; font-size: 11px; }
+    .ig-destaque .circ { position: relative; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px var(--c2); margin-bottom: 4px; }
+    .ig-feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .ig-cel { aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: var(--c2); }
+    .mini { transform-origin: top left; position: absolute; left: 0; top: 0; }
+    .m-aviso { padding: 30px 18px; font: 400 12px/1.4 var(--mono); text-transform: uppercase; }
+
+    /* Tom de voz */
+    .m-dois { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+    .m-lista li { padding: 14px 0; border-top: 1px solid var(--c2); font-size: 18px; }
+    .m-secao.escura .m-lista li { border-color: rgba(247, 247, 245, 0.18); }
+    .m-lista.sim li::before { content: '→ '; color: var(--azul-no-escuro); }
+    .m-lista.nao li { color: var(--c3); text-decoration: line-through; text-decoration-color: var(--c3); }
+    .m-legenda { margin-top: 40px; padding: 30px; border: 1px solid rgba(247, 247, 245, 0.18); font: 400 16px/1.6 var(--mono); white-space: pre-wrap; }
+
+    .m-rodape { padding: 80px 30px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; font: 400 22px/1.3 var(--serif); }
+    .m-rodape i { display: block; font-size: 16px; color: var(--c3); }
+
+    @media (max-width: 760px) {
+      .m-cab nav { display: none; }
+      .m-hero { padding: 14vh 16px 40px; }
+      .m-secao { padding: 80px 16px; }
+      .m-tipo { grid-template-columns: 1fr; gap: 10px; }
+      .m-perfil-area { grid-template-columns: minmax(0, 1fr); }
+      .m-hero .faixa { margin: 40px -16px 0; }
+      .m-cores { height: 180px; grid-template-columns: 70fr 20fr 10fr; }
+      .m-cores div:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="m-cab">
+    <span class="m-rec">©MARCA · redes v0.1</span>
+    <nav>
+      <a href="#essencia">Essência</a><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#elementos">Elementos</a><a href="#perfil">Perfil</a><a href="#carrosseis">Carrosséis</a><a href="#posts">Posts</a><a href="#stories">Stories</a><a href="#voz">Tom de voz</a>
+    </nav>
+  </header>
+
+  <section class="m-hero">
+    <h1>Identidade <span class="serif">nas</span> redes<span class="ponto">.</span></h1>
+    <div>
+      <div class="intro">
+        <p>A mesma marca do site, traduzida para o feed: monocromática, com o azul profundo só nos detalhes.</p>
+        <p>Inovação, premium, minimalista e corporativo. Para sócios de escritórios, donos de clínicas e de imobiliárias.</p>
+        <p>Instagram e LinkedIn · retrato 1080×1350 · stories 1080×1920 · rascunho v0.1</p>
+      </div>
+      <div class="faixa"><span>Design lógico</span><span>Desenvolvimento criativo</span><span>Sites</span><span>(01)</span><span>Imobiliário</span><span>Odontologia</span><span>Advocacia</span><span>(02)</span><span>Instagram</span><span>LinkedIn</span><span>Carrosséis</span><span>(03)</span><span>Stories</span><span>Laboratório</span></div>
+    </div>
+  </section>
+
+  <section class="m-secao" id="essencia">
+    <p class="m-rotulo">(01) Essência</p>
+    <h2 class="m-titulo">O feed é a <span class="serif">vitrine</span> antes do site<span class="ponto">.</span></h2>
+    <p class="m-texto">No site, a prova é a própria experiência. Nas redes, cada peça precisa provar o mesmo em um segundo de rolagem: acabamento, clareza e uma ideia por vez. O perfil é um laboratório aberto, não um panfleto.</p>
+    <div class="m-grade">
+      <article class="m-cartao"><h3>Inovação</h3><p>Elementos que só um laboratório faria: ASCII gerado por código, panorama que emenda entre as lâminas, vidro que refrata.</p></article>
+      <article class="m-cartao"><h3>Premium</h3><p>Muito espaço vazio, tipografia gigante, serifa itálica como assinatura e nenhum excesso de cor.</p></article>
+      <article class="m-cartao"><h3>Minimalista</h3><p>Uma ideia por peça. Três fontes, cinco cores, uma moldura fixa. O que não informa, sai.</p></article>
+      <article class="m-cartao"><h3>Corporativo</h3><p>Tom sóbrio, sem gírias nem emojis, normas dos conselhos profissionais respeitadas e dados só quando reais.</p></article>
+    </div>
+  </section>
+
+  <section class="m-secao" id="paleta">
+    <p class="m-rotulo">(02) Paleta</p>
+    <h2 class="m-titulo">Cinco cores<span class="ponto">.</span> <span class="serif">uma só de destaque.</span></h2>
+    <p class="m-texto">As mesmas do site, na proporção em que aparecem no feed. O azul nunca é fundo: é o ponto final, a linha, o botão, o tracinho atual.</p>
+    <div class="m-cores" role="img" aria-label="Proporção das cores: 70% claro, 20% preto, 6% cinza claro, 2,4% cinza médio, 1,6% azul">
+      <div style="background: var(--claro)">Claro #F7F7F5<small>70%</small></div>
+      <div style="background: var(--escuro); color: var(--claro)">Preto #121212<small>20%</small></div>
+      <div style="background: var(--c2)">#DCDCD8<small>6%</small></div>
+      <div style="background: var(--c3); color: var(--claro)"><small>2%</small></div>
+      <div style="background: var(--azul); color: var(--claro)"><small>2%</small></div>
+    </div>
+    <table class="m-tabela">
+      <thead><tr><th>Cor</th><th>Nas redes</th><th>Contraste</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m-amostra" style="background: var(--claro)"></span>#F7F7F5 Claro</td><td>Fundo padrão de posts, carrosséis e stories</td><td>Base</td></tr>
+        <tr><td><span class="m-amostra" style="background: var(--escuro)"></span>#121212 Preto</td><td>Texto; fundo das peças escuras (até 1 em cada 3 do feed)</td><td>17,5 : 1 sobre o claro</td></tr>
+        <tr><td><span class="m-amostra" style="background: var(--c2)"></span>#DCDCD8 Cinza claro</td><td>Linhas, divisórias, áreas reservadas a imagem</td><td>Só decorativo</td></tr>
+        <tr><td><span class="m-amostra" style="background: var(--c3)"></span>#787878 Cinza médio</td><td>Texto secundário grande (acima de 48 px na peça), contornos</td><td>4,1 : 1, não usar em texto pequeno</td></tr>
+        <tr><td><span class="m-amostra" style="background: var(--azul)"></span>#002FA7 Azul profundo</td><td>Detalhes no claro: ponto final, linha, botão, tracinho atual</td><td>10 : 1 sobre o claro</td></tr>
+        <tr><td><span class="m-amostra" style="background: var(--azul-no-escuro)"></span>#5B7BFF Azul no escuro</td><td>Os mesmos detalhes sobre o preto (proposta pendente, a mesma do site)</td><td>5,1 : 1 sobre o preto</td></tr>
+      </tbody>
+    </table>
+    <p class="m-nota">Feed sem "pisca-pisca": as peças escuras andam juntas (uma linha de três), nunca em xadrez. É a mesma regra do site, que tem um só trecho escuro.</p>
+  </section>
+
+  <section class="m-secao" id="tipografia">
+    <p class="m-rotulo">(03) Tipografia</p>
+    <h2 class="m-titulo">Três famílias<span class="ponto">.</span> <span class="serif">gratuitas.</span></h2>
+    <div class="m-tipos">
+      <div class="m-tipo"><p class="m-rotulo">Inter Tight 800<br>títulos · 84 a 200 px<br>caixa-alta · −0,055em</p><p class="amostra-sans">O site mostra<span class="ponto">.</span></p></div>
+      <div class="m-tipo"><p class="m-rotulo">Instrument Serif itálico<br>a palavra que respira<br>uma por título</p><p class="amostra-serif">primeira consulta.</p></div>
+      <div class="m-tipo"><p class="m-rotulo">Azeret Mono 400<br>rótulos e moldura · 24 a 26 px<br>caixa-alta · −0,02em</p><p class="amostra-mono">(Sinal 01) · ©MARCA · Arraste →</p></div>
+      <div class="m-tipo"><p class="m-rotulo">Inter Tight 400<br>texto corrido · 30 a 36 px<br>no máximo 3 linhas</p><p class="amostra-corpo">Quem procura dentista procura pelo celular, muitas vezes com pressa.</p></div>
+    </div>
+    <p class="m-nota">Tamanhos medidos na peça de 1080 px. No celular ela aparece a cerca de 1/3: nada abaixo de 24 px.</p>
+  </section>
+
+  <section class="m-secao escura" id="elementos">
+    <p class="m-rotulo">(04) Moldura e elementos</p>
+    <h2 class="m-titulo">Tudo veio do <span class="serif">site.</span></h2>
+    <p class="m-texto">Topo e base fixos em mono, a 64 px das bordas (stories: zona segura de 250 px em cima e 340 px embaixo). Dentro deles, os elementos que já são da marca.</p>
+    <div class="m-grade">
+      <article class="m-cartao"><div class="m-el"><span style="font: 800 72px/1 var(--sans); letter-spacing: -0.05em;">SITES<span class="ponto">.</span></span></div><h3>Ponto azul</h3><p>Fecha todo título. É a assinatura mínima da marca.</p></article>
+      <article class="m-cartao"><div class="m-el"><span class="rotulo">(Quem somos)</span></div><h3>Parênteses</h3><p>Rótulos e índices em mono: (01/08), (Sinal 02), (Laboratório).</p></article>
+      <article class="m-cartao"><div class="m-el"><div class="faixa"><span>Design lógico</span><span>Sites</span><span>(01)</span><span>Imobiliário</span><span>Odontologia</span><span>Advocacia</span></div></div><h3>Faixa</h3><p>A tira branca do hero. Atravessa as lâminas do carrossel sem emenda.</p></article>
+      <article class="m-cartao"><div class="m-el"><span style="font: 500 24px/1 var(--sans); text-transform: uppercase; white-space: nowrap;">O site <span class="vao" style="width: 50px"></span> mostra</span></div><h3>Vão</h3><p>O espaço que abre no manifesto, sublinhado em azul.</p></article>
+      <article class="m-cartao"><div class="m-el"><span class="contorno">05</span></div><h3>Contorno</h3><p>Números e palavras vazados, ao fundo, como no cubo da marca.</p></article>
+      <article class="m-cartao"><div class="m-el esc"><pre class="ascii" data-ascii="cubo" data-colunas="44" data-linhas="20" data-giro="0.62" data-inclinacao="0.62"></pre></div><h3>ASCII</h3><p>Formas desenhadas por código em caracteres: o laboratório à vista.</p></article>
+      <article class="m-cartao"><div class="m-el esc"><span class="vidro-fundo">VIDRO</span><div class="vidro"></div></div><h3>Vidro</h3><p>Forma orgânica que desfoca o que está atrás. Sempre na borda do texto, nunca em cima.</p></article>
+      <article class="m-cartao"><div class="m-el"><span class="tracinhos"><i class="feito"></i><i class="feito"></i><i class="atual"></i><i></i><i></i><i></i></span></div><h3>Tracinhos</h3><p>O progresso do carrossel, um por lâmina, o atual em azul.</p></article>
+    </div>
+  </section>
+
+  <section class="m-secao" id="perfil">
+    <p class="m-rotulo">(05) Perfil</p>
+    <h2 class="m-titulo">Como o perfil <span class="serif">se lê</span> de longe<span class="ponto">.</span></h2>
+    <div class="m-perfil-area">
+      <div class="m-celular" aria-label="Simulação do perfil no Instagram">
+        <div class="tela">
+          <div class="ig-topo"><span>marca.lab</span><span>···</span></div>
+          <div class="ig-cab">
+            <div class="ig-avatar" data-mini="perfil:avatar"></div>
+            <div class="ig-num"><div><b>—</b>posts</div><div><b>—</b>seguidores</div><div><b>—</b>seguindo</div></div>
+          </div>
+          <div class="ig-bio"><b>©MARCA · Laboratório de sites</b>Sites para imobiliárias, clínicas odontológicas e escritórios de advocacia.<br>O próprio site é a prova.<br><a href="#perfil">marca.lab/site</a></div>
+          <div class="ig-destaques">
+            <div class="ig-destaque"><div class="circ" data-mini="perfil:destaque-01-cases"></div>Cases</div>
+            <div class="ig-destaque"><div class="circ" data-mini="perfil:destaque-02-processo"></div>Processo</div>
+            <div class="ig-destaque"><div class="circ" data-mini="perfil:destaque-03-nichos"></div>Nichos</div>
+            <div class="ig-destaque"><div class="circ" data-mini="perfil:destaque-04-laboratorio"></div>Lab</div>
+            <div class="ig-destaque"><div class="circ" data-mini="perfil:destaque-05-contato"></div>Contato</div>
+          </div>
+          <div class="ig-feed">
+            <div class="ig-cel" data-mini="posts:manifesto"></div>
+            <div class="ig-cel" data-mini="carrossel-educativo:01-capa"></div>
+            <div class="ig-cel" data-mini="posts:nicho-imobiliario"></div>
+            <div class="ig-cel" data-mini="posts:detalhe-de-interface"></div>
+            <div class="ig-cel" data-mini="posts:bastidores-ascii"></div>
+            <div class="ig-cel" data-mini="posts:pergunta"></div>
+            <div class="ig-cel" data-mini="posts:nicho-advocacia"></div>
+            <div class="ig-cel" data-mini="carrossel-manifesto:01-gancho"></div>
+            <div class="ig-cel" data-mini="posts:case-modelo"></div>
+          </div>
+          <p class="m-aviso" hidden id="aviso-servidor">Para ver o feed montado com as peças reais, abra pelo servidor local: npm run redes</p>
+        </div>
+      </div>
+      <div>
+        <p class="m-texto"><b>Bio:</b> o que é, para quem é, a frase da marca e o link. Sem emojis, sem lista de serviços.</p>
+        <p class="m-texto"><b>Avatar:</b> o © com o ponto azul sobre o preto (provisório até o nome sair). Funciona no recorte em círculo e em 40 px.</p>
+        <p class="m-texto"><b>Destaques:</b> números grandes com o rótulo em mono, o 04 (Laboratório) em preto para marcar o trecho escuro.</p>
+        <p class="m-texto"><b>Ritmo do feed:</b> claro, claro, claro / escuro, escuro, escuro / claro, claro, claro. A linha escura é o "trecho escuro" do site; o resto respira no claro.</p>
+        <p class="m-nota">Contadores aparecem como "—": nada de número inventado.</p>
+        <p class="m-abrir"><a href="modelos/perfil.html">Abrir o modelo do perfil ↗</a></p>
+      </div>
+    </div>
+    <iframe class="m-quadro" src="modelos/perfil.html?embutido" title="Avatar, destaques e capa do LinkedIn"></iframe>
+  </section>
+
+  <section class="m-secao" id="carrosseis">
+    <p class="m-rotulo">(06) Carrosséis</p>
+    <h2 class="m-titulo">Uma ideia por <span class="serif">lâmina.</span></h2>
+    <p class="m-texto">Capa com o gancho em até 8 palavras; uma ideia por lâmina; uma virada (a única lâmina escura); a última com a chamada. De 5 a 10 lâminas. No LinkedIn, o mesmo carrossel sobe como PDF.</p>
+    <p class="m-texto"><b>Manifesto · panorama contínuo.</b> A borda orgânica, a faixa e o vidro atravessam as lâminas: ao arrastar, a imagem emenda.</p>
+    <iframe class="m-quadro" src="modelos/carrossel-manifesto.html?embutido" title="Carrossel manifesto"></iframe>
+    <p class="m-abrir"><a href="modelos/carrossel-manifesto.html">Abrir ↗</a><a href="modelos/carrossel-manifesto.html?grade">Com a grade ↗</a></p>
+    <p class="m-texto" style="margin-top: 60px"><b>Educativo · um nicho por série.</b> Problema em uma frase, explicação curta e "como resolver" em azul. O número vazado ao fundo marca o passo.</p>
+    <iframe class="m-quadro" src="modelos/carrossel-educativo.html?embutido" title="Carrossel educativo"></iframe>
+    <p class="m-abrir"><a href="modelos/carrossel-educativo.html">Abrir ↗</a><a href="modelos/carrossel-educativo.html?grade">Com a grade ↗</a></p>
+  </section>
+
+  <section class="m-secao" id="posts">
+    <p class="m-rotulo">(07) Posts e pilares</p>
+    <h2 class="m-titulo">Cinco pilares<span class="ponto">.</span></h2>
+    <table class="m-tabela">
+      <thead><tr><th>Pilar</th><th>Para quê</th><th>Peça</th><th>Do feed</th></tr></thead>
+      <tbody>
+        <tr><td>Educativo por nicho</td><td>Mostrar que entendemos o negócio do cliente</td><td>Carrossel educativo</td><td>35%</td></tr>
+        <tr><td>Prova</td><td>Cases e antes/depois, só com dados reais e autorizados</td><td>Case, carrossel</td><td>20%</td></tr>
+        <tr><td>Laboratório</td><td>Bastidores: estrutura, código, detalhes de interface</td><td>ASCII, detalhe</td><td>20%</td></tr>
+        <tr><td>Manifesto</td><td>O ponto de vista da marca</td><td>Manifesto, panorama</td><td>15%</td></tr>
+        <tr><td>Conversa</td><td>Perguntas e testes que geram resposta</td><td>Pergunta, enquete</td><td>10%</td></tr>
+      </tbody>
+    </table>
+    <iframe class="m-quadro" src="modelos/posts.html?embutido" title="Posts avulsos"></iframe>
+    <p class="m-abrir"><a href="modelos/posts.html">Abrir ↗</a></p>
+  </section>
+
+  <section class="m-secao" id="stories">
+    <p class="m-rotulo">(08) Stories e movimento</p>
+    <h2 class="m-titulo">O movimento do site, <span class="serif">em 15 segundos.</span></h2>
+    <p class="m-texto">Os stories e os reels reaproveitam as animações do site com as mesmas durações: palavras que piscam 5 vezes antes de firmar (0,1 s cada), logotipo com glitch que assenta em 1 s, faixas lentas, texto que se digita, transições de 0,3 s. Nada de efeitos prontos do aplicativo.</p>
+    <iframe class="m-quadro" src="modelos/stories.html?embutido" title="Stories"></iframe>
+    <p class="m-abrir"><a href="modelos/stories.html">Abrir ↗</a><a href="modelos/stories.html?grade">Com as zonas seguras ↗</a></p>
+  </section>
+
+  <section class="m-secao escura" id="voz">
+    <p class="m-rotulo">(09) Tom de voz</p>
+    <h2 class="m-titulo">Fala pouco<span class="ponto">.</span> <span class="serif">mostra muito.</span></h2>
+    <div class="m-dois">
+      <ul class="m-lista sim">
+        <li>Frases curtas, afirmativas, em português claro</li>
+        <li>Falar do negócio do cliente (pacientes, imóveis, clientes do escritório)</li>
+        <li>Um verbo de ação na chamada: salve, compartilhe, responda</li>
+        <li>Números só quando medidos e com a fonte</li>
+        <li>Respeitar as normas do CFO e da OAB</li>
+      </ul>
+      <ul class="m-lista nao">
+        <li>Incrível, top, surreal, imperdível</li>
+        <li>Emojis e pontos de exclamação</li>
+        <li>"Somos apaixonados por..."</li>
+        <li>Promessa de resultado ou preço no post</li>
+        <li>Jargão técnico sem explicação</li>
+      </ul>
+    </div>
+    <pre class="m-legenda">O site da sua clínica trabalha ou só existe?
+
+Separamos 5 sinais que fazem pacientes desistirem antes de ligar. Confira no seu site, de preferência pelo celular.
+
+→ Salve para revisar com calma.
+→ Mande para quem cuida do site da clínica.
+
+©MARCA · laboratório de sites
+#odontologia #marketingodontologico #sitesprofissionais</pre>
+    <p class="m-nota">Legenda: gancho (a capa em outras palavras) · o que a pessoa ganha · chamada · assinatura · 3 a 5 hashtags.</p>
+  </section>
+
+  <footer class="m-rodape">
+    <p><i>versão</i>Redes sociais · v0.1</p>
+    <p><i>paleta</i>#F7F7F5 #DCDCD8 #787878 #121212 #002FA7</p>
+    <p><i>tipografia</i>Inter Tight, Azeret Mono, Instrument Serif</p>
+    <p><i>nome</i>a definir: ©MARCA e @marca.lab são provisórios</p>
+  </footer>
+
+  <script src="modelos/pecas.js"></script>
+  <script>
+    // Quadros dos modelos crescem com o conteúdo.
+    addEventListener('message', (e) => {
+      if (!e.data || !e.data.pecasAltura) return;
+      for (const quadro of document.querySelectorAll('.m-quadro')) if (quadro.contentWindow === e.source) quadro.style.height = `${e.data.pecasAltura}px`;
+    });
+
+    Pecas.preparar(document);
+
+    // Perfil simulado: busca as peças reais nos modelos e mostra em miniatura (precisa do servidor local).
+    (async () => {
+      const alvos = [...document.querySelectorAll('[data-mini]')];
+      const docs = {};
+      try {
+        for (const modelo of new Set(alvos.map((a) => a.dataset.mini.split(':')[0]))) {
+          const html = await (await fetch(`modelos/${modelo}.html`)).text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          Pecas.preparar(doc);
+          for (const estilo of doc.querySelectorAll('style')) document.head.append(estilo.cloneNode(true));
+          docs[modelo] = doc;
+        }
+      } catch {
+        document.getElementById('aviso-servidor').hidden = false;
+        return;
+      }
+      await document.fonts.ready;
+      for (const alvo of alvos) {
+        const [modelo, nome] = alvo.dataset.mini.split(':');
+        const original = docs[modelo].querySelector(`.peca[data-nome="${nome}"]`);
+        if (!original) continue;
+        const peca = document.importNode(original, true);
+        const largura = Pecas.LARGURA[peca.dataset.formato];
+        const caixa = document.createElement('div');
+        caixa.className = 'mini';
+        caixa.append(peca);
+        alvo.append(caixa);
+        const ajustar = () => { caixa.style.transform = `scale(${alvo.clientWidth / largura})`; };
+        ajustar();
+        new ResizeObserver(ajustar).observe(alvo);
+      }
+    })();
+  </script>
+</body>
+</html>

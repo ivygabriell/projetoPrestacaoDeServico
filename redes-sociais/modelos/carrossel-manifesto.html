@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Carrossel manifesto</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800&family=Azeret+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    /* Panorama: a borda orgânica sobe na lâmina 2, o escuro cobre a 3 e a 4 e desce na 5. */
+    .pano-escuro { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .pano-faixa { top: 1060px; left: 0; right: 0; justify-content: space-between; }
+    .pano-vidro { left: calc(4 * 1080px - 230px); top: 300px; width: 460px; height: 460px; transform: rotate(-18deg); }
+
+    .m1 .rotulo-topo { position: absolute; left: var(--margem); top: 190px; }
+    .m1 .titulo { position: absolute; left: var(--margem); right: var(--margem); top: 300px; font-size: 128px; }
+    .m1 .apoio { position: absolute; left: var(--margem); width: 640px; top: 860px; }
+
+    .m2 .titulo { position: absolute; left: var(--margem); top: 250px; font-size: 230px; line-height: 0.8; }
+    .m2 .titulo .serif { display: block; font-size: 0.9em; margin-top: 10px; letter-spacing: -0.04em; }
+    .m2 .apoio { position: absolute; left: var(--margem); width: 560px; top: 820px; }
+
+    .m3 .rotulo-topo { position: absolute; left: var(--margem); top: 190px; }
+    .m3 .manifesto { position: absolute; left: var(--margem); right: var(--margem); top: 290px; font-size: 100px; line-height: 0.95; text-align: left; text-align-last: left; }
+    .m3 .manifesto .serif { font-size: 1.12em; }
+
+    /* A moldura inverte sozinha sobre o claro e o escuro, como o cabeçalho do site. */
+    .pano .topo, .pano .base { color: var(--claro); mix-blend-mode: difference; }
+    .pano .base .tracinhos i.atual { background: currentColor; width: 56px; }
+
+    .m4 .rotulo-topo { position: absolute; left: var(--margem); top: 190px; }
+    .m4 .titulo { position: absolute; left: var(--margem); top: 280px; font-size: 128px; }
+    .m4 .lista-mono { position: absolute; left: var(--margem); right: 300px; top: 640px; }
+
+    .m5 .marca-grande { position: absolute; right: var(--margem); top: 230px; text-align: right; }
+    .m5 .marca-grande .titulo { font-size: 200px; }
+    .m5 .marca-grande .serif { font-size: 76px; display: block; margin-top: 18px; }
+    .m5 .chamada { position: absolute; right: var(--margem); width: 560px; top: 760px; text-align: right; }
+    .m5 .chamada .rotulo { display: block; margin-top: 28px; }
+  </style>
+</head>
+<body data-pagina="modelo">
+  <header class="prancha-topo">
+    <h1>Carrossel · Manifesto</h1>
+    <span>5 lâminas · 1080×1350 · panorama contínuo · <a href="../manual.html">voltar ao manual</a></span>
+  </header>
+
+  <main class="prancha emendada" data-carrossel>
+    <template class="panorama-molde">
+      <svg class="pano-escuro" viewBox="0 0 5400 1350" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#121212" d="M1480 1350 C 1640 1290, 1700 1180, 1820 1080 C 1950 970, 1900 820, 2010 640 C 2090 500, 2060 260, 2150 120 L 2160 0 L 4320 0 C 4380 160, 4420 260, 4460 430 C 4510 640, 4630 700, 4660 900 C 4690 1100, 4800 1220, 4960 1350 Z"/>
+      </svg>
+      <div class="faixa pano-faixa">
+        <span>Design lógico</span><span>Desenvolvimento criativo</span><span>Sites</span><span>Laboratório</span><span>(01)</span><span>Imobiliário</span><span>Odontologia</span><span>Advocacia</span><span>Interfaces</span><span>Movimento</span><span>Interação</span><span>(02)</span><span>B2B</span><span>No Brasil</span><span>Acabamento</span><span>Desempenho</span><span>Tipografia</span><span>(03)</span><span>Identidade</span><span>Único</span><span>Planejamento</span><span>Sites</span><span>Laboratório</span><span>(04)</span><span>Movimento</span><span>Interação</span><span>Design lógico</span><span>(05)</span>
+      </div>
+      <div class="vidro pano-vidro"></div>
+    </template>
+
+    <section class="peca m1 pano" data-formato="retrato" data-nome="01-gancho">
+      <div class="topo"><span class="marca">©MARCA</span><span data-indice></span></div>
+      <p class="rotulo rotulo-topo">(Quem somos)</p>
+      <h2 class="titulo">Não dizemos<br>que fazemos<br>sites <span class="vao"></span><br>excelentes<span class="ponto">.</span></h2>
+      <p class="texto apoio">Laboratório de sites para imobiliárias, clínicas odontológicas e escritórios de advocacia.</p>
+      <div class="base"><span>@marca.lab</span><span class="tracinhos"></span><span>Arraste →</span></div>
+    </section>
+
+    <section class="peca m2 pano" data-formato="retrato" data-nome="02-virada">
+      <div class="topo"><span class="marca">©MARCA</span><span data-indice></span></div>
+      <h2 class="titulo">O site<span class="serif">mostra<span class="ponto">.</span></span></h2>
+      <p class="texto apoio">Em segundos, sem precisar de argumento: quem visita entende do que somos capazes.</p>
+      <div class="base"><span>@marca.lab</span><span class="tracinhos"></span><span>Arraste →</span></div>
+    </section>
+
+    <section class="peca escura m3 pano" data-formato="retrato" data-nome="03-principio">
+      <div class="topo"><span class="marca">©MARCA</span><span data-indice></span></div>
+      <p class="rotulo rotulo-topo">(O que é único)</p>
+      <p class="manifesto">Animação,<br>inovação,<br>tipografia e<br>acabamento <span class="vao"></span><br>são a mensagem,<br><span class="serif">não enfeite<span class="ponto">.</span></span></p>
+      <div class="base"><span>@marca.lab</span><span class="tracinhos"></span><span>Arraste →</span></div>
+    </section>
+
+    <section class="peca escura m4 pano" data-formato="retrato" data-nome="04-nichos">
+      <div class="topo"><span class="marca">©MARCA</span><span data-indice></span></div>
+      <p class="rotulo rotulo-topo">(Para quem)</p>
+      <h2 class="titulo">Três nichos<span class="ponto">.</span><br><span class="serif">um padrão.</span></h2>
+      <ol class="lista-mono">
+        <li><span>(01)</span>Imobiliário</li>
+        <li><span>(02)</span>Odontologia</li>
+        <li><span>(03)</span>Advocacia</li>
+      </ol>
+      <div class="base"><span>@marca.lab</span><span class="tracinhos"></span><span>Arraste →</span></div>
+    </section>
+
+    <section class="peca m5 pano" data-formato="retrato" data-nome="05-chamada">
+      <div class="topo"><span class="marca">©MARCA</span><span data-indice></span></div>
+      <div class="marca-grande">
+        <p class="titulo">©MARCA<span class="ponto">.</span></p>
+        <span class="serif">laboratório de sites</span>
+      </div>
+      <div class="chamada">
+        <p class="texto">Quer ver o laboratório funcionando? O site está no link da bio.</p>
+        <span class="rotulo">Salve · Compartilhe · ↗ Link na bio</span>
+      </div>
+      <div class="base"><span>@marca.lab</span><span class="tracinhos"></span><span>Fim</span></div>
+    </section>
+  </main>
+  <script src="pecas.js"></script>
+</body>
+</html>

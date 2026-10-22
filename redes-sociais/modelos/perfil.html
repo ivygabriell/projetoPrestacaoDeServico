@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Perfil</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800&family=Azeret+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .f-avatar { display: flex; align-items: center; justify-content: center; }
+    .f-avatar .titulo { font-size: 620px; line-height: 1; letter-spacing: -0.08em; transform: translate(-10px, -20px); }
+    .f-destaque { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+    .f-destaque .titulo { font-size: 380px; line-height: 0.8; }
+    .f-destaque .rotulo { font-size: 56px; }
+    .f-linkedin .titulo { position: absolute; right: 64px; top: 70px; font-size: 104px; text-align: right; }
+    .f-linkedin .nichos { position: absolute; right: 64px; top: 196px; font-size: 22px; }
+    .f-linkedin .faixa { top: auto; bottom: 0; height: 52px; font-size: 20px; justify-content: space-between; }
+  </style>
+</head>
+<body data-pagina="modelo">
+  <header class="prancha-topo">
+    <h1>Perfil</h1>
+    <span>avatar e destaques 1080×1080 (recorte em círculo) · capa do LinkedIn 1584×396 · <a href="../manual.html">voltar ao manual</a></span>
+  </header>
+
+  <main class="prancha">
+    <section class="peca escura f-avatar" data-formato="quadrado" data-nome="avatar">
+      <p class="titulo">©<span class="ponto">.</span></p>
+    </section>
+    <section class="peca f-destaque" data-formato="quadrado" data-nome="destaque-01-cases">
+      <p class="titulo">01</p>
+      <p class="rotulo">Cases</p>
+    </section>
+    <section class="peca f-destaque" data-formato="quadrado" data-nome="destaque-02-processo">
+      <p class="titulo">02</p>
+      <p class="rotulo">Processo</p>
+    </section>
+    <section class="peca f-destaque" data-formato="quadrado" data-nome="destaque-03-nichos">
+      <p class="titulo">03</p>
+      <p class="rotulo">Nichos</p>
+    </section>
+    <section class="peca f-destaque escura" data-formato="quadrado" data-nome="destaque-04-laboratorio">
+      <p class="titulo">04</p>
+      <p class="rotulo">Laboratório</p>
+    </section>
+    <section class="peca f-destaque" data-formato="quadrado" data-nome="destaque-05-contato">
+      <p class="titulo">05</p>
+      <p class="rotulo">Contato</p>
+    </section>
+
+    <section class="peca f-linkedin" data-formato="linkedin" data-nome="capa-linkedin">
+      <p class="titulo">Laboratório de sites<span class="ponto">.</span></p>
+      <p class="rotulo nichos">(01) Imobiliário · (02) Odontologia · (03) Advocacia</p>
+      <div class="faixa"><span>Design lógico</span><span>Desenvolvimento criativo</span><span>Sites</span><span>(01)</span><span>Interfaces</span><span>Movimento</span><span>Interação</span><span>(02)</span><span>Acabamento</span><span>Desempenho</span><span>B2B</span><span>(03)</span><span>No Brasil</span></div>
+    </section>
+  </main>
+  <script src="pecas.js"></script>
+</body>
+</html>
