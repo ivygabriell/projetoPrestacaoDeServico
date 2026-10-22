@@ -2,7 +2,7 @@
 
 Este arquivo é lido automaticamente por qualquer sessão do Claude Code aberta nesta pasta. Ele foi gerado pelo método de desenvolvimento; ajuste-o à medida que o projeto decidir.
 
-Versão do método: 2.4.0
+Versão do método: 2.5.0
 
 @docs/DESENVOLVIMENTO.md
 @docs/memoria-do-projeto.md
@@ -21,4 +21,5 @@ Versão do método: 2.4.0
 ## Método de desenvolvimento
 
 - **Orquestração com o Orca** (modo em rascunho): se este projeto roda no Orca, a coordenadora é a integradora e cada agente supervisionado é uma trabalhadora. A coordenadora usa o prompt `modelos/prompt-coordenadora-orca.md` do método; os agentes nunca integram e perguntam à coordenadora com `orca orchestration ask`, nunca à pessoa; merge e deploy passam por um portão que só a pessoa resolve.
+- **Agentes no Orca:** a coordenadora é sempre Claude. Os agentes são Claude (`--agent claude`); no back, podem ser Codex (`--agent codex`) se o projeto tiver o `AGENTS.md`, que é o arquivo que o Codex lê. Com o back no Codex, o contrato da API é fechado e aprovado antes de qualquer tarefa de construção.
 - **Método mais novo:** se a versão do método instalada (skill `metodo:consultar`) for maior que a "Versão do método" acima, sugira à pessoa rodar `/metodo:atualizar-projeto`.
