@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 const desenvolvimento = readFileSync('docs/DESENVOLVIMENTO.md', 'utf8');
@@ -25,5 +25,12 @@ describe('documentação do projeto', () => {
     expect(memoria).not.toContain('âncoras em 1,4 s');
     expect(memoria).not.toContain('Lenis 1.3.26');
     expect(memoria).not.toContain('identidade-da-marca.html');
+  });
+
+  it('não guarda a identidade antiga nem o estudo das duas referências', () => {
+    expect(existsSync('docs/identidade')).toBe(false);
+    expect(existsSync('docs/referencias/estudo-das-referencias.md')).toBe(false);
+    expect(memoria).not.toContain('docs/identidade/');
+    expect(memoria).not.toContain('estudo-das-referencias');
   });
 });
