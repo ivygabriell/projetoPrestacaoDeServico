@@ -30,7 +30,6 @@ Next.js 15.5 (App Router) com React 19, Three.js r180, @react-three/fiber 9, @14
 - Tipos e lint: `npm run check`
 - Build e testes do build: `npm run test:build` (build em `.next-teste` + Playwright; usa o Chrome da máquina e, no CI, o Chromium do Playwright)
 - Build de produção: `npm run build` e `npm run start`
-- Identidade nas redes sociais: `npm run redes` (manual em http://localhost:3200) e `npm run redes:exportar` (PNG e PDF em `redes-sociais/exportados/`). Guia em [redes-sociais/README.md](../redes-sociais/README.md).
 
 ## Publicação provisória (Vercel)
 
